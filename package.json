@@ -1,0 +1,8 @@
+{
+  "name": "@bdash2/root",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
