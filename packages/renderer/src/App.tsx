@@ -1,8 +1,11 @@
 import { FC } from 'react'
-import { RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
-import { router } from './routes'
 
-export const App: FC = () => {
+type Props = {
+  router: ReturnType<typeof createHashRouter>
+}
+
+export const App: FC<Props> = ({ router }) => {
   return <RouterProvider router={router} />
 }
