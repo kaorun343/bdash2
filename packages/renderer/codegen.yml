@@ -1,0 +1,18 @@
+schema: ../main/schema.graphql
+documents: src/**/*.graphql
+
+generates:
+  src/types.ts:
+    plugins:
+      - typescript
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.ts
+      baseTypesPath: types.ts
+    plugins:
+      - typescript-operations
+      - typescript-generic-sdk
+    config:
+      documentMode: string
+      skipTypename: true
