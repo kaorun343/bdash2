@@ -1,0 +1,6 @@
+query getQueries {
+  queries {
+    id
+    title
+  }
+}
