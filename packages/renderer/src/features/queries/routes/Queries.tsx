@@ -1,14 +1,14 @@
 import { FC } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { QueryList } from '../components/QueryList'
-import { UserQueryForQueryListItemFragment } from '../components/QueryListItem.generated'
+import { GetQueriesQuery } from './index.generated'
 
 export const Queries: FC = () => {
-  const data = useLoaderData() as readonly UserQueryForQueryListItemFragment[]
+  const data = useLoaderData() as GetQueriesQuery
 
   return (
     <div className="flex">
-      <QueryList queries={data} />
+      <QueryList queries={data.queries} />
       <Outlet />
     </div>
   )

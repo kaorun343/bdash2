@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { GlobalMenu } from './GlobalMenu'
 
@@ -8,7 +8,9 @@ export const Layout: FC = () => {
       <aside>
         <GlobalMenu />
       </aside>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   )
 }
