@@ -1,6 +1,5 @@
 query getQueries {
   queries {
-    id
-    title
+    ...UserQueryForQueryListItem
   }
 }

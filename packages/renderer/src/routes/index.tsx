@@ -1,18 +1,13 @@
-import { lazy } from 'react'
 import { createHashRouter, Navigate } from 'react-router-dom'
 import { Layout } from '~/components/Layout'
-
-const QueryRoutes = lazy(() => import('~/features/queries/routes').then((m) => ({ default: m.QueryRoutes })))
+import { queryRoutes } from '~/features/queries/routes'
 
 export const router = createHashRouter([
   {
     path: '/',
     element: <Layout />,
     children: [
-      {
-        path: '/queries',
-        element: <QueryRoutes />,
-      },
+      queryRoutes,
       {
         path: '/',
         element: <Navigate to="/queries" />,

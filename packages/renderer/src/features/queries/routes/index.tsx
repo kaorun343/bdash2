@@ -1,12 +1,12 @@
-import { FC, lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { lazy } from 'react'
+import { UserQueryForQueryListItemFragment } from '../components/QueryListItem.generated'
 
 const Queries = lazy(() => import('./Queries').then((m) => ({ default: m.Queries })))
 
-export const QueryRoutes: FC = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Queries />} />
-    </Routes>
-  )
+export const queryRoutes = {
+  path: '/queries',
+  element: <Queries />,
+  loader: async (): Promise<readonly UserQueryForQueryListItemFragment[]> => {
+    return []
+  },
 }

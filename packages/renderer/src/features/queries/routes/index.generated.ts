@@ -1,5 +1,6 @@
 import * as Types from '../../../types';
 
+import { UserQueryForQueryListItemFragmentDoc } from '../components/QueryListItem.generated';
 export type GetQueriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
@@ -9,11 +10,10 @@ export type GetQueriesQuery = { queries: Array<{ id: string, title: string }> };
 export const GetQueriesDocument = `
     query getQueries {
   queries {
-    id
-    title
+    ...UserQueryForQueryListItem
   }
 }
-    `;
+    ${UserQueryForQueryListItemFragmentDoc}`;
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {

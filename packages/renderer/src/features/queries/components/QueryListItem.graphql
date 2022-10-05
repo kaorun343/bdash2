@@ -1,0 +1,4 @@
+fragment UserQueryForQueryListItem on UserQuery {
+  id
+  title
+}
