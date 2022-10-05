@@ -13,6 +13,7 @@ generates:
     plugins:
       - typescript-operations
       - typescript-generic-sdk
+      - typescript-msw
     config:
       documentMode: string
       skipTypename: true

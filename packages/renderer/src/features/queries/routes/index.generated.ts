@@ -1,6 +1,7 @@
 import * as Types from '../../../types';
 
 import { UserQueryForQueryListItemFragmentDoc } from '../components/QueryListItem.generated';
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw'
 export type GetQueriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
@@ -23,3 +24,19 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetQueriesQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ queries })
+ *   )
+ * })
+ */
+export const mockGetQueriesQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueriesQueryVariables>, GraphQLContext<GetQueriesQuery>, any>) =>
+  graphql.query<GetQueriesQuery, GetQueriesQueryVariables>(
+    'getQueries',
+    resolver
+  )
