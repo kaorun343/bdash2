@@ -1,1 +1,2 @@
 schema: packages/main/schema.graphql
+documents: packages/renderer/src/**/*.graphql
