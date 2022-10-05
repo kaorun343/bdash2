@@ -8,6 +8,11 @@ const db = factory({
   },
 })
 
+db.queries.create({
+  id: `${Date.now()}`,
+  title: 'New Query',
+})
+
 export const handlers = [
   mockGetQueriesQuery((req, res, ctx) => {
     const queries = db.queries.getAll().map((data) => ({
