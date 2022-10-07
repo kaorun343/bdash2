@@ -1,0 +1,21 @@
+scalar DateTime
+
+interface Node {
+  id: ID!
+}
+
+type Query {
+  node(id: ID!): Node
+}
+
+input NoopInput {
+  clientMutationId: String
+}
+
+type NoopPayload {
+  clientMutationId: String
+}
+
+type Mutation {
+  noop(input: NoopInput!): NoopPayload!
+}

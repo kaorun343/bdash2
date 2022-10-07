@@ -7,6 +7,6 @@ export const createQueryRoutes = (sdk: Sdk) => {
   return {
     path: '/queries',
     element: <Queries />,
-    loader: async () => sdk.getQueries(),
+    loader: async () => sdk.getUserQueries(),
   }
 }

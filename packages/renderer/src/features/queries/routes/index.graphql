@@ -1,5 +1,5 @@
-query getQueries {
-  queries {
+query getUserQueries {
+  userQueries {
     ...UserQueryForQueryListItem
   }
 }

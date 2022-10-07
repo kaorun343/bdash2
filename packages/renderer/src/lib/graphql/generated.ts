@@ -14,11 +14,44 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type Query = {
-  queries: Array<UserQuery>;
+export type Mutation = {
+  noop: NoopPayload;
 };
 
-export type UserQuery = {
+
+export type MutationNoopArgs = {
+  input: NoopInput;
+};
+
+export type Node = {
+  id: Scalars['ID'];
+};
+
+export type NoopInput = {
+  clientMutationId?: InputMaybe<Scalars['String']>;
+};
+
+export type NoopPayload = {
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+export type Query = {
+  node?: Maybe<Node>;
+  userQueries: Array<UserQuery>;
+  userQuery: UserQuery;
+};
+
+
+export type QueryNodeArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryUserQueryArgs = {
+  id: Scalars['ID'];
+};
+
+export type UserQuery = Node & {
   body: Scalars['String'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
@@ -28,10 +61,10 @@ export type UserQuery = {
 
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
-export type GetQueriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserQueriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetQueriesQuery = { queries: Array<{ id: string, title: string }> };
+export type GetUserQueriesQuery = { userQueries: Array<{ id: string, title: string }> };
 
 export const UserQueryForQueryListItemFragmentDoc = `
     fragment UserQueryForQueryListItem on UserQuery {
@@ -39,9 +72,9 @@ export const UserQueryForQueryListItemFragmentDoc = `
   title
 }
     `;
-export const GetQueriesDocument = `
-    query getQueries {
-  queries {
+export const GetUserQueriesDocument = `
+    query getUserQueries {
+  userQueries {
     ...UserQueryForQueryListItem
   }
 }
@@ -49,8 +82,8 @@ export const GetQueriesDocument = `
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
-    getQueries(variables?: GetQueriesQueryVariables, options?: C): Promise<GetQueriesQuery> {
-      return requester<GetQueriesQuery, GetQueriesQueryVariables>(GetQueriesDocument, variables, options) as Promise<GetQueriesQuery>;
+    getUserQueries(variables?: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
+      return requester<GetUserQueriesQuery, GetUserQueriesQueryVariables>(GetUserQueriesDocument, variables, options) as Promise<GetUserQueriesQuery>;
     }
   };
 }
@@ -60,14 +93,14 @@ export type Sdk = ReturnType<typeof getSdk>;
  * @param resolver a function that accepts a captured request and may return a mocked response.
  * @see https://mswjs.io/docs/basics/response-resolver
  * @example
- * mockGetQueriesQuery((req, res, ctx) => {
+ * mockGetUserQueriesQuery((req, res, ctx) => {
  *   return res(
- *     ctx.data({ queries })
+ *     ctx.data({ userQueries })
  *   )
  * })
  */
-export const mockGetQueriesQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueriesQueryVariables>, GraphQLContext<GetQueriesQuery>, any>) =>
-  graphql.query<GetQueriesQuery, GetQueriesQueryVariables>(
-    'getQueries',
+export const mockGetUserQueriesQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueriesQueryVariables>, GraphQLContext<GetUserQueriesQuery>, any>) =>
+  graphql.query<GetUserQueriesQuery, GetUserQueriesQueryVariables>(
+    'getUserQueries',
     resolver
   )

@@ -1,0 +1,12 @@
+type UserQuery implements Node {
+  id: ID!
+  title: String!
+  body: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+extend type Query {
+  userQuery(id: ID!): UserQuery!
+  userQueries: [UserQuery!]!
+}
