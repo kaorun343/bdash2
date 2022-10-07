@@ -1,13 +1,44 @@
-import * as Types from '../../../types';
-
-import { UserQueryForQueryListItemFragmentDoc } from '../components/QueryListItem.generated';
 import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw'
-export type GetQueriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  DateTime: any;
+};
+
+export type Query = {
+  queries: Array<UserQuery>;
+};
+
+export type UserQuery = {
+  body: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type UserQueryForQueryListItemFragment = { id: string, title: string };
+
+export type GetQueriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetQueriesQuery = { queries: Array<{ id: string, title: string }> };
 
-
+export const UserQueryForQueryListItemFragmentDoc = `
+    fragment UserQueryForQueryListItem on UserQuery {
+  id
+  title
+}
+    `;
 export const GetQueriesDocument = `
     query getQueries {
   queries {

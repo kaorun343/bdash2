@@ -1,5 +1,5 @@
 import { factory, primaryKey } from '@mswjs/data'
-import { mockGetQueriesQuery } from '~/features/queries/routes/index.generated'
+import { mockGetQueriesQuery } from '~/lib/graphql/generated'
 
 const db = factory({
   queries: {

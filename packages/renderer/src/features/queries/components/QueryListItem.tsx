@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { UserQueryForQueryListItemFragment } from './QueryListItem.generated'
+import { UserQueryForQueryListItemFragment } from '~/lib/graphql/generated'
 
 type Props = {
   query: UserQueryForQueryListItemFragment

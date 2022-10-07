@@ -1,15 +1,15 @@
 import { createHashRouter, Navigate } from 'react-router-dom'
 import { Layout } from '~/components/Layout'
 import { createQueryRoutes } from '~/features/queries/routes'
-import { GraphQLClient } from '~/lib/GraphQLClient'
+import { Sdk } from '~/lib/graphql/generated'
 
-export const createRouter = (client: GraphQLClient) => {
+export const createRouter = (sdk: Sdk) => {
   return createHashRouter([
     {
       path: '/',
       element: <Layout />,
       children: [
-        createQueryRoutes(client),
+        createQueryRoutes(sdk),
         {
           path: '/',
           element: <Navigate to="/queries" />,

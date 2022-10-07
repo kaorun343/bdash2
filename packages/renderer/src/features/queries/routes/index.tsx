@@ -1,12 +1,9 @@
 import { lazy } from 'react'
-import { GraphQLClient } from '~/lib/GraphQLClient'
-import { getSdk } from './index.generated'
+import { Sdk } from '~/lib/graphql/generated'
 
 const Queries = lazy(() => import('./Queries').then((m) => ({ default: m.Queries })))
 
-export const createQueryRoutes = (client: GraphQLClient) => {
-  const sdk = getSdk(client)
-
+export const createQueryRoutes = (sdk: Sdk) => {
   return {
     path: '/queries',
     element: <Queries />,
