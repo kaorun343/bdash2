@@ -6,7 +6,7 @@ const Queries = lazy(() => import('./Queries').then((m) => ({ default: m.Queries
 export const createQueryRoutes = (sdk: Sdk) => {
   return {
     path: '/queries',
-    element: <Queries />,
+    element: <Queries sdk={sdk} />,
     loader: async () => sdk.getUserQueries(),
   }
 }

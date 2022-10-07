@@ -1,5 +1,5 @@
 import { factory, primaryKey } from '@mswjs/data'
-import { mockGetUserQueriesQuery } from '~/lib/graphql/generated'
+import { mockCreateUserQueryMutation, mockGetUserQueriesQuery } from '~/lib/graphql/generated'
 
 const db = factory({
   queries: {
@@ -14,6 +14,27 @@ db.queries.create({
 })
 
 export const handlers = [
+  mockCreateUserQueryMutation(async (req, res, ctx) => {
+    const id = `${Date.now()}`
+    const title = req.variables.input.title
+
+    const result = db.queries.create({
+      id,
+      title,
+    })
+
+    return res(
+      ctx.data({
+        createUserQuery: {
+          userQuery: {
+            id: result.id,
+            title: result.title,
+          },
+        },
+      })
+    )
+  }),
+
   mockGetUserQueriesQuery((req, res, ctx) => {
     const userQueries = db.queries.getAll().map((data) => ({
       id: data.id,

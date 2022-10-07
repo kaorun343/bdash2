@@ -73,6 +73,13 @@ export type UserQuery = Node & {
   updatedAt: Scalars['DateTime'];
 };
 
+export type CreateUserQueryMutationVariables = Exact<{
+  input: CreateUserQueryInput;
+}>;
+
+
+export type CreateUserQueryMutation = { createUserQuery: { userQuery: { id: string, title: string } } };
+
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
 export type GetUserQueriesQueryVariables = Exact<{ [key: string]: never; }>;
@@ -86,6 +93,16 @@ export const UserQueryForQueryListItemFragmentDoc = `
   title
 }
     `;
+export const CreateUserQueryDocument = `
+    mutation createUserQuery($input: CreateUserQueryInput!) {
+  createUserQuery(input: $input) {
+    userQuery {
+      id
+      title
+    }
+  }
+}
+    `;
 export const GetUserQueriesDocument = `
     query getUserQueries {
   userQueries {
@@ -96,12 +113,32 @@ export const GetUserQueriesDocument = `
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
+    createUserQuery(variables: CreateUserQueryMutationVariables, options?: C): Promise<CreateUserQueryMutation> {
+      return requester<CreateUserQueryMutation, CreateUserQueryMutationVariables>(CreateUserQueryDocument, variables, options) as Promise<CreateUserQueryMutation>;
+    },
     getUserQueries(variables?: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
       return requester<GetUserQueriesQuery, GetUserQueriesQueryVariables>(GetUserQueriesDocument, variables, options) as Promise<GetUserQueriesQuery>;
     }
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockCreateUserQueryMutation((req, res, ctx) => {
+ *   const { input } = req.variables;
+ *   return res(
+ *     ctx.data({ createUserQuery })
+ *   )
+ * })
+ */
+export const mockCreateUserQueryMutation = (resolver: ResponseResolver<GraphQLRequest<CreateUserQueryMutationVariables>, GraphQLContext<CreateUserQueryMutation>, any>) =>
+  graphql.mutation<CreateUserQueryMutation, CreateUserQueryMutationVariables>(
+    'createUserQuery',
+    resolver
+  )
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
