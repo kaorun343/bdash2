@@ -14,8 +14,22 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type CreateUserQueryInput = {
+  title: Scalars['String'];
+};
+
+export type CreateUserQueryPayload = {
+  userQuery: UserQuery;
+};
+
 export type Mutation = {
+  createUserQuery: CreateUserQueryPayload;
   noop: NoopPayload;
+};
+
+
+export type MutationCreateUserQueryArgs = {
+  input: CreateUserQueryInput;
 };
 
 

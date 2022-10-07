@@ -10,3 +10,15 @@ extend type Query {
   userQuery(id: ID!): UserQuery!
   userQueries: [UserQuery!]!
 }
+
+input CreateUserQueryInput {
+  title: String!
+}
+
+type CreateUserQueryPayload {
+  userQuery: UserQuery!
+}
+
+extend type Mutation {
+  createUserQuery(input: CreateUserQueryInput!): CreateUserQueryPayload!
+}
