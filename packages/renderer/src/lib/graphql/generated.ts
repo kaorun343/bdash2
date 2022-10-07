@@ -87,6 +87,13 @@ export type GetUserQueriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUserQueriesQuery = { userQueries: Array<{ id: string, title: string }> };
 
+export type GetUserQueryQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetUserQueryQuery = { userQuery: { id: string, title: string } };
+
 export const UserQueryForQueryListItemFragmentDoc = `
     fragment UserQueryForQueryListItem on UserQuery {
   id
@@ -110,6 +117,14 @@ export const GetUserQueriesDocument = `
   }
 }
     ${UserQueryForQueryListItemFragmentDoc}`;
+export const GetUserQueryDocument = `
+    query getUserQuery($id: ID!) {
+  userQuery(id: $id) {
+    id
+    title
+  }
+}
+    `;
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
@@ -118,6 +133,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     },
     getUserQueries(variables?: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
       return requester<GetUserQueriesQuery, GetUserQueriesQueryVariables>(GetUserQueriesDocument, variables, options) as Promise<GetUserQueriesQuery>;
+    },
+    getUserQuery(variables: GetUserQueryQueryVariables, options?: C): Promise<GetUserQueryQuery> {
+      return requester<GetUserQueryQuery, GetUserQueryQueryVariables>(GetUserQueryDocument, variables, options) as Promise<GetUserQueryQuery>;
     }
   };
 }
@@ -153,5 +171,22 @@ export const mockCreateUserQueryMutation = (resolver: ResponseResolver<GraphQLRe
 export const mockGetUserQueriesQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueriesQueryVariables>, GraphQLContext<GetUserQueriesQuery>, any>) =>
   graphql.query<GetUserQueriesQuery, GetUserQueriesQueryVariables>(
     'getUserQueries',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetUserQueryQuery((req, res, ctx) => {
+ *   const { id } = req.variables;
+ *   return res(
+ *     ctx.data({ userQuery })
+ *   )
+ * })
+ */
+export const mockGetUserQueryQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryQueryVariables>, GraphQLContext<GetUserQueryQuery>, any>) =>
+  graphql.query<GetUserQueryQuery, GetUserQueryQueryVariables>(
+    'getUserQuery',
     resolver
   )

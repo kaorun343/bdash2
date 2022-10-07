@@ -1,5 +1,5 @@
 import { factory, primaryKey } from '@mswjs/data'
-import { mockCreateUserQueryMutation, mockGetUserQueriesQuery } from '~/lib/graphql/generated'
+import { mockCreateUserQueryMutation, mockGetUserQueriesQuery, mockGetUserQueryQuery } from '~/lib/graphql/generated'
 
 const db = factory({
   queries: {
@@ -41,5 +41,29 @@ export const handlers = [
       title: data.title,
     }))
     return res(ctx.data({ userQueries }))
+  }),
+
+  mockGetUserQueryQuery((req, res, ctx) => {
+    const { id } = req.variables
+    const userQuery = db.queries.findFirst({
+      where: {
+        id: {
+          equals: id,
+        },
+      },
+    })
+
+    if (!userQuery) {
+      throw new Error(`No user query found for id: ${id}`)
+    }
+
+    return res(
+      ctx.data({
+        userQuery: {
+          id: userQuery.id,
+          title: userQuery.title,
+        },
+      })
+    )
   }),
 ]
