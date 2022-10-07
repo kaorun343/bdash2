@@ -709,7 +709,6 @@ __metadata:
   resolution: "@bdash2/renderer@workspace:packages/renderer"
   dependencies:
     "@graphql-codegen/cli": ^2.13.3
-    "@graphql-codegen/near-operation-file-preset": ^2.4.1
     "@graphql-codegen/typescript": ^2.7.3
     "@graphql-codegen/typescript-generic-sdk": ^3.0.1
     "@graphql-codegen/typescript-msw": ^1.1.3
@@ -766,18 +765,6 @@ __metadata:
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
   checksum: 4059f790e2d07bf3c3ff3e0fec0daa8144fe35c1f6e0111c9921bd32106adaa97a4ab096ad7dab1e28ee6a9060083c4d1a4ada42a7f5f3f7a96b8812e2b757c1
-  languageName: node
-  linkType: hard
-
-"@graphql-codegen/add@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "@graphql-codegen/add@npm:3.2.1"
-  dependencies:
-    "@graphql-codegen/plugin-helpers": ^2.6.2
-    tslib: ~2.4.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 4f9c645a3cf4b6e64c8ea5cbaba95075df2f485e3fea5b2c369bcf898272d0a6665b3eb0b541dc57d3d8400b23610848c8348a469e472db1a1c558d61580dca0
   languageName: node
   linkType: hard
 
@@ -842,22 +829,6 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 3d078e9caa11baf7ceaa4d67b29a6be32f50a183c1fa6f228a3ade62902b9b91cdea2c94d99adbadf10ec38a7f2df9f16cd366dc7b4febf95336e3b4a7eb9160
-  languageName: node
-  linkType: hard
-
-"@graphql-codegen/near-operation-file-preset@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@graphql-codegen/near-operation-file-preset@npm:2.4.1"
-  dependencies:
-    "@graphql-codegen/add": ^3.2.1
-    "@graphql-codegen/plugin-helpers": ^2.6.2
-    "@graphql-codegen/visitor-plugin-common": 2.12.1
-    "@graphql-tools/utils": ^8.8.0
-    parse-filepath: ^1.0.2
-    tslib: ~2.4.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 82457b31161cb6ac612873ee5f00eafe6d667c76cf7ec83f23b970e69f636ca6be566b9193d18b7793a4a16c698577d040ad41f2593054475b74a9abbf12295c
   languageName: node
   linkType: hard
 
