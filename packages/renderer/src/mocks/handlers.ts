@@ -54,7 +54,13 @@ export const handlers = [
     })
 
     if (!userQuery) {
-      throw new Error(`No user query found for id: ${id}`)
+      return res(
+        ctx.errors([
+          {
+            message: `Could not find user query with id ${id}`,
+          },
+        ])
+      )
     }
 
     return res(

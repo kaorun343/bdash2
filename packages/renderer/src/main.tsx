@@ -16,7 +16,12 @@ const sdk = getSdk(async (query, variables) => {
     body: JSON.stringify({ query, variables }),
   })
 
-  const { data } = await res.json()
+  const { data, errors } = await res.json()
+
+  if (!data) {
+    throw new Error(errors[0].message)
+  }
+
   return data
 })
 
