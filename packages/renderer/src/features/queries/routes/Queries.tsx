@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
 import { QueryList } from '../components/QueryList'
@@ -13,7 +13,9 @@ export const Queries: FC<Props> = ({ sdk }) => {
   return (
     <div className="flex">
       <QueryList queries={data.userQueries} sdk={sdk} />
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   )
 }
