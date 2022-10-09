@@ -1,19 +1,38 @@
-import { ComponentProps, FC } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { CreateUserQueryInput, Sdk } from '~/lib/graphql/generated'
+import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
+import { queryClient } from '~/lib/queryClient'
 import { QueryListItem } from './QueryListItem'
 
 type Props = {
-  queries: readonly ComponentProps<typeof QueryListItem>['query'][]
   sdk: Sdk
 }
 
-export const QueryList: FC<Props> = ({ queries, sdk }) => {
+export const QueryList: FC<Props> = ({ sdk }) => {
+  const { data } = useQuery<GetUserQueriesQuery>(['getUserQueries'], () => sdk.getUserQueries())
+
   const createUserQuery = async () => {
     const input: CreateUserQueryInput = {
       title: 'New Query',
     }
-    await sdk.createUserQuery({ input })
+    const { createUserQuery } = await sdk.createUserQuery({ input })
+
+    queryClient.setQueryData<GetUserQueriesQuery>(['getUserQueries'], (data) => {
+      if (!data) return data
+      const userQuery = createUserQuery.userQuery
+
+      return {
+        ...data,
+        userQueries: [
+          {
+            id: userQuery.id,
+            title: userQuery.title,
+          },
+          ...data.userQueries,
+        ],
+      }
+    })
   }
 
   return (
@@ -24,7 +43,7 @@ export const QueryList: FC<Props> = ({ queries, sdk }) => {
         </button>
       </div>
       <ul>
-        {queries.map((query) => (
+        {data?.userQueries.map((query) => (
           <QueryListItem key={query.id} query={query} />
         ))}
       </ul>
