@@ -9,7 +9,7 @@ type Props = {
 
 export const Queries: FC<Props> = ({ sdk }) => {
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <QueryList sdk={sdk} />
       <Suspense>
         <Outlet />

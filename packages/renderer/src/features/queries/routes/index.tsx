@@ -14,8 +14,11 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
     children: [
       {
         path: ':queryId',
-        element: <Query />,
-        loader: ({ params }) => sdk.getUserQuery({ id: params.queryId! }),
+        element: <Query sdk={sdk} />,
+        loader: ({ params }) => {
+          const queryId = params?.queryId as string
+          return queryClient.fetchQuery(['getUserQuery', queryId], () => sdk.getUserQuery({ id: queryId }))
+        },
         errorElement: <Navigate to="/queries" />,
       },
     ],
