@@ -721,6 +721,7 @@ __metadata:
     "@vitejs/plugin-react": ^2.1.0
     autoprefixer: ^10.4.12
     graphql: ^16.6.0
+    immer: ^9.0.15
     msw: ^0.47.4
     postcss: ^8.4.17
     react: ^18.2.0
@@ -3825,6 +3826,13 @@ __metadata:
   version: 5.2.0
   resolution: "ignore@npm:5.2.0"
   checksum: 6b1f926792d614f64c6c83da3a1f9c83f6196c2839aa41e1e32dd7b8d174cef2e329d75caabb62cb61ce9dc432f75e67d07d122a037312db7caa73166a1bdb77
+  languageName: node
+  linkType: hard
+
+"immer@npm:^9.0.15":
+  version: 9.0.15
+  resolution: "immer@npm:9.0.15"
+  checksum: 92e3d63e810e3c3c2bb61b70c45443e37ef983ad12924e3edaf03725ae5979618f5b473439bb3bb4a8c4769f25132f18dec10ea15c40f0b20da5691ff96ff611
   languageName: node
   linkType: hard
 
