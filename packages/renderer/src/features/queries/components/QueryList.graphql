@@ -1,8 +1,7 @@
 mutation createUserQuery($input: CreateUserQueryInput!) {
   createUserQuery(input: $input) {
     userQuery {
-      id
-      title
+      ...UserQueryForQueryListItem
     }
   }
 }

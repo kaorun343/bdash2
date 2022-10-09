@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import produce from 'immer'
 import { FC } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
@@ -20,18 +21,10 @@ export const QueryList: FC<Props> = ({ sdk }) => {
 
     queryClient.setQueryData<GetUserQueriesQuery>(['getUserQueries'], (data) => {
       if (!data) return data
-      const userQuery = createUserQuery.userQuery
 
-      return {
-        ...data,
-        userQueries: [
-          {
-            id: userQuery.id,
-            title: userQuery.title,
-          },
-          ...data.userQueries,
-        ],
-      }
+      return produce(data, (draft) => {
+        draft.userQueries.unshift(createUserQuery.userQuery)
+      })
     })
   }
 

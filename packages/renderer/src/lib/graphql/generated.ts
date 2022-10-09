@@ -104,12 +104,11 @@ export const CreateUserQueryDocument = `
     mutation createUserQuery($input: CreateUserQueryInput!) {
   createUserQuery(input: $input) {
     userQuery {
-      id
-      title
+      ...UserQueryForQueryListItem
     }
   }
 }
-    `;
+    ${UserQueryForQueryListItemFragmentDoc}`;
 export const GetUserQueriesDocument = `
     query getUserQueries {
   userQueries {
