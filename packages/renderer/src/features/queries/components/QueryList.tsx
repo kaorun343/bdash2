@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import produce from 'immer'
 import { FC } from 'react'
 import { FaPlus } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
 import { queryClient } from '~/lib/queryClient'
 import { QueryListItem } from './QueryListItem'
@@ -11,6 +12,7 @@ type Props = {
 }
 
 export const QueryList: FC<Props> = ({ sdk }) => {
+  const navigate = useNavigate()
   const { data } = useQuery<GetUserQueriesQuery>(['getUserQueries'], () => sdk.getUserQueries())
 
   const createUserQuery = async () => {
@@ -26,6 +28,8 @@ export const QueryList: FC<Props> = ({ sdk }) => {
         draft.userQueries.unshift(createUserQuery.userQuery)
       })
     })
+
+    navigate(`/queries/${createUserQuery.userQuery.id}`)
   }
 
   return (
