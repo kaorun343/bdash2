@@ -25,6 +25,7 @@ export type CreateUserQueryPayload = {
 export type Mutation = {
   createUserQuery: CreateUserQueryPayload;
   noop: NoopPayload;
+  updateUserQueryTitle: UpdateUserQueryTitlePayload;
 };
 
 
@@ -35,6 +36,11 @@ export type MutationCreateUserQueryArgs = {
 
 export type MutationNoopArgs = {
   input: NoopInput;
+};
+
+
+export type MutationUpdateUserQueryTitleArgs = {
+  input: UpdateUserQueryTitleInput;
 };
 
 export type Node = {
@@ -63,6 +69,15 @@ export type QueryNodeArgs = {
 
 export type QueryUserQueryArgs = {
   id: Scalars['ID'];
+};
+
+export type UpdateUserQueryTitleInput = {
+  id: Scalars['ID'];
+  title: Scalars['String'];
+};
+
+export type UpdateUserQueryTitlePayload = {
+  userQuery: UserQuery;
 };
 
 export type UserQuery = Node & {

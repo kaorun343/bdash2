@@ -19,6 +19,17 @@ type CreateUserQueryPayload {
   userQuery: UserQuery!
 }
 
+input UpdateUserQueryTitleInput {
+  id: ID!
+  title: String!
+}
+
+type UpdateUserQueryTitlePayload {
+  userQuery: UserQuery!
+}
+
 extend type Mutation {
   createUserQuery(input: CreateUserQueryInput!): CreateUserQueryPayload!
+
+  updateUserQueryTitle(input: UpdateUserQueryTitleInput!): UpdateUserQueryTitlePayload!
 }
