@@ -4,6 +4,7 @@ import { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLoaderData } from 'react-router-dom'
 import { GetUserQueriesQuery, GetUserQueryQuery, Sdk } from '~/lib/graphql/generated'
+import { QueryDetailEditor } from '../components/query/QueryDetailEditor'
 import { QueryDetailHeader } from '../components/query/QueryDetailHeader'
 
 type Props = {
@@ -14,7 +15,7 @@ export const Query: FC<Props> = ({ sdk }) => {
   const queryClient = useQueryClient()
   const data = useLoaderData() as GetUserQueryQuery
   const id = data.userQuery.id
-  const { register, watch } = useForm({ defaultValues: data.userQuery })
+  const { register, getValues, setValue, watch } = useForm({ defaultValues: data.userQuery })
 
   const updateUserQueryTitleMutation = useMutation(async (title: string) => title, {
     onSuccess: (title) => {
@@ -44,6 +45,7 @@ export const Query: FC<Props> = ({ sdk }) => {
   return (
     <div className="flex-1">
       <QueryDetailHeader register={register} />
+      <QueryDetailEditor getValues={getValues} setValue={setValue} />
     </div>
   )
 }
