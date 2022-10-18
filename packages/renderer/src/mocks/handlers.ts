@@ -68,6 +68,7 @@ export const handlers = [
         userQuery: {
           id: userQuery.id,
           title: userQuery.title,
+          body: 'select * from tables;',
         },
       })
     )

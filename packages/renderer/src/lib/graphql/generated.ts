@@ -92,7 +92,7 @@ export type GetUserQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQueryQuery = { userQuery: { id: string, title: string } };
+export type GetUserQueryQuery = { userQuery: { id: string, title: string, body: string } };
 
 export const UserQueryForQueryListItemFragmentDoc = `
     fragment UserQueryForQueryListItem on UserQuery {
@@ -121,6 +121,7 @@ export const GetUserQueryDocument = `
   userQuery(id: $id) {
     id
     title
+    body
   }
 }
     `;
