@@ -14,7 +14,7 @@ db.queries.create({
   title: 'New Query',
 })
 
-export const handlers = [
+export const queriesHandlers = [
   mockCreateUserQueryMutation(async (req, res, ctx) => {
     const id = `${Date.now()}`
     const title = req.variables.input.title
