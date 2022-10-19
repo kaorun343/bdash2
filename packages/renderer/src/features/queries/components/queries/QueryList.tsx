@@ -21,13 +21,13 @@ export const QueryList: FC<Props> = ({ sdk }) => {
     }
     const { createUserQuery } = await sdk.createUserQuery({ input })
 
-    queryClient.setQueryData<GetUserQueriesQuery>(['getUserQueries'], (data) => {
-      if (!data) return data
-
-      return produce(data, (draft) => {
+    queryClient.setQueryData<GetUserQueriesQuery>(
+      ['getUserQueries'],
+      produce((draft) => {
+        if (!draft) return
         draft.userQueries.unshift(createUserQuery.userQuery)
       })
-    })
+    )
 
     navigate(`/queries/${createUserQuery.userQuery.id}`)
   }
