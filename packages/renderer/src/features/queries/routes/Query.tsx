@@ -17,6 +17,11 @@ export const Query: FC<Props> = ({ sdk }) => {
   const id = data.userQuery.id
   const { register, getValues, setValue, watch } = useForm({ defaultValues: data.userQuery })
 
+  useEffect(() => {
+    setValue('title', data.userQuery.title)
+    setValue('body', data.userQuery.body)
+  }, [data.userQuery])
+
   const updateUserQueryTitleMutation = useMutation(
     async (title: string) => sdk.updateUserQueryTitle({ input: { id, title } }),
     {
@@ -48,7 +53,7 @@ export const Query: FC<Props> = ({ sdk }) => {
   return (
     <div className="flex-1">
       <QueryDetailHeader register={register} />
-      <QueryDetailEditor getValues={getValues} setValue={setValue} />
+      <QueryDetailEditor getValues={getValues} setValue={setValue} watch={watch} />
     </div>
   )
 }

@@ -2,15 +2,16 @@ import { sql } from '@codemirror/lang-sql'
 import { EditorView } from '@codemirror/view'
 import { basicSetup } from 'codemirror'
 import { FC, useEffect, useRef } from 'react'
-import { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
+import { UseFormGetValues, UseFormSetValue, UseFormWatch } from 'react-hook-form'
 import { GetUserQueryQuery } from '~/lib/graphql/generated'
 
 type Props = {
   getValues: UseFormGetValues<GetUserQueryQuery['userQuery']>
   setValue: UseFormSetValue<GetUserQueryQuery['userQuery']>
+  watch: UseFormWatch<GetUserQueryQuery['userQuery']>
 }
 
-export const QueryDetailEditor: FC<Props> = ({ getValues, setValue }) => {
+export const QueryDetailEditor: FC<Props> = ({ getValues, setValue, watch }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -29,10 +30,20 @@ export const QueryDetailEditor: FC<Props> = ({ getValues, setValue }) => {
       parent: container,
     })
 
+    const subscription = watch((value, { name }) => {
+      if (name !== 'body') return
+      if (typeof value.body !== 'string') return
+      if (value.body === editor.state.doc.toString()) return
+      editor.dispatch({
+        changes: { from: 0, to: editor.state.doc.length, insert: value.body },
+      })
+    })
+
     return () => {
+      subscription.unsubscribe()
       editor.destroy()
     }
-  }, [getValues, setValue])
+  }, [getValues, setValue, watch])
 
   return <div ref={containerRef} />
 }
