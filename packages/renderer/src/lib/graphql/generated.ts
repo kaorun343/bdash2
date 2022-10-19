@@ -109,6 +109,13 @@ export type GetUserQueryQueryVariables = Exact<{
 
 export type GetUserQueryQuery = { userQuery: { id: string, title: string, body: string } };
 
+export type UpdateUserQueryTitleMutationVariables = Exact<{
+  input: UpdateUserQueryTitleInput;
+}>;
+
+
+export type UpdateUserQueryTitleMutation = { updateUserQueryTitle: { userQuery: { title: string } } };
+
 export const UserQueryForQueryListItemFragmentDoc = `
     fragment UserQueryForQueryListItem on UserQuery {
   id
@@ -140,6 +147,15 @@ export const GetUserQueryDocument = `
   }
 }
     `;
+export const UpdateUserQueryTitleDocument = `
+    mutation updateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
+  updateUserQueryTitle(input: $input) {
+    userQuery {
+      title
+    }
+  }
+}
+    `;
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
@@ -151,6 +167,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     },
     getUserQuery(variables: GetUserQueryQueryVariables, options?: C): Promise<GetUserQueryQuery> {
       return requester<GetUserQueryQuery, GetUserQueryQueryVariables>(GetUserQueryDocument, variables, options) as Promise<GetUserQueryQuery>;
+    },
+    updateUserQueryTitle(variables: UpdateUserQueryTitleMutationVariables, options?: C): Promise<UpdateUserQueryTitleMutation> {
+      return requester<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(UpdateUserQueryTitleDocument, variables, options) as Promise<UpdateUserQueryTitleMutation>;
     }
   };
 }
@@ -203,5 +222,22 @@ export const mockGetUserQueriesQuery = (resolver: ResponseResolver<GraphQLReques
 export const mockGetUserQueryQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryQueryVariables>, GraphQLContext<GetUserQueryQuery>, any>) =>
   graphql.query<GetUserQueryQuery, GetUserQueryQueryVariables>(
     'getUserQuery',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockUpdateUserQueryTitleMutation((req, res, ctx) => {
+ *   const { input } = req.variables;
+ *   return res(
+ *     ctx.data({ updateUserQueryTitle })
+ *   )
+ * })
+ */
+export const mockUpdateUserQueryTitleMutation = (resolver: ResponseResolver<GraphQLRequest<UpdateUserQueryTitleMutationVariables>, GraphQLContext<UpdateUserQueryTitleMutation>, any>) =>
+  graphql.mutation<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(
+    'updateUserQueryTitle',
     resolver
   )

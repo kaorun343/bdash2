@@ -17,19 +17,22 @@ export const Query: FC<Props> = ({ sdk }) => {
   const id = data.userQuery.id
   const { register, getValues, setValue, watch } = useForm({ defaultValues: data.userQuery })
 
-  const updateUserQueryTitleMutation = useMutation(async (title: string) => title, {
-    onSuccess: (title) => {
-      queryClient.setQueriesData<GetUserQueriesQuery>(
-        ['getUserQueries'],
-        produce((draft) => {
-          if (!draft) return
-          const query = draft.userQueries.find((query) => query.id === id)
-          if (!query) return
-          query.title = title
-        })
-      )
-    },
-  })
+  const updateUserQueryTitleMutation = useMutation(
+    async (title: string) => sdk.updateUserQueryTitle({ input: { id, title } }),
+    {
+      onSuccess: (result) => {
+        queryClient.setQueriesData<GetUserQueriesQuery>(
+          ['getUserQueries'],
+          produce((draft) => {
+            if (!draft) return
+            const query = draft.userQueries.find((query) => query.id === id)
+            if (!query) return
+            query.title = result.updateUserQueryTitle.userQuery.title
+          })
+        )
+      },
+    }
+  )
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {

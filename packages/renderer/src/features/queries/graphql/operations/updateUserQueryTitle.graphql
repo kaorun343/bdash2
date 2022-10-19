@@ -1,0 +1,7 @@
+mutation updateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
+  updateUserQueryTitle(input: $input) {
+    userQuery {
+      title
+    }
+  }
+}

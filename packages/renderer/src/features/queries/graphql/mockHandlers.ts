@@ -1,5 +1,10 @@
 import { factory, primaryKey } from '@mswjs/data'
-import { mockCreateUserQueryMutation, mockGetUserQueriesQuery, mockGetUserQueryQuery } from '~/lib/graphql/generated'
+import {
+  mockCreateUserQueryMutation,
+  mockGetUserQueriesQuery,
+  mockGetUserQueryQuery,
+  mockUpdateUserQueryTitleMutation,
+} from '~/lib/graphql/generated'
 
 const db = factory({
   queries: {
@@ -71,6 +76,30 @@ export const queriesHandlers = [
           id: userQuery.id,
           title: userQuery.title,
           body: userQuery.body,
+        },
+      })
+    )
+  }),
+
+  mockUpdateUserQueryTitleMutation((req, res, ctx) => {
+    const input = req.variables.input
+    db.queries.update({
+      where: {
+        id: {
+          equals: input.id,
+        },
+      },
+      data: {
+        title: input.title,
+      },
+    })
+
+    return res(
+      ctx.data({
+        updateUserQueryTitle: {
+          userQuery: {
+            title: input.title,
+          },
         },
       })
     )
