@@ -5,6 +5,7 @@ const db = factory({
   queries: {
     id: primaryKey(String),
     title: String,
+    body: String,
   },
 })
 
@@ -21,6 +22,7 @@ export const handlers = [
     const result = db.queries.create({
       id,
       title,
+      body: '',
     })
 
     return res(
@@ -68,7 +70,7 @@ export const handlers = [
         userQuery: {
           id: userQuery.id,
           title: userQuery.title,
-          body: 'select * from tables;',
+          body: userQuery.body,
         },
       })
     )
