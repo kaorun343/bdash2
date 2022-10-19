@@ -88,14 +88,14 @@ export type UserQuery = Node & {
   updatedAt: Scalars['DateTime'];
 };
 
+export type UserQueryForQueryListItemFragment = { id: string, title: string };
+
 export type CreateUserQueryMutationVariables = Exact<{
   input: CreateUserQueryInput;
 }>;
 
 
 export type CreateUserQueryMutation = { createUserQuery: { userQuery: { id: string, title: string } } };
-
-export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
 export type GetUserQueriesQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -1,9 +1,3 @@
-query getUserQueries {
-  userQueries {
-    ...UserQueryForQueryListItem
-  }
-}
-
 query getUserQuery($id: ID!) {
   userQuery(id: $id) {
     id

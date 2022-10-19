@@ -1,0 +1,5 @@
+query getUserQueries {
+  userQueries {
+    ...UserQueryForQueryListItem
+  }
+}
