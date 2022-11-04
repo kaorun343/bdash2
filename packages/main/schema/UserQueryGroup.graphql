@@ -1,0 +1,9 @@
+type UserQueryGroup implements Node {
+  id: ID!
+  name: String!
+  userQueries: [UserQuery!]!
+}
+
+extend type Query {
+  userQueryGroups: [UserQueryGroup!]!
+}

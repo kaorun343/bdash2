@@ -59,6 +59,7 @@ export type Query = {
   node?: Maybe<Node>;
   userQueries: Array<UserQuery>;
   userQuery: UserQuery;
+  userQueryGroups: Array<UserQueryGroup>;
 };
 
 
@@ -86,6 +87,12 @@ export type UserQuery = Node & {
   id: Scalars['ID'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+};
+
+export type UserQueryGroup = Node & {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  userQueries: Array<UserQuery>;
 };
 
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
