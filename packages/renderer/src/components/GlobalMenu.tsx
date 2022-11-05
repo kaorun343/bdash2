@@ -20,7 +20,7 @@ export const GlobalMenu: FC = () => {
     <nav className="w-16 h-screen bg-gray-800">
       <ul>
         <li className="block text-center text-3xl h-16">
-          <NavLinkItem to="/queries">
+          <NavLinkItem to="/query-groups">
             <FaTerminal className="text-white" />
           </NavLinkItem>
         </li>

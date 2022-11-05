@@ -12,7 +12,7 @@ export const createRouter = (sdk: Sdk) => {
         createQueryRoutes(sdk),
         {
           path: '/',
-          element: <Navigate to="/queries" />,
+          element: <Navigate to="/query-groups" />,
         },
       ],
     },
