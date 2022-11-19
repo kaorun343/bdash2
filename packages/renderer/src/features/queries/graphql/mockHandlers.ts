@@ -7,14 +7,14 @@ import {
 } from '~/lib/graphql/generated'
 
 const db = factory({
-  queries: {
+  userQueries: {
     id: primaryKey(String),
     title: String,
     body: String,
   },
 })
 
-db.queries.create({
+db.userQueries.create({
   id: `${Date.now()}`,
   title: 'New Query',
 })
@@ -24,7 +24,7 @@ export const queriesHandlers = [
     const id = `${Date.now()}`
     const title = req.variables.input.title
 
-    const result = db.queries.create({
+    const result = db.userQueries.create({
       id,
       title,
       body: '',
@@ -43,7 +43,7 @@ export const queriesHandlers = [
   }),
 
   mockGetUserQueriesQuery((req, res, ctx) => {
-    const userQueries = db.queries.getAll().map((data) => ({
+    const userQueries = db.userQueries.getAll().map((data) => ({
       id: data.id,
       title: data.title,
     }))
@@ -52,7 +52,7 @@ export const queriesHandlers = [
 
   mockGetUserQueryQuery((req, res, ctx) => {
     const { id } = req.variables
-    const userQuery = db.queries.findFirst({
+    const userQuery = db.userQueries.findFirst({
       where: {
         id: {
           equals: id,
@@ -83,7 +83,7 @@ export const queriesHandlers = [
 
   mockUpdateUserQueryTitleMutation((req, res, ctx) => {
     const input = req.variables.input
-    db.queries.update({
+    db.userQueries.update({
       where: {
         id: {
           equals: input.id,
