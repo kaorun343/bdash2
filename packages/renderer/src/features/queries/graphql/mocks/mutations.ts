@@ -1,5 +1,5 @@
 import { mockCreateUserQueryMutation, mockUpdateUserQueryTitleMutation } from '~/lib/graphql/generated'
-import { db } from './db'
+import { db } from '~/mocks/db'
 
 export const mutationHandlers = [
   mockCreateUserQueryMutation(async (req, res, ctx) => {

@@ -1,5 +1,5 @@
 import { mockGetUserQueriesQuery, mockGetUserQueryGroupsQuery, mockGetUserQueryQuery } from '~/lib/graphql/generated'
-import { db } from './db'
+import { db } from '~/mocks/db'
 
 export const queryHandlers = [
   mockGetUserQueriesQuery((req, res, ctx) => {
