@@ -116,6 +116,11 @@ export type GetUserQueryQueryVariables = Exact<{
 
 export type GetUserQueryQuery = { userQuery: { id: string, title: string, body: string } };
 
+export type GetUserQueryGroupsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserQueryGroupsQuery = { userQueryGroups: Array<{ id: string, name: string }> };
+
 export type UpdateUserQueryTitleMutationVariables = Exact<{
   input: UpdateUserQueryTitleInput;
 }>;
@@ -154,6 +159,14 @@ export const GetUserQueryDocument = `
   }
 }
     `;
+export const GetUserQueryGroupsDocument = `
+    query getUserQueryGroups {
+  userQueryGroups {
+    id
+    name
+  }
+}
+    `;
 export const UpdateUserQueryTitleDocument = `
     mutation updateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
   updateUserQueryTitle(input: $input) {
@@ -174,6 +187,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     },
     getUserQuery(variables: GetUserQueryQueryVariables, options?: C): Promise<GetUserQueryQuery> {
       return requester<GetUserQueryQuery, GetUserQueryQueryVariables>(GetUserQueryDocument, variables, options) as Promise<GetUserQueryQuery>;
+    },
+    getUserQueryGroups(variables?: GetUserQueryGroupsQueryVariables, options?: C): Promise<GetUserQueryGroupsQuery> {
+      return requester<GetUserQueryGroupsQuery, GetUserQueryGroupsQueryVariables>(GetUserQueryGroupsDocument, variables, options) as Promise<GetUserQueryGroupsQuery>;
     },
     updateUserQueryTitle(variables: UpdateUserQueryTitleMutationVariables, options?: C): Promise<UpdateUserQueryTitleMutation> {
       return requester<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(UpdateUserQueryTitleDocument, variables, options) as Promise<UpdateUserQueryTitleMutation>;
@@ -229,6 +245,22 @@ export const mockGetUserQueriesQuery = (resolver: ResponseResolver<GraphQLReques
 export const mockGetUserQueryQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryQueryVariables>, GraphQLContext<GetUserQueryQuery>, any>) =>
   graphql.query<GetUserQueryQuery, GetUserQueryQueryVariables>(
     'getUserQuery',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetUserQueryGroupsQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ userQueryGroups })
+ *   )
+ * })
+ */
+export const mockGetUserQueryGroupsQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryGroupsQueryVariables>, GraphQLContext<GetUserQueryGroupsQuery>, any>) =>
+  graphql.query<GetUserQueryGroupsQuery, GetUserQueryGroupsQueryVariables>(
+    'getUserQueryGroups',
     resolver
   )
 

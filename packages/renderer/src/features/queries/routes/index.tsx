@@ -11,6 +11,7 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
   return {
     path: '/query-groups',
     element: <QueryGroups sdk={sdk} />,
+    loader: () => queryClient.fetchQuery(['getUserQueryGroups'], () => sdk.getUserQueryGroups()),
     children: [
       {
         path: ':queryGroupId',

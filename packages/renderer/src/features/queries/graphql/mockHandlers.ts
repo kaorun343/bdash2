@@ -2,16 +2,26 @@ import { factory, primaryKey } from '@mswjs/data'
 import {
   mockCreateUserQueryMutation,
   mockGetUserQueriesQuery,
+  mockGetUserQueryGroupsQuery,
   mockGetUserQueryQuery,
   mockUpdateUserQueryTitleMutation,
 } from '~/lib/graphql/generated'
 
 const db = factory({
+  userQueryGroups: {
+    id: primaryKey(String),
+    name: String,
+  },
   userQueries: {
     id: primaryKey(String),
     title: String,
     body: String,
   },
+})
+
+db.userQueryGroups.create({
+  id: `${Date.now()}`,
+  name: `Group 1`,
 })
 
 db.userQueries.create({
@@ -48,6 +58,17 @@ export const queriesHandlers = [
       title: data.title,
     }))
     return res(ctx.data({ userQueries }))
+  }),
+
+  mockGetUserQueryGroupsQuery((req, res, ctx) => {
+    return res(
+      ctx.data({
+        userQueryGroups: db.userQueryGroups.getAll().map((data) => ({
+          id: data.id,
+          name: data.name,
+        })),
+      })
+    )
   }),
 
   mockGetUserQueryQuery((req, res, ctx) => {
