@@ -4,6 +4,7 @@ import { FaPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
 import { queryClient } from '~/lib/queryClient'
+import { getUserQueryDetailPath } from '../../routes/paths'
 
 type Props = {
   groupId: string
@@ -27,7 +28,7 @@ export const QueryListHeader: FC<Props> = ({ groupId, sdk }) => {
       })
     )
 
-    navigate(`/query-groups/${groupId}/${createUserQuery.userQuery.id}`)
+    navigate(getUserQueryDetailPath(groupId, createUserQuery.userQuery.id))
   }
 
   return (
