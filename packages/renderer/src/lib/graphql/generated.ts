@@ -104,7 +104,6 @@ export type UserQuery = Node & {
 export type UserQueryGroup = Node & {
   id: Scalars['ID'];
   title: Scalars['String'];
-  userQueries: Array<UserQuery>;
 };
 
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
