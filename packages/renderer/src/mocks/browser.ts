@@ -1,4 +1,4 @@
 import { setupWorker } from 'msw'
-import { queriesHandlers } from '~/features/queries/graphql/mockHandlers'
+import { userQueryHandlers } from '~/features/queries/graphql/mocks'
 
-export const worker = setupWorker(...queriesHandlers)
+export const worker = setupWorker(...userQueryHandlers)
