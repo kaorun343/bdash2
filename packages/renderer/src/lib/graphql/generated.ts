@@ -106,6 +106,13 @@ export type UserQueryGroup = Node & {
   title: Scalars['String'];
 };
 
+export type DataSourceForDataSourceListItemFragment = { id: string, name: string };
+
+export type DataSourceListPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DataSourceListPageQuery = { dataSources: Array<{ id: string, name: string }> };
+
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
 export type UserQueryGroupForQueryGroupListItemFragment = { id: string, title: string };
@@ -143,6 +150,12 @@ export type UpdateUserQueryTitleMutationVariables = Exact<{
 
 export type UpdateUserQueryTitleMutation = { updateUserQueryTitle: { userQuery: { title: string } } };
 
+export const DataSourceForDataSourceListItemFragmentDoc = `
+    fragment DataSourceForDataSourceListItem on DataSource {
+  id
+  name
+}
+    `;
 export const UserQueryForQueryListItemFragmentDoc = `
     fragment UserQueryForQueryListItem on UserQuery {
   id
@@ -155,6 +168,13 @@ export const UserQueryGroupForQueryGroupListItemFragmentDoc = `
   title
 }
     `;
+export const DataSourceListPageDocument = `
+    query dataSourceListPage {
+  dataSources {
+    ...DataSourceForDataSourceListItem
+  }
+}
+    ${DataSourceForDataSourceListItemFragmentDoc}`;
 export const CreateUserQueryDocument = `
     mutation createUserQuery($input: CreateUserQueryInput!) {
   createUserQuery(input: $input) {
@@ -199,6 +219,9 @@ export const UpdateUserQueryTitleDocument = `
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
+    dataSourceListPage(variables?: DataSourceListPageQueryVariables, options?: C): Promise<DataSourceListPageQuery> {
+      return requester<DataSourceListPageQuery, DataSourceListPageQueryVariables>(DataSourceListPageDocument, variables, options) as Promise<DataSourceListPageQuery>;
+    },
     createUserQuery(variables: CreateUserQueryMutationVariables, options?: C): Promise<CreateUserQueryMutation> {
       return requester<CreateUserQueryMutation, CreateUserQueryMutationVariables>(CreateUserQueryDocument, variables, options) as Promise<CreateUserQueryMutation>;
     },
@@ -217,6 +240,22 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockDataSourceListPageQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ dataSources })
+ *   )
+ * })
+ */
+export const mockDataSourceListPageQuery = (resolver: ResponseResolver<GraphQLRequest<DataSourceListPageQueryVariables>, GraphQLContext<DataSourceListPageQuery>, any>) =>
+  graphql.query<DataSourceListPageQuery, DataSourceListPageQueryVariables>(
+    'dataSourceListPage',
+    resolver
+  )
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.

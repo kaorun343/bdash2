@@ -1,6 +1,10 @@
 import { factory, primaryKey } from '@mswjs/data'
 
 export const db = factory({
+  dataSources: {
+    id: primaryKey(String),
+    name: String,
+  },
   userQueryGroups: {
     id: primaryKey(String),
     title: String,
@@ -10,6 +14,11 @@ export const db = factory({
     title: String,
     body: String,
   },
+})
+
+db.dataSources.create({
+  id: `DataSource:${Date.now()}`,
+  name: 'My Database',
 })
 
 db.userQueryGroups.create({

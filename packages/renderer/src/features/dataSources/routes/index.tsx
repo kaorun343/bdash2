@@ -8,5 +8,6 @@ export const createDataSourceRoutes = (sdk: Sdk): RouteObject => {
   return {
     path: '/data-sources',
     element: <DataSourceListPage sdk={sdk} />,
+    loader: () => sdk.dataSourceListPage(),
   }
 }
