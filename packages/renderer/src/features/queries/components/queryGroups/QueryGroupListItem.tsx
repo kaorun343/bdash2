@@ -14,7 +14,7 @@ export const QueryGroupListItem = memo<Props>(function QueryGroupListItem({ user
         to={getUserQueryListPath(userQueryGroup.id)}
         className={({ isActive }) => `block px-4 py-3 ${isActive ? 'bg-blue-500 text-white' : ''}`}
       >
-        {userQueryGroup.name}
+        {userQueryGroup.title}
       </NavLink>
     </li>
   )

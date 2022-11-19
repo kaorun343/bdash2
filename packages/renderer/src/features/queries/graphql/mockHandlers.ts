@@ -10,7 +10,7 @@ import {
 const db = factory({
   userQueryGroups: {
     id: primaryKey(String),
-    name: String,
+    title: String,
   },
   userQueries: {
     id: primaryKey(String),
@@ -21,7 +21,7 @@ const db = factory({
 
 db.userQueryGroups.create({
   id: `${Date.now()}`,
-  name: `Group 1`,
+  title: `Group 1`,
 })
 
 db.userQueries.create({
@@ -68,7 +68,7 @@ export const queriesHandlers = [
       ctx.data({
         userQueryGroups: db.userQueryGroups.getAll().map((data) => ({
           id: data.id,
-          name: data.name,
+          title: data.title,
         })),
       })
     )

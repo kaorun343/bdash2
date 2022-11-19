@@ -97,13 +97,13 @@ export type UserQuery = Node & {
 
 export type UserQueryGroup = Node & {
   id: Scalars['ID'];
-  name: Scalars['String'];
+  title: Scalars['String'];
   userQueries: Array<UserQuery>;
 };
 
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
-export type UserQueryGroupForQueryGroupListItemFragment = { id: string, name: string };
+export type UserQueryGroupForQueryGroupListItemFragment = { id: string, title: string };
 
 export type CreateUserQueryMutationVariables = Exact<{
   input: CreateUserQueryInput;
@@ -129,7 +129,7 @@ export type GetUserQueryQuery = { userQuery: { id: string, title: string, body: 
 export type GetUserQueryGroupsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQueryGroupsQuery = { userQueryGroups: Array<{ id: string, name: string }> };
+export type GetUserQueryGroupsQuery = { userQueryGroups: Array<{ id: string, title: string }> };
 
 export type UpdateUserQueryTitleMutationVariables = Exact<{
   input: UpdateUserQueryTitleInput;
@@ -147,7 +147,7 @@ export const UserQueryForQueryListItemFragmentDoc = `
 export const UserQueryGroupForQueryGroupListItemFragmentDoc = `
     fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
   id
-  name
+  title
 }
     `;
 export const CreateUserQueryDocument = `
