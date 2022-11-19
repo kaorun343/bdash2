@@ -1,0 +1,4 @@
+fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  name
+}

@@ -1,6 +1,5 @@
 query getUserQueryGroups {
   userQueryGroups {
-    id
-    name
+    ...UserQueryGroupForQueryGroupListItem
   }
 }

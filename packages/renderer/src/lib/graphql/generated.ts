@@ -97,6 +97,8 @@ export type UserQueryGroup = Node & {
 
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
+export type UserQueryGroupForQueryGroupListItemFragment = { id: string, name: string };
+
 export type CreateUserQueryMutationVariables = Exact<{
   input: CreateUserQueryInput;
 }>;
@@ -134,6 +136,12 @@ export const UserQueryForQueryListItemFragmentDoc = `
   title
 }
     `;
+export const UserQueryGroupForQueryGroupListItemFragmentDoc = `
+    fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  name
+}
+    `;
 export const CreateUserQueryDocument = `
     mutation createUserQuery($input: CreateUserQueryInput!) {
   createUserQuery(input: $input) {
@@ -162,11 +170,10 @@ export const GetUserQueryDocument = `
 export const GetUserQueryGroupsDocument = `
     query getUserQueryGroups {
   userQueryGroups {
-    id
-    name
+    ...UserQueryGroupForQueryGroupListItem
   }
 }
-    `;
+    ${UserQueryGroupForQueryGroupListItemFragmentDoc}`;
 export const UpdateUserQueryTitleDocument = `
     mutation updateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
   updateUserQueryTitle(input: $input) {
