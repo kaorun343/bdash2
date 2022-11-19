@@ -58,6 +58,7 @@ export type NoopPayload = {
 export type Query = {
   node?: Maybe<Node>;
   userQueries: Array<UserQuery>;
+  userQueriesByGroup: Array<UserQuery>;
   userQuery: UserQuery;
   userQueryGroups: Array<UserQueryGroup>;
 };
@@ -65,6 +66,11 @@ export type Query = {
 
 export type QueryNodeArgs = {
   id: Scalars['ID'];
+};
+
+
+export type QueryUserQueriesByGroupArgs = {
+  groupId: Scalars['ID'];
 };
 
 

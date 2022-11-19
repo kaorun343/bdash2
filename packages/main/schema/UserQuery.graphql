@@ -9,6 +9,7 @@ type UserQuery implements Node {
 extend type Query {
   userQuery(id: ID!): UserQuery!
   userQueries: [UserQuery!]!
+  userQueriesByGroup(groupId: ID!): [UserQuery!]!
 }
 
 input CreateUserQueryInput {
