@@ -28,7 +28,7 @@ export const QueryDetailEditor: FC<Props> = ({ data, groupId, sdk }) => {
     async (title: string) => sdk.updateUserQueryTitle({ input: { id, title } }),
     {
       onSuccess: (result) => {
-        queryClient.setQueriesData<GetUserQueriesQuery>(
+        queryClient.setQueryData<GetUserQueriesQuery>(
           ['getUserQueries', groupId],
           produce((draft) => {
             if (!draft) return
