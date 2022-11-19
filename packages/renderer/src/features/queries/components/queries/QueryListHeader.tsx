@@ -6,10 +6,11 @@ import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/ge
 import { queryClient } from '~/lib/queryClient'
 
 type Props = {
+  groupId: string
   sdk: Sdk
 }
 
-export const QueryListHeader: FC<Props> = ({ sdk }) => {
+export const QueryListHeader: FC<Props> = ({ groupId, sdk }) => {
   const navigate = useNavigate()
 
   const createUserQuery = async () => {
@@ -19,14 +20,14 @@ export const QueryListHeader: FC<Props> = ({ sdk }) => {
     const { createUserQuery } = await sdk.createUserQuery({ input })
 
     queryClient.setQueryData<GetUserQueriesQuery>(
-      ['getUserQueries'],
+      ['getUserQueries', groupId],
       produce((draft) => {
         if (!draft) return
-        draft.userQueries.unshift(createUserQuery.userQuery)
+        draft.userQueriesByGroup.unshift(createUserQuery.userQuery)
       })
     )
 
-    navigate(`/queries/${createUserQuery.userQuery.id}`)
+    navigate(`/query-groups/${groupId}/${createUserQuery.userQuery.id}`)
   }
 
   return (

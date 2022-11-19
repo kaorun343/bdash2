@@ -1,5 +1,5 @@
-query getUserQueries {
-  userQueries {
+query getUserQueries($groupId: ID!) {
+  userQueriesByGroup(groupId: $groupId) {
     ...UserQueryForQueryListItem
   }
 }

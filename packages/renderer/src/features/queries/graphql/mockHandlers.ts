@@ -53,11 +53,14 @@ export const queriesHandlers = [
   }),
 
   mockGetUserQueriesQuery((req, res, ctx) => {
-    const userQueries = db.userQueries.getAll().map((data) => ({
-      id: data.id,
-      title: data.title,
-    }))
-    return res(ctx.data({ userQueries }))
+    return res(
+      ctx.data({
+        userQueriesByGroup: db.userQueries.getAll().map((data) => ({
+          id: data.id,
+          title: data.title,
+        })),
+      })
+    )
   }),
 
   mockGetUserQueryGroupsQuery((req, res, ctx) => {

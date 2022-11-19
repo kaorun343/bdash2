@@ -112,10 +112,12 @@ export type CreateUserQueryMutationVariables = Exact<{
 
 export type CreateUserQueryMutation = { createUserQuery: { userQuery: { id: string, title: string } } };
 
-export type GetUserQueriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserQueriesQueryVariables = Exact<{
+  groupId: Scalars['ID'];
+}>;
 
 
-export type GetUserQueriesQuery = { userQueries: Array<{ id: string, title: string }> };
+export type GetUserQueriesQuery = { userQueriesByGroup: Array<{ id: string, title: string }> };
 
 export type GetUserQueryQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -158,8 +160,8 @@ export const CreateUserQueryDocument = `
 }
     ${UserQueryForQueryListItemFragmentDoc}`;
 export const GetUserQueriesDocument = `
-    query getUserQueries {
-  userQueries {
+    query getUserQueries($groupId: ID!) {
+  userQueriesByGroup(groupId: $groupId) {
     ...UserQueryForQueryListItem
   }
 }
@@ -195,7 +197,7 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     createUserQuery(variables: CreateUserQueryMutationVariables, options?: C): Promise<CreateUserQueryMutation> {
       return requester<CreateUserQueryMutation, CreateUserQueryMutationVariables>(CreateUserQueryDocument, variables, options) as Promise<CreateUserQueryMutation>;
     },
-    getUserQueries(variables?: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
+    getUserQueries(variables: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
       return requester<GetUserQueriesQuery, GetUserQueriesQueryVariables>(GetUserQueriesDocument, variables, options) as Promise<GetUserQueriesQuery>;
     },
     getUserQuery(variables: GetUserQueryQueryVariables, options?: C): Promise<GetUserQueryQuery> {
@@ -233,8 +235,9 @@ export const mockCreateUserQueryMutation = (resolver: ResponseResolver<GraphQLRe
  * @see https://mswjs.io/docs/basics/response-resolver
  * @example
  * mockGetUserQueriesQuery((req, res, ctx) => {
+ *   const { groupId } = req.variables;
  *   return res(
- *     ctx.data({ userQueries })
+ *     ctx.data({ userQueriesByGroup })
  *   )
  * })
  */
