@@ -28,7 +28,7 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
               const queryId = params?.queryId as string
               return sdk.getUserQuery({ id: queryId })
             },
-            errorElement: <Navigate to="/queries" />,
+            errorElement: <Navigate to="/query-groups/:queryGroupId" />,
           },
         ],
         errorElement: <Navigate to="/query-groups" />,
