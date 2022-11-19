@@ -22,6 +22,11 @@ export type CreateUserQueryPayload = {
   userQuery: UserQuery;
 };
 
+export type DataSource = Node & {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 export type Mutation = {
   createUserQuery: CreateUserQueryPayload;
   noop: NoopPayload;
@@ -56,6 +61,7 @@ export type NoopPayload = {
 };
 
 export type Query = {
+  dataSources: Array<DataSource>;
   node?: Maybe<Node>;
   userQueries: Array<UserQuery>;
   userQueriesByGroup: Array<UserQuery>;

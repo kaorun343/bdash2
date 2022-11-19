@@ -1,0 +1,8 @@
+type DataSource implements Node {
+  id: ID!
+  name: String!
+}
+
+extend type Query {
+  dataSources: [DataSource!]!
+}
