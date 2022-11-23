@@ -14,6 +14,7 @@
     "@graphql-codegen/typescript-msw": "^1.1.3",
     "@graphql-codegen/typescript-operations": "^2.5.3",
     "@mswjs/data": "^0.10.2",
+    "@tailwindcss/forms": "^0.5.3",
     "@tanstack/react-query": "^4.10.3",
     "@tsconfig/vite-react": "^1.0.1",
     "@types/react": "^18.0.21",
