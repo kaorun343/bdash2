@@ -1,3 +1,4 @@
+import { mutationHandlers } from './mutations'
 import { queryHandlers } from './queries'
 
-export const dataSourceHandlers = [...queryHandlers]
+export const dataSourceHandlers = [...mutationHandlers, ...queryHandlers]

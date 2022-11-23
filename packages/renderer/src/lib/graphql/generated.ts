@@ -123,6 +123,13 @@ export type UserQueryGroup = Node & {
 
 export type DataSourceForDataSourceListItemFragment = { id: string, name: string };
 
+export type TestSqlite3ConnectionMutationVariables = Exact<{
+  input: TestSqlite3ConnectionInput;
+}>;
+
+
+export type TestSqlite3ConnectionMutation = { testSqlite3Connection: { success: boolean } };
+
 export type DataSourceListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -183,6 +190,13 @@ export const UserQueryGroupForQueryGroupListItemFragmentDoc = `
   title
 }
     `;
+export const TestSqlite3ConnectionDocument = `
+    mutation testSqlite3Connection($input: TestSqlite3ConnectionInput!) {
+  testSqlite3Connection(input: $input) {
+    success
+  }
+}
+    `;
 export const DataSourceListPageDocument = `
     query dataSourceListPage {
   dataSources {
@@ -234,6 +248,9 @@ export const UpdateUserQueryTitleDocument = `
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
+    testSqlite3Connection(variables: TestSqlite3ConnectionMutationVariables, options?: C): Promise<TestSqlite3ConnectionMutation> {
+      return requester<TestSqlite3ConnectionMutation, TestSqlite3ConnectionMutationVariables>(TestSqlite3ConnectionDocument, variables, options) as Promise<TestSqlite3ConnectionMutation>;
+    },
     dataSourceListPage(variables?: DataSourceListPageQueryVariables, options?: C): Promise<DataSourceListPageQuery> {
       return requester<DataSourceListPageQuery, DataSourceListPageQueryVariables>(DataSourceListPageDocument, variables, options) as Promise<DataSourceListPageQuery>;
     },
@@ -255,6 +272,23 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockTestSqlite3ConnectionMutation((req, res, ctx) => {
+ *   const { input } = req.variables;
+ *   return res(
+ *     ctx.data({ testSqlite3Connection })
+ *   )
+ * })
+ */
+export const mockTestSqlite3ConnectionMutation = (resolver: ResponseResolver<GraphQLRequest<TestSqlite3ConnectionMutationVariables>, GraphQLContext<TestSqlite3ConnectionMutation>, any>) =>
+  graphql.mutation<TestSqlite3ConnectionMutation, TestSqlite3ConnectionMutationVariables>(
+    'testSqlite3Connection',
+    resolver
+  )
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.

@@ -1,0 +1,5 @@
+mutation testSqlite3Connection($input: TestSqlite3ConnectionInput!) {
+  testSqlite3Connection(input: $input) {
+    success
+  }
+}
