@@ -1,0 +1,12 @@
+input TestSqlite3ConnectionInput {
+  path: String!
+}
+
+type TestSqlite3ConnectionResponse {
+  success: Boolean!
+  message: String
+}
+
+extend type Mutation {
+  testSqlite3Connection(input: TestSqlite3ConnectionInput!): TestSqlite3ConnectionResponse!
+}

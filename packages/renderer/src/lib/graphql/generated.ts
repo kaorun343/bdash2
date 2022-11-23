@@ -30,6 +30,7 @@ export type DataSource = Node & {
 export type Mutation = {
   createUserQuery: CreateUserQueryPayload;
   noop: NoopPayload;
+  testSqlite3Connection: TestSqlite3ConnectionResponse;
   updateUserQueryTitle: UpdateUserQueryTitlePayload;
 };
 
@@ -41,6 +42,11 @@ export type MutationCreateUserQueryArgs = {
 
 export type MutationNoopArgs = {
   input: NoopInput;
+};
+
+
+export type MutationTestSqlite3ConnectionArgs = {
+  input: TestSqlite3ConnectionInput;
 };
 
 
@@ -82,6 +88,15 @@ export type QueryUserQueriesByGroupArgs = {
 
 export type QueryUserQueryArgs = {
   id: Scalars['ID'];
+};
+
+export type TestSqlite3ConnectionInput = {
+  path: Scalars['String'];
+};
+
+export type TestSqlite3ConnectionResponse = {
+  message?: Maybe<Scalars['String']>;
+  success: Scalars['Boolean'];
 };
 
 export type UpdateUserQueryTitleInput = {
