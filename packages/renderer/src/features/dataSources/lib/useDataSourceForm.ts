@@ -11,7 +11,13 @@ export type DataSourceFormFieldValues = {
 }
 
 export const useDataSourceForm = (sdk: Sdk) => {
-  const { getValues, handleSubmit, register, watch } = useForm<DataSourceFormFieldValues>({
+  const {
+    formState: { errors },
+    getValues,
+    handleSubmit,
+    register,
+    watch,
+  } = useForm<DataSourceFormFieldValues>({
     defaultValues: {
       name: '',
       dataSourceType: '',
@@ -32,9 +38,9 @@ export const useDataSourceForm = (sdk: Sdk) => {
 
   const testConnection = useMutation({
     mutationFn: async () => {
-      const { dataSourceType, sqlite3 } = getValues()
+      const { dataSourceType: type, sqlite3 } = getValues()
 
-      switch (dataSourceType) {
+      switch (type) {
         case 'sqlite3': {
           const result = await sdk.testSqlite3Connection({
             input: {
@@ -53,5 +59,5 @@ export const useDataSourceForm = (sdk: Sdk) => {
     },
   })
 
-  return [onSubmit, register, testConnection, watch] as const
+  return [errors, onSubmit, register, testConnection, watch] as const
 }

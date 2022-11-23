@@ -5,6 +5,9 @@ import { useDataSourceForm } from '../../lib/useDataSourceForm'
 import { DataSourceFormButton } from './DataSourceFormButton'
 import { DataSourceFormLabel } from './DataSourceFormLabel'
 
+const DataSourceFormErrorMessage = lazy(() =>
+  import('./DataSourceFormErrorMessage').then((m) => ({ default: m.DataSourceFormErrorMessage }))
+)
 const DataSourceFormSqlite3 = lazy(() =>
   import('./DataSourceFormSqlite3').then((m) => ({ default: m.DataSourceFormSqlite3 }))
 )
@@ -18,7 +21,7 @@ export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
   const nameId = useId()
   const typeId = useId()
 
-  const [onSubmit, register, testConnection, watch] = useDataSourceForm(sdk)
+  const [errors, onSubmit, register, testConnection, watch] = useDataSourceForm(sdk)
   const dataSourceType = watch('dataSourceType')
 
   return (
@@ -32,6 +35,7 @@ export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
           className="bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           placeholder="My Database"
         />
+        {errors.name?.type === 'required' && <DataSourceFormErrorMessage>Name is required</DataSourceFormErrorMessage>}
       </div>
 
       <div className="flex flex-col mb-3">
@@ -44,12 +48,15 @@ export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
           <option value=""></option>
           <option value="sqlite3">SQLite3</option>
         </select>
+        {errors.dataSourceType?.type === 'required' && (
+          <DataSourceFormErrorMessage>Type is required</DataSourceFormErrorMessage>
+        )}
       </div>
 
       {(() => {
         switch (dataSourceType) {
           case 'sqlite3':
-            return <DataSourceFormSqlite3 register={register} />
+            return <DataSourceFormSqlite3 errors={errors} register={register} />
           default:
             return null
         }
