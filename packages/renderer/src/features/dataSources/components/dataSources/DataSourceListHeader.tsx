@@ -15,7 +15,7 @@ export const DataSourceListHeader: FC<Props> = ({ sdk }) => {
       <button type="button" className="inline-block" onClick={() => dialogRef.current?.showModal()}>
         <FaPlus />
       </button>
-      <DataSourceDialog ref={dialogRef} />
+      <DataSourceDialog ref={dialogRef} sdk={sdk} />
     </div>
   )
 }

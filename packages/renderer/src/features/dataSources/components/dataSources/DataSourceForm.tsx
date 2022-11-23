@@ -1,4 +1,6 @@
 import { FC, lazy, useId } from 'react'
+import { FaCheck, FaSpinner } from 'react-icons/fa'
+import { Sdk } from '~/lib/graphql/generated'
 import { useDataSourceForm } from '../../lib/useDataSourceForm'
 import { DataSourceFormButton } from './DataSourceFormButton'
 import { DataSourceFormLabel } from './DataSourceFormLabel'
@@ -9,13 +11,14 @@ const DataSourceFormSqlite3 = lazy(() =>
 
 type Props = {
   onCancel: () => void
+  sdk: Sdk
 }
 
-export const DataSourceForm: FC<Props> = ({ onCancel }) => {
+export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
   const nameId = useId()
   const typeId = useId()
 
-  const [onSubmit, register, watch] = useDataSourceForm()
+  const [onSubmit, register, testConnection, watch] = useDataSourceForm(sdk)
   const dataSourceType = watch('dataSourceType')
 
   return (
@@ -39,13 +42,13 @@ export const DataSourceForm: FC<Props> = ({ onCancel }) => {
           className="bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
         >
           <option value=""></option>
-          <option value="SQLite3">SQLite3</option>
+          <option value="sqlite3">SQLite3</option>
         </select>
       </div>
 
       {(() => {
         switch (dataSourceType) {
-          case 'SQLite3':
+          case 'sqlite3':
             return <DataSourceFormSqlite3 register={register} />
           default:
             return null
@@ -53,7 +56,14 @@ export const DataSourceForm: FC<Props> = ({ onCancel }) => {
       })()}
 
       <footer className="flex justify-between text-sm pt-8">
-        <DataSourceFormButton type="button">Connection Test</DataSourceFormButton>
+        <div className="flex gap-2 items-center">
+          <DataSourceFormButton type="button" onClick={() => testConnection.mutate()}>
+            Connection Test
+          </DataSourceFormButton>
+
+          {testConnection.isLoading && <FaSpinner className="text-gray-500 animate-spin" />}
+          {testConnection.data?.success && <FaCheck className="text-green-500" />}
+        </div>
 
         <div className="flex gap-2">
           <DataSourceFormButton type="button" onClick={onCancel}>
