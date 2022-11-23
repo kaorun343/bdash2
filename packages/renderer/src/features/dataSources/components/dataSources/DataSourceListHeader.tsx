@@ -1,7 +1,7 @@
 import { FC, useRef } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { Sdk } from '~/lib/graphql/generated'
-import { DataSourceDialog } from '../dataSourceDialog/DataSourceDialog'
+import { DataSourceDialog } from './DataSourceDialog'
 
 type Props = {
   sdk: Sdk
