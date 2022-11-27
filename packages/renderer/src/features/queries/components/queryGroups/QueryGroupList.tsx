@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useLoaderData } from 'react-router-dom'
-import { GetUserQueryGroupsQuery, Sdk } from '~/lib/graphql/generated'
+import { QueryGroupListPageQuery, Sdk } from '~/lib/graphql/generated'
 import { QueryGroupListItem } from './QueryGroupListItem'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const QueryGroupList: FC<Props> = ({ sdk }) => {
-  const data = useLoaderData() as GetUserQueryGroupsQuery
+  const data = useLoaderData() as QueryGroupListPageQuery
   const userQueryGroups = data.userQueryGroups
 
   return (

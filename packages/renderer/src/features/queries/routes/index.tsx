@@ -11,14 +11,14 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
   return {
     path: '/query-groups',
     element: <QueryGroupListPage sdk={sdk} />,
-    loader: () => sdk.getUserQueryGroups(),
+    loader: () => sdk.queryGroupListPage(),
     children: [
       {
         path: ':queryGroupId',
         element: <QueryListPage sdk={sdk} />,
         loader: ({ params }) => {
           const groupId = params?.queryGroupId as string
-          return queryClient.fetchQuery(['getUserQueries', groupId], () => sdk.getUserQueries({ groupId }))
+          return queryClient.fetchQuery(['getUserQueries', groupId], () => sdk.queryListPage({ groupId }))
         },
         children: [
           {
@@ -26,7 +26,7 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
             element: <QueryDetailPage sdk={sdk} />,
             loader: ({ params }) => {
               const queryId = params?.queryId as string
-              return sdk.getUserQuery({ id: queryId })
+              return sdk.queryDetailPage({ id: queryId })
             },
           },
         ],

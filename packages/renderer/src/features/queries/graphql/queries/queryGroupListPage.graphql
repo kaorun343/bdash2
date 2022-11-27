@@ -1,4 +1,4 @@
-query getUserQueryGroups {
+query queryGroupListPage {
   userQueryGroups {
     ...UserQueryGroupForQueryGroupListItem
   }

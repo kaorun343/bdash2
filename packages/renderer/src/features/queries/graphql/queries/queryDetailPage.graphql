@@ -1,4 +1,4 @@
-query getUserQuery($id: ID!) {
+query queryDetailPage($id: ID!) {
   userQuery(id: $id) {
     id
     title

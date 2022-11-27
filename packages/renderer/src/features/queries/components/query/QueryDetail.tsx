@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { GetUserQueryQuery, Sdk } from '~/lib/graphql/generated'
+import { QueryDetailPageQuery, Sdk } from '~/lib/graphql/generated'
 import { QueryDetailEditor } from './QueryDetailEditor'
 
 type Props = {
-  data: GetUserQueryQuery
+  data: QueryDetailPageQuery
   groupId: string
   sdk: Sdk
 }

@@ -163,31 +163,31 @@ export type CreateUserQueryMutationVariables = Exact<{
 
 export type CreateUserQueryMutation = { createUserQuery: { userQuery: { id: string, title: string } } };
 
-export type GetUserQueriesQueryVariables = Exact<{
-  groupId: Scalars['ID'];
-}>;
-
-
-export type GetUserQueriesQuery = { userQueriesByGroup: Array<{ id: string, title: string }> };
-
-export type GetUserQueryQueryVariables = Exact<{
-  id: Scalars['ID'];
-}>;
-
-
-export type GetUserQueryQuery = { userQuery: { id: string, title: string, body: string } };
-
-export type GetUserQueryGroupsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUserQueryGroupsQuery = { userQueryGroups: Array<{ id: string, title: string }> };
-
 export type UpdateUserQueryTitleMutationVariables = Exact<{
   input: UpdateUserQueryTitleInput;
 }>;
 
 
 export type UpdateUserQueryTitleMutation = { updateUserQueryTitle: { userQuery: { title: string } } };
+
+export type QueryDetailPageQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type QueryDetailPageQuery = { userQuery: { id: string, title: string, body: string } };
+
+export type QueryGroupListPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type QueryGroupListPageQuery = { userQueryGroups: Array<{ id: string, title: string }> };
+
+export type QueryListPageQueryVariables = Exact<{
+  groupId: Scalars['ID'];
+}>;
+
+
+export type QueryListPageQuery = { userQueriesByGroup: Array<{ id: string, title: string }> };
 
 export const DataSourceForDataSourceListItemFragmentDoc = `
     fragment DataSourceForDataSourceListItem on DataSource {
@@ -237,29 +237,6 @@ export const CreateUserQueryDocument = `
   }
 }
     ${UserQueryForQueryListItemFragmentDoc}`;
-export const GetUserQueriesDocument = `
-    query getUserQueries($groupId: ID!) {
-  userQueriesByGroup(groupId: $groupId) {
-    ...UserQueryForQueryListItem
-  }
-}
-    ${UserQueryForQueryListItemFragmentDoc}`;
-export const GetUserQueryDocument = `
-    query getUserQuery($id: ID!) {
-  userQuery(id: $id) {
-    id
-    title
-    body
-  }
-}
-    `;
-export const GetUserQueryGroupsDocument = `
-    query getUserQueryGroups {
-  userQueryGroups {
-    ...UserQueryGroupForQueryGroupListItem
-  }
-}
-    ${UserQueryGroupForQueryGroupListItemFragmentDoc}`;
 export const UpdateUserQueryTitleDocument = `
     mutation updateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
   updateUserQueryTitle(input: $input) {
@@ -269,6 +246,29 @@ export const UpdateUserQueryTitleDocument = `
   }
 }
     `;
+export const QueryDetailPageDocument = `
+    query queryDetailPage($id: ID!) {
+  userQuery(id: $id) {
+    id
+    title
+    body
+  }
+}
+    `;
+export const QueryGroupListPageDocument = `
+    query queryGroupListPage {
+  userQueryGroups {
+    ...UserQueryGroupForQueryGroupListItem
+  }
+}
+    ${UserQueryGroupForQueryGroupListItemFragmentDoc}`;
+export const QueryListPageDocument = `
+    query queryListPage($groupId: ID!) {
+  userQueriesByGroup(groupId: $groupId) {
+    ...UserQueryForQueryListItem
+  }
+}
+    ${UserQueryForQueryListItemFragmentDoc}`;
 export type Requester<C = {}, E = unknown> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
@@ -284,17 +284,17 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     createUserQuery(variables: CreateUserQueryMutationVariables, options?: C): Promise<CreateUserQueryMutation> {
       return requester<CreateUserQueryMutation, CreateUserQueryMutationVariables>(CreateUserQueryDocument, variables, options) as Promise<CreateUserQueryMutation>;
     },
-    getUserQueries(variables: GetUserQueriesQueryVariables, options?: C): Promise<GetUserQueriesQuery> {
-      return requester<GetUserQueriesQuery, GetUserQueriesQueryVariables>(GetUserQueriesDocument, variables, options) as Promise<GetUserQueriesQuery>;
-    },
-    getUserQuery(variables: GetUserQueryQueryVariables, options?: C): Promise<GetUserQueryQuery> {
-      return requester<GetUserQueryQuery, GetUserQueryQueryVariables>(GetUserQueryDocument, variables, options) as Promise<GetUserQueryQuery>;
-    },
-    getUserQueryGroups(variables?: GetUserQueryGroupsQueryVariables, options?: C): Promise<GetUserQueryGroupsQuery> {
-      return requester<GetUserQueryGroupsQuery, GetUserQueryGroupsQueryVariables>(GetUserQueryGroupsDocument, variables, options) as Promise<GetUserQueryGroupsQuery>;
-    },
     updateUserQueryTitle(variables: UpdateUserQueryTitleMutationVariables, options?: C): Promise<UpdateUserQueryTitleMutation> {
       return requester<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(UpdateUserQueryTitleDocument, variables, options) as Promise<UpdateUserQueryTitleMutation>;
+    },
+    queryDetailPage(variables: QueryDetailPageQueryVariables, options?: C): Promise<QueryDetailPageQuery> {
+      return requester<QueryDetailPageQuery, QueryDetailPageQueryVariables>(QueryDetailPageDocument, variables, options) as Promise<QueryDetailPageQuery>;
+    },
+    queryGroupListPage(variables?: QueryGroupListPageQueryVariables, options?: C): Promise<QueryGroupListPageQuery> {
+      return requester<QueryGroupListPageQuery, QueryGroupListPageQueryVariables>(QueryGroupListPageDocument, variables, options) as Promise<QueryGroupListPageQuery>;
+    },
+    queryListPage(variables: QueryListPageQueryVariables, options?: C): Promise<QueryListPageQuery> {
+      return requester<QueryListPageQuery, QueryListPageQueryVariables>(QueryListPageDocument, variables, options) as Promise<QueryListPageQuery>;
     }
   };
 }
@@ -371,56 +371,6 @@ export const mockCreateUserQueryMutation = (resolver: ResponseResolver<GraphQLRe
  * @param resolver a function that accepts a captured request and may return a mocked response.
  * @see https://mswjs.io/docs/basics/response-resolver
  * @example
- * mockGetUserQueriesQuery((req, res, ctx) => {
- *   const { groupId } = req.variables;
- *   return res(
- *     ctx.data({ userQueriesByGroup })
- *   )
- * })
- */
-export const mockGetUserQueriesQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueriesQueryVariables>, GraphQLContext<GetUserQueriesQuery>, any>) =>
-  graphql.query<GetUserQueriesQuery, GetUserQueriesQueryVariables>(
-    'getUserQueries',
-    resolver
-  )
-
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
- * mockGetUserQueryQuery((req, res, ctx) => {
- *   const { id } = req.variables;
- *   return res(
- *     ctx.data({ userQuery })
- *   )
- * })
- */
-export const mockGetUserQueryQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryQueryVariables>, GraphQLContext<GetUserQueryQuery>, any>) =>
-  graphql.query<GetUserQueryQuery, GetUserQueryQueryVariables>(
-    'getUserQuery',
-    resolver
-  )
-
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
- * mockGetUserQueryGroupsQuery((req, res, ctx) => {
- *   return res(
- *     ctx.data({ userQueryGroups })
- *   )
- * })
- */
-export const mockGetUserQueryGroupsQuery = (resolver: ResponseResolver<GraphQLRequest<GetUserQueryGroupsQueryVariables>, GraphQLContext<GetUserQueryGroupsQuery>, any>) =>
-  graphql.query<GetUserQueryGroupsQuery, GetUserQueryGroupsQueryVariables>(
-    'getUserQueryGroups',
-    resolver
-  )
-
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
  * mockUpdateUserQueryTitleMutation((req, res, ctx) => {
  *   const { input } = req.variables;
  *   return res(
@@ -431,5 +381,55 @@ export const mockGetUserQueryGroupsQuery = (resolver: ResponseResolver<GraphQLRe
 export const mockUpdateUserQueryTitleMutation = (resolver: ResponseResolver<GraphQLRequest<UpdateUserQueryTitleMutationVariables>, GraphQLContext<UpdateUserQueryTitleMutation>, any>) =>
   graphql.mutation<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(
     'updateUserQueryTitle',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockQueryDetailPageQuery((req, res, ctx) => {
+ *   const { id } = req.variables;
+ *   return res(
+ *     ctx.data({ userQuery })
+ *   )
+ * })
+ */
+export const mockQueryDetailPageQuery = (resolver: ResponseResolver<GraphQLRequest<QueryDetailPageQueryVariables>, GraphQLContext<QueryDetailPageQuery>, any>) =>
+  graphql.query<QueryDetailPageQuery, QueryDetailPageQueryVariables>(
+    'queryDetailPage',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockQueryGroupListPageQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ userQueryGroups })
+ *   )
+ * })
+ */
+export const mockQueryGroupListPageQuery = (resolver: ResponseResolver<GraphQLRequest<QueryGroupListPageQueryVariables>, GraphQLContext<QueryGroupListPageQuery>, any>) =>
+  graphql.query<QueryGroupListPageQuery, QueryGroupListPageQueryVariables>(
+    'queryGroupListPage',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockQueryListPageQuery((req, res, ctx) => {
+ *   const { groupId } = req.variables;
+ *   return res(
+ *     ctx.data({ userQueriesByGroup })
+ *   )
+ * })
+ */
+export const mockQueryListPageQuery = (resolver: ResponseResolver<GraphQLRequest<QueryListPageQueryVariables>, GraphQLContext<QueryListPageQuery>, any>) =>
+  graphql.query<QueryListPageQuery, QueryListPageQueryVariables>(
+    'queryListPage',
     resolver
   )

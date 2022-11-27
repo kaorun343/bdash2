@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { FC } from 'react'
-import { GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
+import { Sdk } from '~/lib/graphql/generated'
 import { QueryListItem } from './QueryListItem'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const QueryList: FC<Props> = ({ groupId, sdk }) => {
-  const { data } = useQuery<GetUserQueriesQuery>(['getUserQueries', groupId], () => sdk.getUserQueries({ groupId }))
+  const { data } = useQuery(['getUserQueries', groupId], () => sdk.queryListPage({ groupId }))
 
   return (
     <ul>

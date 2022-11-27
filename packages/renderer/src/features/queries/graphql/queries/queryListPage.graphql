@@ -1,4 +1,4 @@
-query getUserQueries($groupId: ID!) {
+query queryListPage($groupId: ID!) {
   userQueriesByGroup(groupId: $groupId) {
     ...UserQueryForQueryListItem
   }

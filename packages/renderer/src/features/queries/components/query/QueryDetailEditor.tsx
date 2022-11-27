@@ -5,10 +5,10 @@ import { basicSetup } from 'codemirror'
 import produce from 'immer'
 import { FC, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { GetUserQueriesQuery, GetUserQueryQuery, Sdk } from '~/lib/graphql/generated'
+import { QueryDetailPageQuery, QueryListPageQuery, Sdk } from '~/lib/graphql/generated'
 
 type Props = {
-  data: GetUserQueryQuery
+  data: QueryDetailPageQuery
   groupId: string
   sdk: Sdk
 }
@@ -28,7 +28,7 @@ export const QueryDetailEditor: FC<Props> = ({ data, groupId, sdk }) => {
     async (title: string) => sdk.updateUserQueryTitle({ input: { id, title } }),
     {
       onSuccess: (result) => {
-        queryClient.setQueryData<GetUserQueriesQuery>(
+        queryClient.setQueryData<QueryListPageQuery>(
           ['getUserQueries', groupId],
           produce((draft) => {
             if (!draft) return

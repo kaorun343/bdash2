@@ -2,7 +2,7 @@ import produce from 'immer'
 import { FC } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { CreateUserQueryInput, GetUserQueriesQuery, Sdk } from '~/lib/graphql/generated'
+import { CreateUserQueryInput, QueryListPageQuery, Sdk } from '~/lib/graphql/generated'
 import { queryClient } from '~/lib/queryClient'
 import { getUserQueryDetailPath } from '../../routes/paths'
 
@@ -20,7 +20,7 @@ export const QueryListHeader: FC<Props> = ({ groupId, sdk }) => {
     }
     const { createUserQuery } = await sdk.createUserQuery({ input })
 
-    queryClient.setQueryData<GetUserQueriesQuery>(
+    queryClient.setQueryData<QueryListPageQuery>(
       ['getUserQueries', groupId],
       produce((draft) => {
         if (!draft) return

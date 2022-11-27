@@ -1,8 +1,8 @@
-import { mockGetUserQueriesQuery, mockGetUserQueryGroupsQuery, mockGetUserQueryQuery } from '~/lib/graphql/generated'
+import { mockQueryDetailPageQuery, mockQueryGroupListPageQuery, mockQueryListPageQuery } from '~/lib/graphql/generated'
 import { db } from '~/mocks/db'
 
 export const queryHandlers = [
-  mockGetUserQueriesQuery((req, res, ctx) => {
+  mockQueryListPageQuery((req, res, ctx) => {
     return res(
       ctx.data({
         userQueriesByGroup: db.userQueries.getAll().map((data) => ({
@@ -13,7 +13,7 @@ export const queryHandlers = [
     )
   }),
 
-  mockGetUserQueryGroupsQuery((req, res, ctx) => {
+  mockQueryGroupListPageQuery((req, res, ctx) => {
     return res(
       ctx.data({
         userQueryGroups: db.userQueryGroups.getAll().map((data) => ({
@@ -24,7 +24,7 @@ export const queryHandlers = [
     )
   }),
 
-  mockGetUserQueryQuery((req, res, ctx) => {
+  mockQueryDetailPageQuery((req, res, ctx) => {
     const { id } = req.variables
     const userQuery = db.userQueries.findFirst({
       where: {
