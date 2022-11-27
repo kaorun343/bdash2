@@ -1,0 +1,5 @@
+query tableListPage($dataSourceId: ID!) {
+  dataSourceTablesByDataSourceId(dataSourceId: $dataSourceId) {
+    name
+  }
+}

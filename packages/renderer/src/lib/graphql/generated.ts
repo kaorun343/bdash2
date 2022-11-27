@@ -145,6 +145,13 @@ export type DataSourceListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type DataSourceListPageQuery = { dataSources: Array<{ id: string, name: string }> };
 
+export type TableListPageQueryVariables = Exact<{
+  dataSourceId: Scalars['ID'];
+}>;
+
+
+export type TableListPageQuery = { dataSourceTablesByDataSourceId: Array<{ name: string }> };
+
 export type UserQueryForQueryListItemFragment = { id: string, title: string };
 
 export type UserQueryGroupForQueryGroupListItemFragment = { id: string, title: string };
@@ -214,6 +221,13 @@ export const DataSourceListPageDocument = `
   }
 }
     ${DataSourceForDataSourceListItemFragmentDoc}`;
+export const TableListPageDocument = `
+    query tableListPage($dataSourceId: ID!) {
+  dataSourceTablesByDataSourceId(dataSourceId: $dataSourceId) {
+    name
+  }
+}
+    `;
 export const CreateUserQueryDocument = `
     mutation createUserQuery($input: CreateUserQueryInput!) {
   createUserQuery(input: $input) {
@@ -264,6 +278,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     dataSourceListPage(variables?: DataSourceListPageQueryVariables, options?: C): Promise<DataSourceListPageQuery> {
       return requester<DataSourceListPageQuery, DataSourceListPageQueryVariables>(DataSourceListPageDocument, variables, options) as Promise<DataSourceListPageQuery>;
     },
+    tableListPage(variables: TableListPageQueryVariables, options?: C): Promise<TableListPageQuery> {
+      return requester<TableListPageQuery, TableListPageQueryVariables>(TableListPageDocument, variables, options) as Promise<TableListPageQuery>;
+    },
     createUserQuery(variables: CreateUserQueryMutationVariables, options?: C): Promise<CreateUserQueryMutation> {
       return requester<CreateUserQueryMutation, CreateUserQueryMutationVariables>(CreateUserQueryDocument, variables, options) as Promise<CreateUserQueryMutation>;
     },
@@ -313,6 +330,23 @@ export const mockTestSqlite3ConnectionMutation = (resolver: ResponseResolver<Gra
 export const mockDataSourceListPageQuery = (resolver: ResponseResolver<GraphQLRequest<DataSourceListPageQueryVariables>, GraphQLContext<DataSourceListPageQuery>, any>) =>
   graphql.query<DataSourceListPageQuery, DataSourceListPageQueryVariables>(
     'dataSourceListPage',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockTableListPageQuery((req, res, ctx) => {
+ *   const { dataSourceId } = req.variables;
+ *   return res(
+ *     ctx.data({ dataSourceTablesByDataSourceId })
+ *   )
+ * })
+ */
+export const mockTableListPageQuery = (resolver: ResponseResolver<GraphQLRequest<TableListPageQueryVariables>, GraphQLContext<TableListPageQuery>, any>) =>
+  graphql.query<TableListPageQuery, TableListPageQueryVariables>(
+    'tableListPage',
     resolver
   )
 

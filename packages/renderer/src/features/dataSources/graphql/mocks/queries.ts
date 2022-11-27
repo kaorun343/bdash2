@@ -1,4 +1,4 @@
-import { mockDataSourceListPageQuery } from '~/lib/graphql/generated'
+import { mockDataSourceListPageQuery, mockTableListPageQuery } from '~/lib/graphql/generated'
 import { db } from '~/mocks/db'
 
 export const queryHandlers = [
@@ -9,6 +9,14 @@ export const queryHandlers = [
           id: dataSource.id,
           name: dataSource.name,
         })),
+      })
+    )
+  }),
+
+  mockTableListPageQuery((req, res, ctx) => {
+    return res(
+      ctx.data({
+        dataSourceTablesByDataSourceId: [],
       })
     )
   }),
