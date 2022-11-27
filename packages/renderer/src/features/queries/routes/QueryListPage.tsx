@@ -8,7 +8,7 @@ type Props = {
   sdk: Sdk
 }
 
-export const Queries: FC<Props> = ({ sdk }) => {
+export const QueryListPage: FC<Props> = ({ sdk }) => {
   const params = useParams()
   const groupId = params.queryGroupId as string
 

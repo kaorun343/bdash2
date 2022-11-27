@@ -7,7 +7,7 @@ type Props = {
   sdk: Sdk
 }
 
-export const Query: FC<Props> = ({ sdk }) => {
+export const QueryDetailPage: FC<Props> = ({ sdk }) => {
   const params = useParams()
   const groupId = params.queryGroupId as string
   const data = useLoaderData() as GetUserQueryQuery

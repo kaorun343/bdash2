@@ -3,19 +3,19 @@ import { Navigate, RouteObject } from 'react-router-dom'
 import { Sdk } from '~/lib/graphql/generated'
 import { queryClient } from '~/lib/queryClient'
 
-const QueryGroups = lazy(() => import('./QueryGroups').then((m) => ({ default: m.QueryGroups })))
-const Queries = lazy(() => import('./Queries').then((m) => ({ default: m.Queries })))
-const Query = lazy(() => import('./Query').then((m) => ({ default: m.Query })))
+const QueryGroupListPage = lazy(() => import('./QueryGroupListPage').then((m) => ({ default: m.QueryGroupListPage })))
+const QueryListPage = lazy(() => import('./QueryListPage').then((m) => ({ default: m.QueryListPage })))
+const QueryDetailPage = lazy(() => import('./QueryDetailPage').then((m) => ({ default: m.QueryDetailPage })))
 
 export const createQueryRoutes = (sdk: Sdk): RouteObject => {
   return {
     path: '/query-groups',
-    element: <QueryGroups sdk={sdk} />,
+    element: <QueryGroupListPage sdk={sdk} />,
     loader: () => sdk.getUserQueryGroups(),
     children: [
       {
         path: ':queryGroupId',
-        element: <Queries sdk={sdk} />,
+        element: <QueryListPage sdk={sdk} />,
         loader: ({ params }) => {
           const groupId = params?.queryGroupId as string
           return queryClient.fetchQuery(['getUserQueries', groupId], () => sdk.getUserQueries({ groupId }))
@@ -23,7 +23,7 @@ export const createQueryRoutes = (sdk: Sdk): RouteObject => {
         children: [
           {
             path: ':queryId',
-            element: <Query sdk={sdk} />,
+            element: <QueryDetailPage sdk={sdk} />,
             loader: ({ params }) => {
               const queryId = params?.queryId as string
               return sdk.getUserQuery({ id: queryId })

@@ -7,7 +7,7 @@ type Props = {
   sdk: Sdk
 }
 
-export const QueryGroups: FC<Props> = ({ sdk }) => {
+export const QueryGroupListPage: FC<Props> = ({ sdk }) => {
   return (
     <div className="flex w-full">
       <div className="h-screen w-72 border-r border-gray-300">
