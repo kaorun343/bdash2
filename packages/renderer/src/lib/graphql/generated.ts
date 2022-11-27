@@ -27,6 +27,10 @@ export type DataSource = Node & {
   name: Scalars['String'];
 };
 
+export type DataSourceTable = {
+  name: Scalars['String'];
+};
+
 export type Mutation = {
   createUserQuery: CreateUserQueryPayload;
   noop: NoopPayload;
@@ -67,12 +71,18 @@ export type NoopPayload = {
 };
 
 export type Query = {
+  dataSourceTablesByDataSourceId: Array<DataSourceTable>;
   dataSources: Array<DataSource>;
   node?: Maybe<Node>;
   userQueries: Array<UserQuery>;
   userQueriesByGroup: Array<UserQuery>;
   userQuery: UserQuery;
   userQueryGroups: Array<UserQueryGroup>;
+};
+
+
+export type QueryDataSourceTablesByDataSourceIdArgs = {
+  dataSourceId: Scalars['ID'];
 };
 
 
