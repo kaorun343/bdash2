@@ -131,6 +131,12 @@ export type UserQueryGroup = Node & {
   title: Scalars['String'];
 };
 
+export enum UserQueryStatus {
+  Failure = 'FAILURE',
+  Success = 'SUCCESS',
+  Working = 'WORKING'
+}
+
 export type DataSourceForDataSourceListItemFragment = { id: string, name: string };
 
 export type TestSqlite3ConnectionMutationVariables = Exact<{

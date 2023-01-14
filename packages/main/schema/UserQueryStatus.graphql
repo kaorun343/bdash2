@@ -1,0 +1,5 @@
+enum UserQueryStatus {
+  WORKING
+  SUCCESS
+  FAILURE
+}
