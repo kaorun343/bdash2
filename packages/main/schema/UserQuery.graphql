@@ -4,6 +4,7 @@ type UserQuery implements Node {
   body: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  status: UserQueryStatus
 }
 
 extend type Query {

@@ -122,6 +122,7 @@ export type UserQuery = Node & {
   body: Scalars['String'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
+  status?: Maybe<UserQueryStatus>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
