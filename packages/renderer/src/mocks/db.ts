@@ -1,4 +1,4 @@
-import { factory, primaryKey } from '@mswjs/data'
+import { factory, nullable, primaryKey } from '@mswjs/data'
 
 export const db = factory({
   dataSources: {
@@ -13,6 +13,7 @@ export const db = factory({
     id: primaryKey(String),
     title: String,
     body: String,
+    status: nullable(String),
   },
 })
 
@@ -29,4 +30,5 @@ db.userQueryGroups.create({
 db.userQueries.create({
   id: `${Date.now()}`,
   title: 'New Query',
+  status: undefined,
 })

@@ -3,5 +3,6 @@ query queryDetailPage($id: ID!) {
     id
     title
     body
+    status
   }
 }

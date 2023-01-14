@@ -182,7 +182,7 @@ export type QueryDetailPageQueryVariables = Exact<{
 }>;
 
 
-export type QueryDetailPageQuery = { userQuery: { id: string, title: string, body: string } };
+export type QueryDetailPageQuery = { userQuery: { id: string, title: string, body: string, status?: UserQueryStatus | null } };
 
 export type QueryGroupListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -259,6 +259,7 @@ export const QueryDetailPageDocument = `
     id
     title
     body
+    status
   }
 }
     `;

@@ -1,4 +1,9 @@
-import { mockQueryDetailPageQuery, mockQueryGroupListPageQuery, mockQueryListPageQuery } from '~/lib/graphql/generated'
+import {
+  mockQueryDetailPageQuery,
+  mockQueryGroupListPageQuery,
+  mockQueryListPageQuery,
+  UserQueryStatus,
+} from '~/lib/graphql/generated'
 import { db } from '~/mocks/db'
 
 export const queryHandlers = [
@@ -50,6 +55,7 @@ export const queryHandlers = [
           id: userQuery.id,
           title: userQuery.title,
           body: userQuery.body,
+          status: userQuery.status as UserQueryStatus,
         },
       })
     )
