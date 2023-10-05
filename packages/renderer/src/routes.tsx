@@ -5,12 +5,7 @@ export const createRoutes = (sdk: Sdk): RouteObject[] => {
   return [
     {
       path: '/',
-      lazy: async () => {
-        const { Layout } = await import('~/components/Layout')
-        return {
-          Component: Layout,
-        }
-      },
+      lazy: () => import('~/app/layout/lazy'),
       children: [
         {
           index: true,
