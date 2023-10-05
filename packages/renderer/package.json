@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.4.1"
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.13.3",
