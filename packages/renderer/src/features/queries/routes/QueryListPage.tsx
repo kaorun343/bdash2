@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { Sdk } from '~/lib/graphql/generated'
 import { QueryList } from '../components/queries/QueryList'
@@ -18,9 +18,7 @@ export const QueryListPage: FC<Props> = ({ sdk }) => {
         <QueryListHeader groupId={groupId} sdk={sdk} />
         <QueryList groupId={groupId} sdk={sdk} />
       </div>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </div>
   )
 }

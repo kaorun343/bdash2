@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Sdk } from '~/lib/graphql/generated'
 import { QueryGroupList } from '../components/queryGroups/QueryGroupList'
@@ -13,9 +13,7 @@ export const QueryGroupListPage: FC<Props> = ({ sdk }) => {
       <div className="h-screen w-72 border-r border-gray-300">
         <QueryGroupList sdk={sdk} />
       </div>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { FC, lazy, useId } from 'react'
+import { FC, Suspense, lazy, useId } from 'react'
 import { FaCheck, FaSpinner } from 'react-icons/fa'
 import { Sdk } from '~/lib/graphql/generated'
 import { useDataSourceForm } from '../../lib/useDataSourceForm'
@@ -35,7 +35,11 @@ export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
           className="bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           placeholder="My Database"
         />
-        {errors.name?.type === 'required' && <DataSourceFormErrorMessage>Name is required</DataSourceFormErrorMessage>}
+        {errors.name?.type === 'required' && (
+          <Suspense>
+            <DataSourceFormErrorMessage>Name is required</DataSourceFormErrorMessage>
+          </Suspense>
+        )}
       </div>
 
       <div className="flex flex-col mb-3">
@@ -49,14 +53,20 @@ export const DataSourceForm: FC<Props> = ({ onCancel, sdk }) => {
           <option value="sqlite3">SQLite3</option>
         </select>
         {errors.dataSourceType?.type === 'required' && (
-          <DataSourceFormErrorMessage>Type is required</DataSourceFormErrorMessage>
+          <Suspense>
+            <DataSourceFormErrorMessage>Type is required</DataSourceFormErrorMessage>
+          </Suspense>
         )}
       </div>
 
       {(() => {
         switch (dataSourceType) {
           case 'sqlite3':
-            return <DataSourceFormSqlite3 errors={errors} register={register} />
+            return (
+              <Suspense>
+                <DataSourceFormSqlite3 errors={errors} register={register} />
+              </Suspense>
+            )
           default:
             return null
         }

@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { DataSourceListPageQuery, Sdk } from '~/lib/graphql/generated'
 import { DataSourceList } from '../components/dataSources/DataSourceList'
@@ -17,9 +17,7 @@ export const DataSourceListPage: FC<Props> = ({ sdk }) => {
         <DataSourceListHeader sdk={sdk} />
         <DataSourceList data={data} />
       </div>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </div>
   )
 }
