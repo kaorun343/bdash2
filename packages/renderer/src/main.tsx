@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { App } from './App'
 import { getSdk } from './lib/graphql/generated'
 import { worker } from './mocks/browser'
-import { createRouter } from './routes'
+import { createHashRouter } from 'react-router-dom'
+import { createRoutes } from './routes'
 
 worker.start()
 
@@ -25,7 +26,7 @@ const sdk = getSdk(async (query, variables) => {
   return data
 })
 
-const router = createRouter(sdk)
+const router = createHashRouter(createRoutes(sdk))
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
