@@ -54,26 +54,15 @@ export const createRoutes = (sdk: Sdk): RouteObject[] => {
         },
         {
           path: '/data-sources',
-          lazy: async () => {
-            const { DataSourceListPage } = await import('~/features/dataSources/routes/DataSourceListPage')
-            return {
-              element: <DataSourceListPage sdk={sdk} />,
-            }
-          },
-          loader: () => sdk.dataSourceListPage(),
+          lazy: () => import('~/app/dataSources/layout/lazy'),
           children: [
             {
+              index: true,
+              element: null,
+            },
+            {
               path: ':dataSourceId',
-              lazy: async () => {
-                const { TableListPage } = await import('~/features/dataSources/routes/TableListPage')
-                return {
-                  element: <TableListPage sdk={sdk} />,
-                }
-              },
-              loader: ({ params }) => {
-                const dataSourceId = params?.dataSourceId as string
-                return sdk.tableListPage({ dataSourceId })
-              },
+              element: null,
             },
           ],
         },

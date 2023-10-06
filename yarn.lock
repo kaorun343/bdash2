@@ -689,8 +689,8 @@ __metadata:
     "@codemirror/lang-sql": ^6.3.1
     "@graphql-codegen/cli": ^5.0.0
     "@graphql-codegen/client-preset": ^4.1.0
-    "@graphql-codegen/import-types-preset": ^3.0.0
     "@graphql-codegen/typescript-msw": ^2.0.0
+    "@graphql-codegen/typescript-operations": ^4.0.1
     "@mswjs/data": ^0.10.2
     "@tailwindcss/forms": ^0.5.3
     "@tanstack/react-query": ^4.10.3
@@ -978,18 +978,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/add@npm:^3.2.1":
-  version: 3.2.3
-  resolution: "@graphql-codegen/add@npm:3.2.3"
-  dependencies:
-    "@graphql-codegen/plugin-helpers": ^3.1.1
-    tslib: ~2.4.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 98b1b17104b7e2fa82e9ed30e21160b02cce530d0ff72ce7794478677168ac6381a8d814cdd25d60b41b91b6446ebd592ba4820bd5ac138016f9097fa6ebc483
-  languageName: node
-  linkType: hard
-
 "@graphql-codegen/add@npm:^5.0.0":
   version: 5.0.0
   resolution: "@graphql-codegen/add@npm:5.0.0"
@@ -1107,20 +1095,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/import-types-preset@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@graphql-codegen/import-types-preset@npm:3.0.0"
-  dependencies:
-    "@graphql-codegen/add": ^3.2.1
-    "@graphql-codegen/plugin-helpers": ^3.0.0
-    "@graphql-codegen/visitor-plugin-common": 2.13.1
-    tslib: ~2.6.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 1f4d45d5e940fca12a063f032a0d555f89fd337144be5c1d12316caccd295549366250a8dce23b5fc5534948319460e972b001d84490d9786373080f466c3eb0
-  languageName: node
-  linkType: hard
-
 "@graphql-codegen/plugin-helpers@npm:^2.7.2":
   version: 2.7.2
   resolution: "@graphql-codegen/plugin-helpers@npm:2.7.2"
@@ -1137,7 +1111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/plugin-helpers@npm:^3.0.0, @graphql-codegen/plugin-helpers@npm:^3.1.1":
+"@graphql-codegen/plugin-helpers@npm:^3.0.0":
   version: 3.1.2
   resolution: "@graphql-codegen/plugin-helpers@npm:3.1.2"
   dependencies:

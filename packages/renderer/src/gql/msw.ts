@@ -1,5 +1,4 @@
-/* eslint-disable */
-import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw'
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -145,22 +144,17 @@ export type UserQueryGroup = Node & {
   title: Scalars['String']['output'];
 };
 
-export type UserQueryStatus =
-  | 'FAILURE'
-  | 'SUCCESS'
-  | 'WORKING';
+export enum UserQueryStatus {
+  Failure = 'FAILURE',
+  Success = 'SUCCESS',
+  Working = 'WORKING'
+}
 
-export type DataSourceForDataSourceListLayoutFragment = (
-  { __typename?: 'DataSource' }
-  & { ' $fragmentRefs'?: { 'DataSourceForDataSourceListFragment': DataSourceForDataSourceListFragment } }
-) & { ' $fragmentName'?: 'DataSourceForDataSourceListLayoutFragment' };
+export type DataSourceForDataSourceListLayoutFragment = { __typename?: 'DataSource', id: string, name: string };
 
-export type DataSourceForDataSourceListFragment = (
-  { __typename?: 'DataSource', id: string }
-  & { ' $fragmentRefs'?: { 'DataSourceForDataSourceListItemFragment': DataSourceForDataSourceListItemFragment } }
-) & { ' $fragmentName'?: 'DataSourceForDataSourceListFragment' };
+export type DataSourceForDataSourceListFragment = { __typename?: 'DataSource', id: string, name: string };
 
-export type DataSourceForDataSourceListItemFragment = { __typename?: 'DataSource', id: string, name: string } & { ' $fragmentName'?: 'DataSourceForDataSourceListItemFragment' };
+export type DataSourceForDataSourceListItemFragment = { __typename?: 'DataSource', id: string, name: string };
 
 export type TestSqlite3ConnectionMutationVariables = Exact<{
   input: TestSqlite3ConnectionInput;
@@ -172,73 +166,38 @@ export type TestSqlite3ConnectionMutation = { __typename?: 'Mutation', testSqlit
 export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDataSourceListLayoutQuery = { __typename?: 'Query', dataSources: Array<(
-    { __typename?: 'DataSource' }
-    & { ' $fragmentRefs'?: { 'DataSourceForDataSourceListLayoutFragment': DataSourceForDataSourceListLayoutFragment } }
-  )> };
+export type GetDataSourceListLayoutQuery = { __typename?: 'Query', dataSources: Array<{ __typename?: 'DataSource', id: string, name: string }> };
 
-export class TypedDocumentString<TResult, TVariables>
-  extends String
-  implements DocumentTypeDecoration<TResult, TVariables>
-{
-  __apiType?: DocumentTypeDecoration<TResult, TVariables>['__apiType'];
 
-  constructor(private value: string, public __meta__?: Record<string, any>) {
-    super(value);
-  }
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockTestSqlite3ConnectionMutation((req, res, ctx) => {
+ *   const { input } = req.variables;
+ *   return res(
+ *     ctx.data({ testSqlite3Connection })
+ *   )
+ * })
+ */
+export const mockTestSqlite3ConnectionMutation = (resolver: ResponseResolver<GraphQLRequest<TestSqlite3ConnectionMutationVariables>, GraphQLContext<TestSqlite3ConnectionMutation>, any>) =>
+  graphql.mutation<TestSqlite3ConnectionMutation, TestSqlite3ConnectionMutationVariables>(
+    'TestSqlite3Connection',
+    resolver
+  )
 
-  toString(): string & DocumentTypeDecoration<TResult, TVariables> {
-    return this.value;
-  }
-}
-export const DataSourceForDataSourceListItemFragmentDoc = new TypedDocumentString(`
-    fragment DataSourceForDataSourceListItem on DataSource {
-  id
-  name
-}
-    `, {"fragmentName":"DataSourceForDataSourceListItem"}) as unknown as TypedDocumentString<DataSourceForDataSourceListItemFragment, unknown>;
-export const DataSourceForDataSourceListFragmentDoc = new TypedDocumentString(`
-    fragment DataSourceForDataSourceList on DataSource {
-  id
-  ...DataSourceForDataSourceListItem
-}
-    fragment DataSourceForDataSourceListItem on DataSource {
-  id
-  name
-}`, {"fragmentName":"DataSourceForDataSourceList"}) as unknown as TypedDocumentString<DataSourceForDataSourceListFragment, unknown>;
-export const DataSourceForDataSourceListLayoutFragmentDoc = new TypedDocumentString(`
-    fragment DataSourceForDataSourceListLayout on DataSource {
-  ...DataSourceForDataSourceList
-}
-    fragment DataSourceForDataSourceList on DataSource {
-  id
-  ...DataSourceForDataSourceListItem
-}
-fragment DataSourceForDataSourceListItem on DataSource {
-  id
-  name
-}`, {"fragmentName":"DataSourceForDataSourceListLayout"}) as unknown as TypedDocumentString<DataSourceForDataSourceListLayoutFragment, unknown>;
-export const TestSqlite3ConnectionDocument = new TypedDocumentString(`
-    mutation TestSqlite3Connection($input: TestSqlite3ConnectionInput!) {
-  testSqlite3Connection(input: $input) {
-    success
-  }
-}
-    `) as unknown as TypedDocumentString<TestSqlite3ConnectionMutation, TestSqlite3ConnectionMutationVariables>;
-export const GetDataSourceListLayoutDocument = new TypedDocumentString(`
-    query GetDataSourceListLayout {
-  dataSources {
-    ...DataSourceForDataSourceListLayout
-  }
-}
-    fragment DataSourceForDataSourceListLayout on DataSource {
-  ...DataSourceForDataSourceList
-}
-fragment DataSourceForDataSourceList on DataSource {
-  id
-  ...DataSourceForDataSourceListItem
-}
-fragment DataSourceForDataSourceListItem on DataSource {
-  id
-  name
-}`) as unknown as TypedDocumentString<GetDataSourceListLayoutQuery, GetDataSourceListLayoutQueryVariables>;
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetDataSourceListLayoutQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ dataSources })
+ *   )
+ * })
+ */
+export const mockGetDataSourceListLayoutQuery = (resolver: ResponseResolver<GraphQLRequest<GetDataSourceListLayoutQueryVariables>, GraphQLContext<GetDataSourceListLayoutQuery>, any>) =>
+  graphql.query<GetDataSourceListLayoutQuery, GetDataSourceListLayoutQueryVariables>(
+    'GetDataSourceListLayout',
+    resolver
+  )

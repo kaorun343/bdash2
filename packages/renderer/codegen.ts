@@ -16,11 +16,10 @@ export default {
       },
     },
     './src/gql/msw.ts': {
-      preset: 'import-types',
       presetConfig: {
         typesPath: './graphql.ts',
       },
-      plugins: ['typescript-msw'],
+      plugins: ['typescript', 'typescript-operations', 'typescript-msw'],
     },
   },
 } satisfies import('@graphql-codegen/cli').CodegenConfig

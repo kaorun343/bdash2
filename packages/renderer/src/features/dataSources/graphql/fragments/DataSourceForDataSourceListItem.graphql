@@ -1,4 +1,0 @@
-fragment DataSourceForDataSourceListItem on DataSource {
-  id
-  name
-}

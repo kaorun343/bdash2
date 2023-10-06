@@ -1,13 +1,8 @@
 import { FC, useRef } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Sdk } from '~/lib/graphql/generated'
-import { DataSourceDialog } from './DataSourceDialog'
+import { Dialog } from './dialog/Dialog'
 
-type Props = {
-  sdk: Sdk
-}
-
-export const DataSourceListHeader: FC<Props> = ({ sdk }) => {
+export const Header: FC = () => {
   const dialogRef = useRef<Pick<HTMLDialogElement, 'showModal'>>(null)
 
   return (
@@ -15,7 +10,7 @@ export const DataSourceListHeader: FC<Props> = ({ sdk }) => {
       <button type="button" className="inline-block" onClick={() => dialogRef.current?.showModal()}>
         <FaPlus />
       </button>
-      <DataSourceDialog ref={dialogRef} sdk={sdk} />
+      <Dialog ref={dialogRef} />
     </div>
   )
 }
