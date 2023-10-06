@@ -5,7 +5,8 @@ import { useSubmit } from 'react-router-dom'
 import { DialogFormFieldValues } from './DialogFormFieldValues'
 import { DialogFormErrorMessage } from './DialogFormErrorMessage'
 import { DialogFormDatabaseSpecificFields } from './DialogFormDatabaseSpecificFields'
-import { DialogFormFooter } from './DialogFormFooter'
+import { DialogFormConnectionTest } from './DialogFormConnectionTest'
+import { DialogFormButton } from './DialogFormButton'
 
 type Props = {
   onCancel: () => void
@@ -70,7 +71,19 @@ export const DialogForm: FC<Props> = ({ onCancel }) => {
         )}
       </div>
       <DialogFormDatabaseSpecificFields control={control} register={register} />
-      <DialogFormFooter control={control} onCancel={onCancel} />
+      <section className="flex justify-between text-sm pt-8">
+        <div className="flex gap-2 items-center">
+          <DialogFormConnectionTest control={control} />
+        </div>
+        <div className="flex gap-2">
+          <DialogFormButton type="button" onClick={onCancel}>
+            Cancel
+          </DialogFormButton>
+          <DialogFormButton type="submit" className="text-white bg-blue-700 hover:bg-blue-800">
+            Submit
+          </DialogFormButton>
+        </div>
+      </section>
     </form>
   )
 }
