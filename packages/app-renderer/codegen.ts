@@ -1,5 +1,5 @@
 export default {
-  schema: '../main/schema/*.graphql',
+  schema: '../app-main/schema/*.graphql',
   documents: ['src/**/*.{ts,tsx}'],
   ignoreNoDocuments: true,
   generates: {

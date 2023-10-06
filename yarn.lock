@@ -682,9 +682,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bdash2/renderer@workspace:packages/renderer":
+"@bdash2/app-renderer@workspace:packages/app-renderer":
   version: 0.0.0-use.local
-  resolution: "@bdash2/renderer@workspace:packages/renderer"
+  resolution: "@bdash2/app-renderer@workspace:packages/app-renderer"
   dependencies:
     "@codemirror/lang-sql": ^6.3.1
     "@graphql-codegen/cli": ^5.0.0

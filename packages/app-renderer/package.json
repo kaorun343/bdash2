@@ -1,5 +1,5 @@
 {
-  "name": "@bdash2/renderer",
+  "name": "@bdash2/app-renderer",
   "private": true,
   "scripts": {
     "dev": "vite",
