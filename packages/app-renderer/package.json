@@ -29,7 +29,7 @@
     "@types/react": "^18.2.27",
     "@types/react-dom": "^18.2.12",
     "@vitejs/plugin-react-swc": "^3.2.0",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.16",
     "graphql": "^16.8.1",
     "msw": "^0.47.4",
     "postcss": "^8.4.31",
