@@ -1,13 +1,9 @@
 import { sql } from '@codemirror/lang-sql'
 import { EditorView } from '@codemirror/view'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { basicSetup } from 'codemirror'
-import produce from 'immer'
 import { FC, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
-import { QueryListPageQuery, Sdk } from '~/lib/graphql/generated'
-import { requestToGraphQL } from '~/requestToGraphQL'
 
 const UserQueryForEditor = graphql(`
   fragment UserQueryForEditor on UserQuery {
@@ -34,10 +30,8 @@ type Props = {
 
 export const Editor: FC<Props> = (props) => {
   const query = getFragmentData(UserQueryForEditor, props.query)
-  const { groupId } = props
 
   const containerRef = useRef<HTMLDivElement>(null)
-  const queryClient = useQueryClient()
   const { register, getValues, setValue, watch } = useForm({ defaultValues: query })
   const { id, title, body } = query
 
@@ -49,29 +43,11 @@ export const Editor: FC<Props> = (props) => {
     setValue('body', body)
   }, [body])
 
-  const updateUserQueryTitleMutation = useMutation(
-    async (title: string) => requestToGraphQL(UpdateUserQueryTitle, { input: { id, title } }),
-    {
-      onSuccess: (result) => {
-        queryClient.setQueryData<QueryListPageQuery>(
-          ['getUserQueries', groupId],
-          produce((draft) => {
-            if (!draft) return
-            const query = draft.userQueriesByGroup.find((query) => query.id === id)
-            if (!query) return
-            query.title = result.updateUserQueryTitle.userQuery.title
-          })
-        )
-      },
-    }
-  )
-
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (name !== 'title') return
       if (type !== 'change') return
       if (typeof value.title !== 'string') return
-      updateUserQueryTitleMutation.mutate(value.title)
     })
 
     return () => subscription.unsubscribe()
