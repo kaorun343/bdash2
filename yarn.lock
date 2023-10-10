@@ -694,7 +694,7 @@ __metadata:
     "@mswjs/data": ^0.10.2
     "@tailwindcss/forms": ^0.5.3
     "@tanstack/react-query": ^4.10.3
-    "@tsconfig/vite-react": ^1.0.1
+    "@tsconfig/vite-react": ^2.0.1
     "@types/react": ^18.2.27
     "@types/react-dom": ^18.2.12
     "@vitejs/plugin-react-swc": ^3.2.0
@@ -2053,10 +2053,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/vite-react@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@tsconfig/vite-react@npm:1.0.1"
-  checksum: 2d343c07e73b612887d86c0ec6db35fa228ec3e3c237007390de17ba9e69c0e3cd6a1837debd6928988f9abad4cf9da023825ee85c07b51ae2440b95372d945a
+"@tsconfig/vite-react@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@tsconfig/vite-react@npm:2.0.1"
+  checksum: 5715563bf293484c8b5ad36a0328159b11de9bde507b96dcde1d72243d02dcd8eb0383c1676e319cfb03e8f79d96891103d480c7157177f4d7a0b368ede4a46d
   languageName: node
   linkType: hard
 
