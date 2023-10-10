@@ -703,7 +703,7 @@ __metadata:
     graphql: ^16.6.0
     immer: ^9.0.15
     msw: ^0.47.4
-    postcss: ^8.4.17
+    postcss: ^8.4.31
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.37.0
@@ -5356,7 +5356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.14, postcss@npm:^8.4.17, postcss@npm:^8.4.27":
+"postcss@npm:^8.4.14, postcss@npm:^8.4.27, postcss@npm:^8.4.31":
   version: 8.4.31
   resolution: "postcss@npm:8.4.31"
   dependencies:
