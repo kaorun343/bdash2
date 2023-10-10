@@ -1,6 +1,7 @@
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import { babelOptimizerPlugin } from '@graphql-codegen/client-preset'
 
 export default defineConfig(({ mode }) => ({
   build: {
@@ -17,5 +18,11 @@ export default defineConfig(({ mode }) => ({
       '~': resolve(__dirname, 'src'),
     },
   },
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [[babelOptimizerPlugin, { artifactDirectory: './src/gql', gqlTagName: 'graphql' }]],
+      },
+    }),
+  ],
 }))
