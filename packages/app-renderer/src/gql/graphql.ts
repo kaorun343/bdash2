@@ -177,6 +177,52 @@ export type GetDataSourceListLayoutQuery = { __typename?: 'Query', dataSources: 
     & { ' $fragmentRefs'?: { 'DataSourceForDataSourceListLayoutFragment': DataSourceForDataSourceListLayoutFragment } }
   )> };
 
+export type UserQueryForQueryDetailPageFragment = (
+  { __typename?: 'UserQuery', status?: UserQueryStatus | null }
+  & { ' $fragmentRefs'?: { 'UserQueryForEditorFragment': UserQueryForEditorFragment } }
+) & { ' $fragmentName'?: 'UserQueryForQueryDetailPageFragment' };
+
+export type UserQueryForEditorFragment = { __typename?: 'UserQuery', id: string, title: string, body: string } & { ' $fragmentName'?: 'UserQueryForEditorFragment' };
+
+export type UpdateUserQueryTitleMutationVariables = Exact<{
+  input: UpdateUserQueryTitleInput;
+}>;
+
+
+export type UpdateUserQueryTitleMutation = { __typename?: 'Mutation', updateUserQueryTitle: { __typename?: 'UpdateUserQueryTitlePayload', userQuery: { __typename?: 'UserQuery', title: string } } };
+
+export type GetQueryDetailPageQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetQueryDetailPageQuery = { __typename?: 'Query', query: (
+    { __typename?: 'UserQuery' }
+    & { ' $fragmentRefs'?: { 'UserQueryForQueryDetailPageFragment': UserQueryForQueryDetailPageFragment } }
+  ) };
+
+export type UserQueryForQueryListItemFragment = { __typename?: 'UserQuery', id: string, title: string } & { ' $fragmentName'?: 'UserQueryForQueryListItemFragment' };
+
+export type UserQueryGroupForQueryGroupListLayoutFragment = (
+  { __typename?: 'UserQueryGroup' }
+  & { ' $fragmentRefs'?: { 'UserQueryGroupForQueryGroupListFragment': UserQueryGroupForQueryGroupListFragment } }
+) & { ' $fragmentName'?: 'UserQueryGroupForQueryGroupListLayoutFragment' };
+
+export type UserQueryGroupForQueryGroupListFragment = (
+  { __typename?: 'UserQueryGroup', id: string }
+  & { ' $fragmentRefs'?: { 'UserQueryGroupForQueryGroupListItemFragment': UserQueryGroupForQueryGroupListItemFragment } }
+) & { ' $fragmentName'?: 'UserQueryGroupForQueryGroupListFragment' };
+
+export type UserQueryGroupForQueryGroupListItemFragment = { __typename?: 'UserQueryGroup', id: string, title: string } & { ' $fragmentName'?: 'UserQueryGroupForQueryGroupListItemFragment' };
+
+export type GetQueryGroupListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetQueryGroupListLayoutQuery = { __typename?: 'Query', queryGroups: Array<(
+    { __typename?: 'UserQueryGroup' }
+    & { ' $fragmentRefs'?: { 'UserQueryGroupForQueryGroupListLayoutFragment': UserQueryGroupForQueryGroupListLayoutFragment } }
+  )> };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -218,6 +264,56 @@ fragment DataSourceForDataSourceListItem on DataSource {
   id
   name
 }`, {"fragmentName":"DataSourceForDataSourceListLayout"}) as unknown as TypedDocumentString<DataSourceForDataSourceListLayoutFragment, unknown>;
+export const UserQueryForEditorFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryForEditor on UserQuery {
+  id
+  title
+  body
+}
+    `, {"fragmentName":"UserQueryForEditor"}) as unknown as TypedDocumentString<UserQueryForEditorFragment, unknown>;
+export const UserQueryForQueryDetailPageFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryForQueryDetailPage on UserQuery {
+  status
+  ...UserQueryForEditor
+}
+    fragment UserQueryForEditor on UserQuery {
+  id
+  title
+  body
+}`, {"fragmentName":"UserQueryForQueryDetailPage"}) as unknown as TypedDocumentString<UserQueryForQueryDetailPageFragment, unknown>;
+export const UserQueryForQueryListItemFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryForQueryListItem on UserQuery {
+  id
+  title
+}
+    `, {"fragmentName":"UserQueryForQueryListItem"}) as unknown as TypedDocumentString<UserQueryForQueryListItemFragment, unknown>;
+export const UserQueryGroupForQueryGroupListItemFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  title
+}
+    `, {"fragmentName":"UserQueryGroupForQueryGroupListItem"}) as unknown as TypedDocumentString<UserQueryGroupForQueryGroupListItemFragment, unknown>;
+export const UserQueryGroupForQueryGroupListFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryGroupForQueryGroupList on UserQueryGroup {
+  id
+  ...UserQueryGroupForQueryGroupListItem
+}
+    fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  title
+}`, {"fragmentName":"UserQueryGroupForQueryGroupList"}) as unknown as TypedDocumentString<UserQueryGroupForQueryGroupListFragment, unknown>;
+export const UserQueryGroupForQueryGroupListLayoutFragmentDoc = new TypedDocumentString(`
+    fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {
+  ...UserQueryGroupForQueryGroupList
+}
+    fragment UserQueryGroupForQueryGroupList on UserQueryGroup {
+  id
+  ...UserQueryGroupForQueryGroupListItem
+}
+fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  title
+}`, {"fragmentName":"UserQueryGroupForQueryGroupListLayout"}) as unknown as TypedDocumentString<UserQueryGroupForQueryGroupListLayoutFragment, unknown>;
 export const TestSqlite3ConnectionDocument = new TypedDocumentString(`
     mutation TestSqlite3Connection($input: TestSqlite3ConnectionInput!) {
   testSqlite3Connection(input: $input) {
@@ -242,3 +338,44 @@ fragment DataSourceForDataSourceListItem on DataSource {
   id
   name
 }`) as unknown as TypedDocumentString<GetDataSourceListLayoutQuery, GetDataSourceListLayoutQueryVariables>;
+export const UpdateUserQueryTitleDocument = new TypedDocumentString(`
+    mutation UpdateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
+  updateUserQueryTitle(input: $input) {
+    userQuery {
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>;
+export const GetQueryDetailPageDocument = new TypedDocumentString(`
+    query GetQueryDetailPage($id: ID!) {
+  query: userQuery(id: $id) {
+    ...UserQueryForQueryDetailPage
+  }
+}
+    fragment UserQueryForQueryDetailPage on UserQuery {
+  status
+  ...UserQueryForEditor
+}
+fragment UserQueryForEditor on UserQuery {
+  id
+  title
+  body
+}`) as unknown as TypedDocumentString<GetQueryDetailPageQuery, GetQueryDetailPageQueryVariables>;
+export const GetQueryGroupListLayoutDocument = new TypedDocumentString(`
+    query GetQueryGroupListLayout {
+  queryGroups: userQueryGroups {
+    ...UserQueryGroupForQueryGroupListLayout
+  }
+}
+    fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {
+  ...UserQueryGroupForQueryGroupList
+}
+fragment UserQueryGroupForQueryGroupList on UserQueryGroup {
+  id
+  ...UserQueryGroupForQueryGroupListItem
+}
+fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+  id
+  title
+}`) as unknown as TypedDocumentString<GetQueryGroupListLayoutQuery, GetQueryGroupListLayoutQueryVariables>;

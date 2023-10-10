@@ -5,27 +5,52 @@ import { basicSetup } from 'codemirror'
 import produce from 'immer'
 import { FC, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { QueryDetailPageQuery, QueryListPageQuery, Sdk } from '~/lib/graphql/generated'
+import { FragmentType, getFragmentData, graphql } from '~/gql'
+import { QueryListPageQuery, Sdk } from '~/lib/graphql/generated'
+import { requestToGraphQL } from '~/requestToGraphQL'
+
+const UserQueryForEditor = graphql(`
+  fragment UserQueryForEditor on UserQuery {
+    id
+    title
+    body
+  }
+`)
+
+const UpdateUserQueryTitle = graphql(`
+  mutation UpdateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
+    updateUserQueryTitle(input: $input) {
+      userQuery {
+        title
+      }
+    }
+  }
+`)
 
 type Props = {
-  data: QueryDetailPageQuery
+  query: FragmentType<typeof UserQueryForEditor>
   groupId: string
-  sdk: Sdk
 }
 
-export const QueryDetailEditor: FC<Props> = ({ data, groupId, sdk }) => {
+export const Editor: FC<Props> = (props) => {
+  const query = getFragmentData(UserQueryForEditor, props.query)
+  const { groupId } = props
+
   const containerRef = useRef<HTMLDivElement>(null)
   const queryClient = useQueryClient()
-  const id = data.userQuery.id
-  const { register, getValues, setValue, watch } = useForm({ defaultValues: data.userQuery })
+  const { register, getValues, setValue, watch } = useForm({ defaultValues: query })
+  const { id, title, body } = query
 
   useEffect(() => {
-    setValue('title', data.userQuery.title)
-    setValue('body', data.userQuery.body)
-  }, [data.userQuery])
+    setValue('title', title)
+  }, [title])
+
+  useEffect(() => {
+    setValue('body', body)
+  }, [body])
 
   const updateUserQueryTitleMutation = useMutation(
-    async (title: string) => sdk.updateUserQueryTitle({ input: { id, title } }),
+    async (title: string) => requestToGraphQL(UpdateUserQueryTitle, { input: { id, title } }),
     {
       onSuccess: (result) => {
         queryClient.setQueryData<QueryListPageQuery>(

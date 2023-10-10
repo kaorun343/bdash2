@@ -13,39 +13,15 @@ export const createRoutes = (sdk: Sdk): RouteObject[] => {
         },
         {
           path: '/query-groups',
-          lazy: async () => {
-            const { QueryGroupListPage } = await import('~/features/queries/routes/QueryGroupListPage')
-            return {
-              element: <QueryGroupListPage sdk={sdk} />,
-            }
-          },
-          loader: () => sdk.queryGroupListPage(),
+          lazy: () => import('~/app/queries/queryGroups/layout/lazy'),
           children: [
             {
               path: ':queryGroupId',
-              lazy: async () => {
-                const { QueryListPage } = await import('~/features/queries/routes/QueryListPage')
-                return {
-                  element: <QueryListPage sdk={sdk} />,
-                }
-              },
-              loader: ({ params }) => {
-                const groupId = params?.queryGroupId as string
-                return sdk.queryListPage({ groupId })
-              },
+              lazy: () => import('~/app/queries/queryGroups/_queryGroupId/layout/lazy'),
               children: [
                 {
                   path: ':queryId',
-                  lazy: async () => {
-                    const { QueryDetailPage } = await import('~/features/queries/routes/QueryDetailPage')
-                    return {
-                      element: <QueryDetailPage sdk={sdk} />,
-                    }
-                  },
-                  loader: ({ params }) => {
-                    const queryId = params?.queryId as string
-                    return sdk.queryDetailPage({ id: queryId })
-                  },
+                  lazy: () => import('~/app/queries/queryGroups/_queryGroupId/_queryId/lazy'),
                 },
               ],
               errorElement: <Navigate to="/query-groups" />,

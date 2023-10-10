@@ -168,6 +168,37 @@ export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never
 
 export type GetDataSourceListLayoutQuery = { __typename?: 'Query', dataSources: Array<{ __typename?: 'DataSource', id: string, name: string }> };
 
+export type UserQueryForQueryDetailPageFragment = { __typename?: 'UserQuery', status?: UserQueryStatus | null, id: string, title: string, body: string };
+
+export type UserQueryForEditorFragment = { __typename?: 'UserQuery', id: string, title: string, body: string };
+
+export type UpdateUserQueryTitleMutationVariables = Exact<{
+  input: UpdateUserQueryTitleInput;
+}>;
+
+
+export type UpdateUserQueryTitleMutation = { __typename?: 'Mutation', updateUserQueryTitle: { __typename?: 'UpdateUserQueryTitlePayload', userQuery: { __typename?: 'UserQuery', title: string } } };
+
+export type GetQueryDetailPageQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetQueryDetailPageQuery = { __typename?: 'Query', query: { __typename?: 'UserQuery', status?: UserQueryStatus | null, id: string, title: string, body: string } };
+
+export type UserQueryForQueryListItemFragment = { __typename?: 'UserQuery', id: string, title: string };
+
+export type UserQueryGroupForQueryGroupListLayoutFragment = { __typename?: 'UserQueryGroup', id: string, title: string };
+
+export type UserQueryGroupForQueryGroupListFragment = { __typename?: 'UserQueryGroup', id: string, title: string };
+
+export type UserQueryGroupForQueryGroupListItemFragment = { __typename?: 'UserQueryGroup', id: string, title: string };
+
+export type GetQueryGroupListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetQueryGroupListLayoutQuery = { __typename?: 'Query', queryGroups: Array<{ __typename?: 'UserQueryGroup', id: string, title: string }> };
+
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
@@ -199,5 +230,55 @@ export const mockTestSqlite3ConnectionMutation = (resolver: ResponseResolver<Gra
 export const mockGetDataSourceListLayoutQuery = (resolver: ResponseResolver<GraphQLRequest<GetDataSourceListLayoutQueryVariables>, GraphQLContext<GetDataSourceListLayoutQuery>, any>) =>
   graphql.query<GetDataSourceListLayoutQuery, GetDataSourceListLayoutQueryVariables>(
     'GetDataSourceListLayout',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockUpdateUserQueryTitleMutation((req, res, ctx) => {
+ *   const { input } = req.variables;
+ *   return res(
+ *     ctx.data({ updateUserQueryTitle })
+ *   )
+ * })
+ */
+export const mockUpdateUserQueryTitleMutation = (resolver: ResponseResolver<GraphQLRequest<UpdateUserQueryTitleMutationVariables>, GraphQLContext<UpdateUserQueryTitleMutation>, any>) =>
+  graphql.mutation<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(
+    'UpdateUserQueryTitle',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetQueryDetailPageQuery((req, res, ctx) => {
+ *   const { id } = req.variables;
+ *   return res(
+ *     ctx.data({ userQuery })
+ *   )
+ * })
+ */
+export const mockGetQueryDetailPageQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueryDetailPageQueryVariables>, GraphQLContext<GetQueryDetailPageQuery>, any>) =>
+  graphql.query<GetQueryDetailPageQuery, GetQueryDetailPageQueryVariables>(
+    'GetQueryDetailPage',
+    resolver
+  )
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetQueryGroupListLayoutQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ userQueryGroups })
+ *   )
+ * })
+ */
+export const mockGetQueryGroupListLayoutQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueryGroupListLayoutQueryVariables>, GraphQLContext<GetQueryGroupListLayoutQuery>, any>) =>
+  graphql.query<GetQueryGroupListLayoutQuery, GetQueryGroupListLayoutQueryVariables>(
+    'GetQueryGroupListLayout',
     resolver
   )

@@ -1,14 +1,15 @@
 import { FC } from 'react'
 import { FaCheck, FaTimes } from 'react-icons/fa'
-import { QueryDetailPageQuery, UserQueryStatus } from '~/lib/graphql/generated'
+import { FragmentType, getFragmentData, graphql } from '~/gql'
+import { UserQueryStatus } from '~/gql/graphql'
 
 type Props = {
-  query: QueryDetailPageQuery['userQuery']
+  status: UserQueryStatus | null | undefined
 }
 
-export const QueryDetailStatus: FC<Props> = ({ query }) => {
-  switch (query.status) {
-    case UserQueryStatus.Success:
+export const NavigationStatus: FC<Props> = ({ status }) => {
+  switch (status) {
+    case 'SUCCESS':
       return (
         <div className="flex gap-1 items-center text-gray-500">
           <FaCheck className="text-green-500" />
@@ -17,14 +18,14 @@ export const QueryDetailStatus: FC<Props> = ({ query }) => {
           <span>rows: </span>
         </div>
       )
-    case UserQueryStatus.Failure:
+    case 'FAILURE':
       return (
         <div className="flex gap-1 items-center text-red-500">
           <FaTimes />
           <span>Failed</span>
         </div>
       )
-    case UserQueryStatus.Working:
+    case 'WORKING':
       return (
         <div className="flex gap-1 items-center text-gray-500">
           <span>Working...</span>

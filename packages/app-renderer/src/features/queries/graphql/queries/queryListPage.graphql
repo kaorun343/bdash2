@@ -1,5 +1,0 @@
-query queryListPage($groupId: ID!) {
-  userQueriesByGroup(groupId: $groupId) {
-    ...UserQueryForQueryListItem
-  }
-}
