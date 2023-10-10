@@ -704,6 +704,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bdash2/app-main@workspace:packages/app-main":
+  version: 0.0.0-use.local
+  resolution: "@bdash2/app-main@workspace:packages/app-main"
+  dependencies:
+    "@pothos/core": ^3.38.0
+    graphql: ^16.8.1
+    kysely: ^0.26.3
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
+
 "@bdash2/app-renderer@workspace:packages/app-renderer":
   version: 0.0.0-use.local
   resolution: "@bdash2/app-renderer@workspace:packages/app-renderer"
@@ -1905,6 +1916,15 @@ __metadata:
     tslib: ^2.4.0
     webcrypto-core: ^1.7.4
   checksum: 3a7a3c8f253170436f353a61b807d2e2e7a686e6a9607487fde6459ddfff34c8000414287a6cd904bd81e002ce4564811b3c7789a0fd932cf015df6c4002fd02
+  languageName: node
+  linkType: hard
+
+"@pothos/core@npm:^3.38.0":
+  version: 3.38.0
+  resolution: "@pothos/core@npm:3.38.0"
+  peerDependencies:
+    graphql: ">=15.1.0"
+  checksum: 7ded623cb21fff80dfd967ae18af47d42ad981b492ee02d854ef874d8b5c202a2ac8ef8cfb56f0b2eebaf9dc5ccf930029d7835b0f1333c4f343acd1fa3cd50c
   languageName: node
   linkType: hard
 
@@ -4432,6 +4452,13 @@ __metadata:
   version: 0.0.0
   resolution: "jsonify@npm:0.0.0"
   checksum: d8d4ed476c116e6987a460dcb82f22284686caae9f498ac87b0502c1765ac1522f4f450a4cad4cc368d202fd3b27a3860735140a82867fc6d558f5f199c38bce
+  languageName: node
+  linkType: hard
+
+"kysely@npm:^0.26.3":
+  version: 0.26.3
+  resolution: "kysely@npm:0.26.3"
+  checksum: 2f0efdf31e7dfdbad2bc47780f24416f090f5662ae7256af7a200a75aaee7c7f04ffb29ead60da454a9477385c29e828e0978341f2a2aae97679f074823148b0
   languageName: node
   linkType: hard
 
