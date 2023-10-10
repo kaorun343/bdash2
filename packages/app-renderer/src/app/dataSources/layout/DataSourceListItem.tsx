@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
@@ -20,7 +21,7 @@ export const DataSourceListItem = memo<Props>(function DataSourceListItem(props)
     <li className="border-b border-gray-300">
       <NavLink
         to={`/data-sources/${dataSource.id}`}
-        className={({ isActive }) => `block px-4 py-3 ${isActive ? 'bg-blue-500 text-white' : ''}`}
+        className={({ isActive }) => clsx('block px-4 py-3', isActive && 'bg-blue-500 text-white')}
       >
         {dataSource.name}
       </NavLink>

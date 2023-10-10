@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { FC, PropsWithChildren } from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -11,7 +12,7 @@ export const NavLinkItem: FC<Props> = ({ to, children }) => {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `w-full h-full grid justify-items-center items-center ${isActive ? 'bg-gray-600' : ''} hover:bg-gray-900`
+          clsx('w-full h-full grid justify-items-center items-center', isActive && 'bg-gray-600', 'hover:bg-gray-900')
         }
       >
         {children}

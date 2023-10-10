@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
@@ -20,7 +21,7 @@ export const QueryGroupListItem: FC<Props> = (props) => {
     <li className="border-b border-gray-300">
       <NavLink
         to={`/queries/${queryGroup.id}`}
-        className={({ isActive }) => `block px-4 py-3 ${isActive ? 'bg-blue-500 text-white' : ''}`}
+        className={({ isActive }) => clsx('block px-4 py-3', isActive && 'bg-blue-500 text-white')}
       >
         {queryGroup.title}
       </NavLink>
