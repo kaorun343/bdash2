@@ -691,7 +691,7 @@ __metadata:
     "@graphql-codegen/client-preset": ^4.1.0
     "@graphql-codegen/typescript-msw": ^2.0.0
     "@graphql-codegen/typescript-operations": ^4.0.1
-    "@mswjs/data": ^0.10.2
+    "@mswjs/data": ^0.14.0
     "@tailwindcss/forms": ^0.5.3
     "@tanstack/react-query": ^4.10.3
     "@tsconfig/vite-react": ^2.0.1
@@ -702,7 +702,7 @@ __metadata:
     codemirror: ^6.0.1
     graphql: ^16.8.1
     immer: ^9.0.15
-    msw: ^0.47.4
+    msw: ^1.3.2
     postcss: ^8.4.31
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -1758,9 +1758,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/data@npm:^0.10.2":
-  version: 0.10.2
-  resolution: "@mswjs/data@npm:0.10.2"
+"@mswjs/data@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@mswjs/data@npm:0.14.0"
   dependencies:
     "@types/lodash": ^4.14.172
     "@types/md5": ^2.3.0
@@ -1774,28 +1774,28 @@ __metadata:
     msw: latest
     outvariant: ^1.2.1
     pluralize: ^8.0.0
-    strict-event-emitter: ^0.2.0
+    strict-event-emitter: ^0.5.0
     uuid: ^8.3.1
   dependenciesMeta:
     msw:
       optional: true
-  checksum: ec932a5068cca8019ec795aedf03b8f8b34a0e3600a0b7421d198f56a035cc1ecb84b40c4c1cbe8812244ddf44dfc828513a40d32bca7ab0852a047880c5efb8
+  checksum: 8a9049059baa3635c5bf3d8ad3380fb3922c4643c6bdc7d60d643d86abc5d92028075d4e5bb41b3891d2606d95ed364c50ea081430af988e9806a8a92ac898c2
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.17.5":
-  version: 0.17.5
-  resolution: "@mswjs/interceptors@npm:0.17.5"
+"@mswjs/interceptors@npm:^0.17.10, @mswjs/interceptors@npm:^0.17.5":
+  version: 0.17.10
+  resolution: "@mswjs/interceptors@npm:0.17.10"
   dependencies:
     "@open-draft/until": ^1.0.3
     "@types/debug": ^4.1.7
-    "@xmldom/xmldom": ^0.7.5
+    "@xmldom/xmldom": ^0.8.3
     debug: ^4.3.3
-    headers-polyfill: ^3.1.0
+    headers-polyfill: 3.2.5
     outvariant: ^1.2.1
     strict-event-emitter: ^0.2.4
     web-encoding: ^1.1.5
-  checksum: 0293ccc56c1c85fb7334cd5902574f7df20c26be74d633c83fde64ffd7620f81e08253fe7985c6b5ad3b64c04ad53c3610e9b9c07621518aabd977343026bb2b
+  checksum: 0e6d32f399144b5cefe6fd7620f2776c83adc9bbbbccf2eb4ea347332be059f585136c44168c09b544c41cd3d686f88e43432e10192227a24fbb0c98a2f52dc8
   languageName: node
   linkType: hard
 
@@ -2265,10 +2265,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xmldom/xmldom@npm:^0.7.5":
-  version: 0.7.5
-  resolution: "@xmldom/xmldom@npm:0.7.5"
-  checksum: 8d7ec35c1ef6183b4f621df08e01d7e61f244fb964a4719025e65fe6ac06fac418919be64fb40fe5908e69158ef728f2d936daa082db326fe04603012b5f2a84
+"@xmldom/xmldom@npm:^0.8.3":
+  version: 0.8.10
+  resolution: "@xmldom/xmldom@npm:0.8.10"
+  checksum: 4c136aec31fb3b49aaa53b6fcbfe524d02a1dc0d8e17ee35bd3bf35e9ce1344560481cd1efd086ad1a4821541482528672306d5e37cdbd187f33d7fadd3e2cf0
   languageName: node
   linkType: hard
 
@@ -3901,10 +3901,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"headers-polyfill@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "headers-polyfill@npm:3.1.0"
-  checksum: a95257065684653b7185efbb9a380c547ea832002991b5adf0d90cd222073da2701be9dc2849d1970ecf15e8c35b383984358566afe6e76ca8ff1dbd7cdce3af
+"headers-polyfill@npm:3.2.5, headers-polyfill@npm:^3.1.0":
+  version: 3.2.5
+  resolution: "headers-polyfill@npm:3.2.5"
+  checksum: a3c4bdd661584fd39e40c0f91412abc514616edfbd20d29a75567e591f90ef5c445c8e209b7f3c2b2375d27e95e4690f33417368a168d4832484a93861ab6a3c
   languageName: node
   linkType: hard
 
@@ -4265,10 +4265,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-node-process@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "is-node-process@npm:1.0.1"
-  checksum: 3ddb8a892a00f6eb9c2aea7e7e1426b8683512d9419933d95114f4f64b5455e26601c23a31c0682463890032136dd98a326988a770ab6b4eed54a43ade8bed50
+"is-node-process@npm:^1.0.1, is-node-process@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "is-node-process@npm:1.2.0"
+  checksum: 930765cdc6d81ab8f1bbecbea4a8d35c7c6d88a3ff61f3630e0fc7f22d624d7661c1df05c58547d0eb6a639dfa9304682c8e342c4113a6ed51472b704cee2928
   languageName: node
   linkType: hard
 
@@ -4844,7 +4844,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^0.47.4, msw@npm:latest":
+"msw@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "msw@npm:1.3.2"
+  dependencies:
+    "@mswjs/cookies": ^0.2.2
+    "@mswjs/interceptors": ^0.17.10
+    "@open-draft/until": ^1.0.3
+    "@types/cookie": ^0.4.1
+    "@types/js-levenshtein": ^1.1.1
+    chalk: ^4.1.1
+    chokidar: ^3.4.2
+    cookie: ^0.4.2
+    graphql: ^16.8.1
+    headers-polyfill: 3.2.5
+    inquirer: ^8.2.0
+    is-node-process: ^1.2.0
+    js-levenshtein: ^1.1.6
+    node-fetch: ^2.6.7
+    outvariant: ^1.4.0
+    path-to-regexp: ^6.2.0
+    strict-event-emitter: ^0.4.3
+    type-fest: ^2.19.0
+    yargs: ^17.3.1
+  peerDependencies:
+    typescript: ">= 4.4.x <= 5.2.x"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    msw: cli/index.js
+  checksum: c2d4f7747f5806f0fd8d8cc3ca250ee1c2a7a6cd608de43f95bd072ba1fb13cdce0b52932ce9bf8f4a21b194d2815db535501e224ec8f7052593447fe1c0cb70
+  languageName: node
+  linkType: hard
+
+"msw@npm:latest":
   version: 0.47.4
   resolution: "msw@npm:0.47.4"
   dependencies:
@@ -5095,10 +5129,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"outvariant@npm:^1.2.1, outvariant@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "outvariant@npm:1.3.0"
-  checksum: ac76ca375c1c642989e1c74f0e9ebac84c05bc9fdc8f28be949c16fae1658e9f1f2fb1133fe3cc1e98afabef78fe4298fe9360b5734baf8e6ad440c182680848
+"outvariant@npm:^1.2.1, outvariant@npm:^1.3.0, outvariant@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "outvariant@npm:1.4.0"
+  checksum: ec32dfc315c464bb6e4906b2f450d259ce0b86caf70b70b249054359d9af21a7fccf53a8b6aa232f8d718449e31c1cfa594e6ebffaafe7bf908b502495256d7b
   languageName: node
   linkType: hard
 
@@ -5938,12 +5972,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strict-event-emitter@npm:^0.2.0, strict-event-emitter@npm:^0.2.4, strict-event-emitter@npm:^0.2.6":
+"strict-event-emitter@npm:^0.2.4, strict-event-emitter@npm:^0.2.6":
   version: 0.2.6
   resolution: "strict-event-emitter@npm:0.2.6"
   dependencies:
     events: ^3.3.0
   checksum: 04993246ed3355f116a01b4c35a52fe488e8b9b3b892d3255d3debb5a070ccb3ee2159017c504d0347fbe696a28a809cf04109b34a8191f3792dfda92ba8a3c8
+  languageName: node
+  linkType: hard
+
+"strict-event-emitter@npm:^0.4.3":
+  version: 0.4.6
+  resolution: "strict-event-emitter@npm:0.4.6"
+  checksum: 4f4f2909613e7811de789991c06bfb770d6d6987e2ec5c66fa7485d0f07cc4e7e32eba0dcf26cee6d86af6c92946d7f4acdfaff57d0c4114df2cfa1bf0e3c091
+  languageName: node
+  linkType: hard
+
+"strict-event-emitter@npm:^0.5.0":
+  version: 0.5.1
+  resolution: "strict-event-emitter@npm:0.5.1"
+  checksum: 350480431bc1c28fdb601ef4976c2f8155fc364b4740f9692dd03e5bdd48aafc99a5e021fe655fbd986d0b803e9f3fc5c4b018b35cb838c4690d60f2a26f1cf3
   languageName: node
   linkType: hard
 
