@@ -1,4 +1,8 @@
 projects:
+  app-code-first:
+    schema: packages/app-main/schema.graphql
+    documents:
+      - packages/app-main/tests/**/*.{graphql,js,ts,jsx,tsx}
   app:
     schema: packages/app-main/schema/*.graphql
     documents: packages/app-renderer/src/**/*.{graphql,js,ts,jsx,tsx}

@@ -8,6 +8,9 @@ DataSourceRef.implement({
   fields: (t) => ({
     id: t.exposeID('id'),
     name: t.exposeString('name'),
-    config: t.field({ type: DataSourceConfigRef, resolve: (source) => source }),
+    config: t.field({
+      type: DataSourceConfigRef,
+      resolve: (source) => ({ type: source.type, config: JSON.parse(source.config) }),
+    }),
   }),
 })

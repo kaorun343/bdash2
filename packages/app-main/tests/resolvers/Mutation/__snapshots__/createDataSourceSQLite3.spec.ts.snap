@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Mutation.createDataSourceSQLite3 > should create SQLite data source 1`] = `
+{
+  "data": {
+    "createDataSourceSQLite3": {
+      "config": {
+        "__typename": "DataSourceConfigSQLite3",
+        "path": "/path/to/sqlite3.database",
+      },
+      "id": "1",
+      "name": "test",
+    },
+  },
+}
+`;

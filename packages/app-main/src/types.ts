@@ -8,7 +8,7 @@ export type DataSourceTable = {
   id: Generated<number>
   name: string
   type: 'sqlite3'
-  config: ColumnType<Record<string, string>, string, string>
+  config: ColumnType<string, string, string>
   createdAt: ColumnType<Date, string, never>
   updatedAt: ColumnType<Date, string, string>
 }
