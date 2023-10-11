@@ -712,6 +712,7 @@ __metadata:
     "@graphql-codegen/schema-ast": ^4.0.0
     "@pothos/core": ^3.38.0
     graphql: ^16.8.1
+    graphql-tag: ^2.12.6
     kysely: ^0.26.3
     typescript: ^5.2.2
     vite: ^4.4.11
@@ -4177,7 +4178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-tag@npm:^2.11.0":
+"graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.12.6":
   version: 2.12.6
   resolution: "graphql-tag@npm:2.12.6"
   dependencies:
