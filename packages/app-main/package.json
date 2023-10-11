@@ -8,11 +8,13 @@
   "dependencies": {
     "@pothos/core": "^3.38.0",
     "graphql": "^16.8.1",
-    "kysely": "^0.26.3"
+    "kysely": "^0.26.3",
+    "sql.js": "^1.8.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/schema-ast": "^4.0.0",
+    "@types/sql.js": "^1.4.5",
     "graphql-tag": "^2.12.6",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
