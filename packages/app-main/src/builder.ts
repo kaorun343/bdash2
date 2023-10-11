@@ -6,4 +6,10 @@ export const builder = new SchemaBuilder<{
   Context: {
     db: Kysely<Database>
   }
+  Scalars: {
+    ID: {
+      Input: number
+      Output: number
+    }
+  }
 }>({})
