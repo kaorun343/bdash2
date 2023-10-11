@@ -2,7 +2,8 @@
   "name": "@bdash2/app-main",
   "private": true,
   "scripts": {
-    "codegen": "graphql-codegen"
+    "codegen": "graphql-codegen",
+    "test": "vitest"
   },
   "dependencies": {
     "@pothos/core": "^3.38.0",
@@ -12,6 +13,8 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/schema-ast": "^4.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vitest": "^0.34.6"
   }
 }
