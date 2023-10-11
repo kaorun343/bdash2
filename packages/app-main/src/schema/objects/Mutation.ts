@@ -3,6 +3,7 @@ import { builder } from '../../builder'
 import { CreateDataSourceSQLite3InputRef } from '../inputs/CreateDataSourceSQLite3Input'
 import { DataSourceRef } from './DataSource'
 import { UpdateDataSourceSQLite3InputRef } from '../inputs/UpdateDataSourceSQLite3Input'
+import { DeleteDataSourceInputRef } from '../inputs/DeleteDataSourceInput'
 
 builder.mutationType({
   fields: (t) => ({
@@ -42,6 +43,15 @@ builder.mutationType({
           .where('id', '=', input.id)
           .returningAll()
           .executeTakeFirstOrThrow()
+      },
+    }),
+    deleteDataSource: t.int({
+      args: {
+        input: t.arg({ type: DeleteDataSourceInputRef, required: true }),
+      },
+      resolve: async (_parent, { input }, { db }) => {
+        await db.deleteFrom('dataSource').where('id', '=', input.id).execute()
+        return input.id
       },
     }),
   }),
