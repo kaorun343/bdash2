@@ -11,5 +11,9 @@ export const builder = new SchemaBuilder<{
       Input: number
       Output: number
     }
+    DateTime: {
+      Input: string
+      Output: string
+    }
   }
 }>({})

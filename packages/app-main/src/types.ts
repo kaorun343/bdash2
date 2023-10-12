@@ -9,8 +9,8 @@ export type DataSourceTable = {
   name: string
   type: 'sqlite3'
   config: ColumnType<string, string, string>
-  createdAt: ColumnType<Date, string, never>
-  updatedAt: ColumnType<Date, string, string>
+  createdAt: ColumnType<string, string, never>
+  updatedAt: ColumnType<string, string, string>
 }
 
 export type DataSource = Selectable<DataSourceTable>
