@@ -12,6 +12,14 @@ const migrations: Record<string, Migration> = {
         .addColumn('createdAt', 'datetime', (col) => col.notNull())
         .addColumn('updatedAt', 'datetime', (col) => col.notNull())
         .execute()
+
+      await db.schema
+        .createTable('queryGroup')
+        .addColumn('id', 'integer', (col) => col.autoIncrement().primaryKey())
+        .addColumn('name', 'text', (col) => col.notNull())
+        .addColumn('createdAt', 'datetime', (col) => col.notNull())
+        .addColumn('updatedAt', 'datetime', (col) => col.notNull())
+        .execute()
     },
   },
 }
