@@ -50,6 +50,23 @@ describe('Query.dataSources', () => {
       source,
       contextValue: { db },
     })
-    expect(result).toMatchSnapshot()
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "data": {
+          "dataSources": [
+            {
+              "config": {
+                "__typename": "DataSourceConfigSQLite3",
+                "path": "/path/to/sqlite3.database",
+              },
+              "createdAt": "2020-12-31T15:00:00.000Z",
+              "id": "1",
+              "name": "test",
+              "updatedAt": "2020-12-31T15:00:00.000Z",
+            },
+          ],
+        },
+      }
+    `)
   })
 })

@@ -38,6 +38,19 @@ describe('Mutation.createDataSourceSQLite3', () => {
       contextValue: { db },
       variableValues: { input: { name: 'test', path: '/path/to/sqlite3.database' } },
     })
-    expect(result).toMatchSnapshot()
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "data": {
+          "createDataSourceSQLite3": {
+            "config": {
+              "__typename": "DataSourceConfigSQLite3",
+              "path": "/path/to/sqlite3.database",
+            },
+            "id": "1",
+            "name": "test",
+          },
+        },
+      }
+    `)
   })
 })
