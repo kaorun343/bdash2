@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Query.dataSources > should return all data sources 1`] = `
+{
+  "data": {
+    "dataSources": [
+      {
+        "config": {
+          "__typename": "DataSourceConfigSQLite3",
+          "path": "/path/to/sqlite3.database",
+        },
+        "createdAt": "2020-12-31T15:00:00.000Z",
+        "id": "1",
+        "name": "test",
+        "updatedAt": "2020-12-31T15:00:00.000Z",
+      },
+    ],
+  },
+}
+`;
