@@ -1,12 +1,12 @@
 import { FC, useId } from 'react'
-import { DialogFormLabel } from './DialogFormLabel'
 import { useForm } from 'react-hook-form'
 import { useSubmit } from 'react-router-dom'
-import { DialogFormFieldValues } from './DialogFormFieldValues'
-import { DialogFormErrorMessage } from './DialogFormErrorMessage'
-import { DialogFormDatabaseSpecificFields } from './DialogFormDatabaseSpecificFields'
-import { DialogFormConnectionTest } from './DialogFormConnectionTest'
 import { DialogFormButton } from './DialogFormButton'
+import { DialogFormConnectionTest } from './DialogFormConnectionTest'
+import { DialogFormDatabaseSpecificFields } from './DialogFormDatabaseSpecificFields'
+import { DialogFormErrorMessage } from './DialogFormErrorMessage'
+import { DialogFormFieldValues } from './DialogFormFieldValues'
+import { DialogFormLabel } from './DialogFormLabel'
 
 type Props = {
   onCancel: () => void
@@ -41,8 +41,8 @@ export const DialogForm: FC<Props> = ({ onCancel }) => {
           {
             serialized: JSON.stringify(data),
           },
-          { method: 'post' }
-        )
+          { method: 'post' },
+        ),
       )}
     >
       <div className="flex flex-col mb-3">

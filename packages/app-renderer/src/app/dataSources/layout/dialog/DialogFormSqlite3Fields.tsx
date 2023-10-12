@@ -1,8 +1,8 @@
-import { Control, UseFormRegister, useFormState } from 'react-hook-form'
-import { DialogFormFieldValues } from './DialogFormFieldValues'
 import { FC, useId } from 'react'
-import { DialogFormLabel } from './DialogFormLabel'
+import { Control, UseFormRegister, useFormState } from 'react-hook-form'
 import { DialogFormErrorMessage } from './DialogFormErrorMessage'
+import { DialogFormFieldValues } from './DialogFormFieldValues'
+import { DialogFormLabel } from './DialogFormLabel'
 
 type Props = {
   control: Control<DialogFormFieldValues>

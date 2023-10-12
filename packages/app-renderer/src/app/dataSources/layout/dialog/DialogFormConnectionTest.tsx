@@ -1,10 +1,10 @@
 import { FC, Fragment } from 'react'
 import { Control, useWatch } from 'react-hook-form'
-import { DialogFormFieldValues } from './DialogFormFieldValues'
-import { DialogFormButton } from './DialogFormButton'
-import { FaSpinner, FaCheck } from 'react-icons/fa'
+import { FaCheck, FaSpinner } from 'react-icons/fa'
 import { useFetcher } from 'react-router-dom'
 import { TEST_SQLITE3_CONNECTION_INTENT } from '../action'
+import { DialogFormButton } from './DialogFormButton'
+import { DialogFormFieldValues } from './DialogFormFieldValues'
 
 type Props = {
   control: Control<DialogFormFieldValues>

@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
-import { QueryGroupList } from './QueryGroupList'
-import { GetQueryGroupListLayoutQuery } from '~/gql/graphql'
 import { getFragmentData, graphql } from '~/gql'
+import { GetQueryGroupListLayoutQuery } from '~/gql/graphql'
+import { QueryGroupList } from './QueryGroupList'
 
 const UserQueryGroupForQueryGroupListLayout = graphql(`
   fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {

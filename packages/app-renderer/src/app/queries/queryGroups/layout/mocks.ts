@@ -9,7 +9,7 @@ export const queryGroupListMockHandlers = [
           id: data.id,
           title: data.title,
         })),
-      })
+      }),
     )
   }),
 ]

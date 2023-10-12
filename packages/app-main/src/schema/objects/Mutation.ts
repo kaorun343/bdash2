@@ -1,9 +1,9 @@
 import { sql } from 'kysely'
 import { builder } from '../../builder'
 import { CreateDataSourceSQLite3InputRef } from '../inputs/CreateDataSourceSQLite3Input'
-import { DataSourceRef } from './DataSource'
-import { UpdateDataSourceSQLite3InputRef } from '../inputs/UpdateDataSourceSQLite3Input'
 import { DeleteDataSourceInputRef } from '../inputs/DeleteDataSourceInput'
+import { UpdateDataSourceSQLite3InputRef } from '../inputs/UpdateDataSourceSQLite3Input'
+import { DataSourceRef } from './DataSource'
 
 builder.mutationType({
   fields: (t) => ({

@@ -18,7 +18,7 @@ export const queryDetailPageMockHandlers = [
           {
             message: `Could not find user query with id ${id}`,
           },
-        ])
+        ]),
       )
     }
 
@@ -30,7 +30,7 @@ export const queryDetailPageMockHandlers = [
           body: userQuery.body,
           status: userQuery.status as UserQueryStatus,
         },
-      })
+      }),
     )
   }),
 
@@ -54,7 +54,7 @@ export const queryDetailPageMockHandlers = [
             title: input.title,
           },
         },
-      })
+      }),
     )
   }),
 ]

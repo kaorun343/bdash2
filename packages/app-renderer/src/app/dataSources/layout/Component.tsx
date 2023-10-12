@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { getFragmentData, graphql } from '~/gql'
+import { GetDataSourceListLayoutQuery } from '~/gql/graphql'
 import { DataSourceList } from './DataSourceList'
 import { Header } from './Header'
-import { GetDataSourceListLayoutQuery } from '~/gql/graphql'
 
 const DataSourceForDataSourceListLayout = graphql(`
   fragment DataSourceForDataSourceListLayout on DataSource {

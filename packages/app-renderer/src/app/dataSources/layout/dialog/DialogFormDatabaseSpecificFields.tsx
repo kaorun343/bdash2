@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
 import { DialogFormFieldValues } from './DialogFormFieldValues'
-import { FC } from 'react'
 import { DialogFormSqlite3Fields } from './DialogFormSqlite3Fields'
 
 type Props = {

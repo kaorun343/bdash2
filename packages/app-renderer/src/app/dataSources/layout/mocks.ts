@@ -10,7 +10,7 @@ export const dataSourceListLayoutMockHandlers = [
         testSqlite3Connection: {
           success: true,
         },
-      })
+      }),
     )
   }),
 
@@ -21,7 +21,7 @@ export const dataSourceListLayoutMockHandlers = [
           id: dataSource.id,
           name: dataSource.name,
         })),
-      })
+      }),
     )
   }),
 ]

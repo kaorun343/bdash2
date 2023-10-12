@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { FaCheck, FaTimes } from 'react-icons/fa'
-import { FragmentType, getFragmentData, graphql } from '~/gql'
 import { UserQueryStatus } from '~/gql/graphql'
 
 type Props = {

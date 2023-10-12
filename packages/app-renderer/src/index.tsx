@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
-import { App } from './App'
 import { createHashRouter } from 'react-router-dom'
+import { App } from './App'
 import { routes } from './routes'
 
 export const init = (el: HTMLElement) => {

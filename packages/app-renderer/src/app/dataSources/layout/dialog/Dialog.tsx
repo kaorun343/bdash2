@@ -13,7 +13,7 @@ export const Dialog = forwardRef<Ref>(function Dialog(_, ref) {
         dialogRef.current?.showModal()
       },
     }),
-    []
+    [],
   )
 
   const handleCancel = useCallback(() => {

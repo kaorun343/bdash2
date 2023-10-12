@@ -1,11 +1,11 @@
-import { Kysely } from 'kysely'
-import initSqlJs from 'sql.js'
-import { Database } from '../../../src/types'
-import { createDatabase } from '../../../src/database'
-import { migrateToLatest } from '../../../src/migrations'
 import { graphql, print } from 'graphql'
 import gql from 'graphql-tag'
+import { Kysely } from 'kysely'
+import initSqlJs from 'sql.js'
+import { createDatabase } from '../../../src/database'
+import { migrateToLatest } from '../../../src/migrations'
 import { schema } from '../../../src/schema'
+import { Database } from '../../../src/types'
 
 const source = print(gql`
   query getDataSources {

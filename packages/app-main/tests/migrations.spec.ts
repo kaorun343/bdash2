@@ -1,8 +1,8 @@
 import { Kysely } from 'kysely'
 import initSqlJs from 'sql.js'
-import { Database } from '../src/types'
 import { createDatabase } from '../src/database'
 import { migrateToLatest } from '../src/migrations'
+import { Database } from '../src/types'
 
 const SQL = await initSqlJs()
 let db: Kysely<Database>

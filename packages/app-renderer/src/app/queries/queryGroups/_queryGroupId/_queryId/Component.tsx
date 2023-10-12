@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
-import { GetQueryDetailPageQuery } from '~/gql/graphql'
-import { Navigation } from './Navigation'
-import { Editor } from './Editor'
 import { getFragmentData, graphql } from '~/gql'
+import { GetQueryDetailPageQuery } from '~/gql/graphql'
+import { Editor } from './Editor'
+import { Navigation } from './Navigation'
 
 const UserQueryForQueryDetailPage = graphql(`
   fragment UserQueryForQueryDetailPage on UserQuery {

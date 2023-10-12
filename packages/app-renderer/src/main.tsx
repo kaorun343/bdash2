@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { App } from './App'
-import { worker } from './mocks/browser'
 import { createHashRouter } from 'react-router-dom'
+import { App } from './App'
 import { TypedDocumentString } from './gql/graphql'
+import { worker } from './mocks/browser'
 import { routes } from './routes'
 
 window.request = async <TResult, TVariables>(
@@ -40,5 +40,5 @@ const router = createHashRouter(routes)
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App router={router} />
-  </StrictMode>
+  </StrictMode>,
 )
