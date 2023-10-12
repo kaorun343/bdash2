@@ -1,4 +1,4 @@
-import { Kysely, Migration, Migrator } from 'kysely'
+import { Kysely, Migration, Migrator, sql } from 'kysely'
 
 const migrations: Record<string, Migration> = {
   v1: {
@@ -28,6 +28,7 @@ const migrations: Record<string, Migration> = {
         .addColumn('dataSourceId', 'integer', (col) => col.references('dataSource.id').onDelete('set null'))
         .addColumn('title', 'text', (col) => col.notNull())
         .addColumn('body', 'text', (col) => col.notNull().defaultTo(''))
+        .addColumn('status', 'text', (col) => col.check(sql`status IN ('success', 'failure')`))
         .addColumn('createdAt', 'datetime', (col) => col.notNull())
         .addColumn('updatedAt', 'datetime', (col) => col.notNull())
         .execute()

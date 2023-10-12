@@ -28,13 +28,23 @@ beforeEach(async () => {
 
   await db
     .insertInto('query')
-    .values({
-      queryGroupId,
-      title: 'test query',
-      body: 'SELECT * FROM test_table',
-      createdAt: '2021-01-01 00:00:00',
-      updatedAt: '2021-01-01 00:00:00',
-    })
+    .values([
+      {
+        queryGroupId,
+        title: 'test query',
+        body: 'SELECT * FROM test_table',
+        createdAt: '2021-01-01 00:00:00',
+        updatedAt: '2021-01-01 00:00:00',
+      },
+      {
+        queryGroupId,
+        title: 'test query 2',
+        body: 'SELECT * FROM test_table',
+        createdAt: '2021-01-01 00:00:00',
+        updatedAt: '2021-01-01 00:00:00',
+        status: 'success',
+      },
+    ])
     .execute()
 })
 
@@ -44,6 +54,7 @@ const source = print(gql`
       id
       title
       body
+      status
       createdAt
       updatedAt
     }
@@ -66,7 +77,16 @@ describe('Query.queriesByQueryGroupId', () => {
               "body": "SELECT * FROM test_table",
               "createdAt": "2020-12-31T15:00:00.000Z",
               "id": "1",
+              "status": null,
               "title": "test query",
+              "updatedAt": "2020-12-31T15:00:00.000Z",
+            },
+            {
+              "body": "SELECT * FROM test_table",
+              "createdAt": "2020-12-31T15:00:00.000Z",
+              "id": "2",
+              "status": "SUCCESS",
+              "title": "test query 2",
               "updatedAt": "2020-12-31T15:00:00.000Z",
             },
           ],

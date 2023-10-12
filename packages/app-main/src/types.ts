@@ -28,6 +28,7 @@ export type QeuryTable = {
   dataSourceId: number | null
   title: string
   body: string
+  status: 'success' | 'failure' | null
   createdAt: ColumnType<string, string, never>
   updatedAt: ColumnType<string, string, string>
 }
