@@ -1,10 +1,29 @@
+import { readFile } from 'node:fs/promises'
+import initSqlJs from 'sql.js'
 import { builder } from '../../builder'
 import { BdashQueryRef } from './BdashQuery'
+import { ConnectionTestRef } from './ConnectionTest'
 import { DataSourceRef } from './DataSource'
 import { QueryGroupRef } from './QueryGroup'
 
 builder.queryType({
   fields: (t) => ({
+    connectionTestSQLite3: t.field({
+      type: ConnectionTestRef,
+      args: {
+        path: t.arg.string({ required: true }),
+      },
+      resolve: async (_parent, { path }) => {
+        try {
+          const SQL = await initSqlJs()
+          const db = new SQL.Database(await readFile(path))
+          db.run(`SELECT 1`)
+          return { success: true }
+        } catch (err) {
+          return { success: false, message: (err as any).message }
+        }
+      },
+    }),
     dataSources: t.field({
       type: [DataSourceRef],
       resolve: (_parent, _args, { db }) => db.selectFrom('dataSource').selectAll().execute(),
