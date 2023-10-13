@@ -2,6 +2,7 @@
   "name": "@bdash2/app-main",
   "private": true,
   "scripts": {
+    "build": "vite build",
     "codegen": "graphql-codegen",
     "test": "vitest"
   },
