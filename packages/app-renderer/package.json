@@ -1,12 +1,16 @@
 {
   "name": "@bdash2/app-renderer",
   "private": true,
+  "main": "dist/app-renderer.mjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "lint:tsc": "tsc --noEmit"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@codemirror/lang-sql": "^6.3.1",
     "clsx": "^2.0.0",

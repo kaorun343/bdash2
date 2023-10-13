@@ -4,7 +4,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      formats: ['es'],
+      formats: ['cjs'],
+    },
+    rollupOptions: {
+      external: [/^node:/, /^electron$/, /^path$/, /^fs$/, /^crypto$/, /^sql\.js$/],
     },
   },
   test: {
