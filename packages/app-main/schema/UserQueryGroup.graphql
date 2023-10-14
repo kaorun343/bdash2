@@ -1,8 +1,0 @@
-type UserQueryGroup implements Node {
-  id: ID!
-  title: String!
-}
-
-extend type Query {
-  userQueryGroups: [UserQueryGroup!]!
-}

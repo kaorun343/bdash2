@@ -1,7 +1,0 @@
-type DataSourceTable {
-  name: String!
-}
-
-extend type Query {
-  dataSourceTablesByDataSourceId(dataSourceId: ID!): [DataSourceTable!]!
-}
