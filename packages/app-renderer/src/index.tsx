@@ -8,7 +8,11 @@ window.request = async <TResult, TVariables>(
   document: TypedDocumentString<TResult, TVariables>,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) => {
-  return window.electronAPI.graphql(document.toString(), variables)
+  const response = await window.electronAPI.graphql(document.toString(), variables)
+  if (response.errors) {
+    throw new Error(JSON.stringify(response.errors))
+  }
+  return response.data as TResult
 }
 
 export const init = (el: HTMLElement) => {
