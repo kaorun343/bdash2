@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { graphql } from 'graphql'
 import initSqlJs from 'sql.js'
 import { createDatabase } from './database'
+import { migrateToLatest } from './migrations'
 import { schema } from './schema'
 
 const createWindow = (filePath: string) => {
@@ -30,6 +31,7 @@ export const main = async (filePath: string) => {
     return result
   })
 
-  await app.whenReady()
+  await Promise.all([app.whenReady(), migrateToLatest(db)])
+
   createWindow(filePath)
 }
