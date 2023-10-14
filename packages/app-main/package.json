@@ -1,7 +1,7 @@
 {
   "name": "@bdash2/app-main",
   "private": true,
-  "main": "dist/app-main.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "vite build",
     "codegen": "graphql-codegen",
