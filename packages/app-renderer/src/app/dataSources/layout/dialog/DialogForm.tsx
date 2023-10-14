@@ -44,6 +44,7 @@ export const DialogForm: FC<Props> = ({ onCancel }) => {
           { method: 'post' },
         ),
       )}
+      className="p-4"
     >
       <div className="flex flex-col mb-3">
         <DialogFormLabel htmlFor={nameId}>Name</DialogFormLabel>
