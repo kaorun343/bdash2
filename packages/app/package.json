@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@bdash2/app-main": "workspace:^",
+    "@bdash2/app-renderer": "workspace:^",
     "@rspack/cli": "^0.3.6",
     "electron": "^27.0.0",
     "prettier": "^3.0.3",
