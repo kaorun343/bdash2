@@ -8,6 +8,14 @@ import { QueryGroupRef } from './QueryGroup'
 
 builder.queryType({
   fields: (t) => ({
+    bdashQuery: t.field({
+      type: BdashQueryRef,
+      args: {
+        id: t.arg.id({ required: true }),
+      },
+      resolve: (_parent, { id }, { db }) =>
+        db.selectFrom('query').where('id', '=', id).limit(1).selectAll().executeTakeFirstOrThrow(),
+    }),
     connectionTestSQLite3: t.field({
       type: ConnectionTestRef,
       args: {

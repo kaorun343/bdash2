@@ -44,6 +44,7 @@ type Mutation {
 }
 
 type Query {
+  bdashQuery(id: ID!): BdashQuery!
   connectionTestSQLite3(path: String!): ConnectionTest!
   dataSources: [DataSource!]!
   queriesByQueryGroupId(queryGroupId: ID!): [BdashQuery!]!
