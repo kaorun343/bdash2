@@ -6,6 +6,7 @@ export default defineConfig({
       entry: ['src/index.ts', 'src/schema.ts'],
       formats: ['cjs'],
     },
+    target: 'node18',
     rollupOptions: {
       external: [/^node:/, /^electron$/, /^path$/, /^fs$/, /^crypto$/, /^sql\.js$/, /^graphql$/],
     },

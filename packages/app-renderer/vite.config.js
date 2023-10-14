@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
       entry: 'src/index.tsx',
       formats: ['es'],
     },
+    target: 'chrome118',
   },
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
