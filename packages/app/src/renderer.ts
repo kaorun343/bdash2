@@ -6,6 +6,8 @@ if (!el) {
   throw new Error('Element not found')
 }
 
-init(el).catch((error) => {
+try {
+  init(el)
+} catch (error) {
   console.error(error)
-})
+}
