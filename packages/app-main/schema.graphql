@@ -1,0 +1,69 @@
+type BdashQuery {
+  body: String!
+  createdAt: DateTime!
+  id: ID!
+  status: QueryStatus
+  title: String!
+  updatedAt: DateTime!
+}
+
+type ConnectionTest {
+  message: String
+  success: Boolean!
+}
+
+input CreateDataSourceSQLite3Input {
+  name: String!
+  path: String
+}
+
+type DataSource {
+  config: DataSourceConfig!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+union DataSourceConfig = DataSourceConfigSQLite3
+
+type DataSourceConfigSQLite3 {
+  path: String!
+}
+
+scalar DateTime
+
+input DeleteDataSourceInput {
+  id: ID!
+}
+
+type Mutation {
+  createDataSourceSQLite3(input: CreateDataSourceSQLite3Input!): DataSource!
+  deleteDataSource(input: DeleteDataSourceInput!): Int!
+  updateDataSourceSQLite3(input: UpdateDataSourceSQLite3Input!): DataSource!
+}
+
+type Query {
+  connectionTestSQLite3(path: String!): ConnectionTest!
+  dataSources: [DataSource!]!
+  queriesByQueryGroupId(queryGroupId: ID!): [BdashQuery!]!
+  queryGroups: [QueryGroup!]!
+}
+
+type QueryGroup {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+enum QueryStatus {
+  FAILURE
+  SUCCESS
+}
+
+input UpdateDataSourceSQLite3Input {
+  id: ID!
+  name: String!
+  path: String
+}
