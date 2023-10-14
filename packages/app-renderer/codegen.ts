@@ -1,5 +1,8 @@
+import { schema } from '@bdash2/app-main/dist/schema'
+import { printSchema } from 'graphql'
+
 export default {
-  schema: '../app-main/schema/*.graphql',
+  schema: printSchema(schema),
   documents: ['src/**/*.{ts,tsx}'],
   ignoreNoDocuments: true,
   generates: {

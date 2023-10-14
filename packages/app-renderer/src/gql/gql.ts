@@ -1,5 +1,7 @@
 /* eslint-disable */
-import * as types from './graphql'
+import * as types from './graphql';
+
+
 
 /**
  * Map of all GraphQL operations in the project.
@@ -12,121 +14,75 @@ import * as types from './graphql'
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\n  fragment DataSourceForDataSourceListLayout on DataSource {\n    ...DataSourceForDataSourceList\n  }\n':
-    types.DataSourceForDataSourceListLayoutFragmentDoc,
-  '\n  fragment DataSourceForDataSourceList on DataSource {\n    id\n    ...DataSourceForDataSourceListItem\n  }\n':
-    types.DataSourceForDataSourceListFragmentDoc,
-  '\n  fragment DataSourceForDataSourceListItem on DataSource {\n    id\n    name\n  }\n':
-    types.DataSourceForDataSourceListItemFragmentDoc,
-  '\n  mutation TestSqlite3Connection($input: TestSqlite3ConnectionInput!) {\n    testSqlite3Connection(input: $input) {\n      success\n    }\n  }\n':
-    types.TestSqlite3ConnectionDocument,
-  '\n  query GetDataSourceListLayout {\n    dataSources {\n      ...DataSourceForDataSourceListLayout\n    }\n  }\n':
-    types.GetDataSourceListLayoutDocument,
-  '\n  fragment UserQueryForQueryDetailPage on UserQuery {\n    status\n    ...UserQueryForEditor\n  }\n':
-    types.UserQueryForQueryDetailPageFragmentDoc,
-  '\n  fragment UserQueryForEditor on UserQuery {\n    id\n    title\n    body\n  }\n':
-    types.UserQueryForEditorFragmentDoc,
-  '\n  mutation UpdateUserQueryTitle($input: UpdateUserQueryTitleInput!) {\n    updateUserQueryTitle(input: $input) {\n      userQuery {\n        title\n      }\n    }\n  }\n':
-    types.UpdateUserQueryTitleDocument,
-  '\n  query GetQueryDetailPage($id: ID!) {\n    query: userQuery(id: $id) {\n      ...UserQueryForQueryDetailPage\n    }\n  }\n':
-    types.GetQueryDetailPageDocument,
-  '\n  fragment UserQueryForQueryListItem on UserQuery {\n    id\n    title\n  }\n':
-    types.UserQueryForQueryListItemFragmentDoc,
-  '\n  fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {\n    ...UserQueryGroupForQueryGroupList\n  }\n':
-    types.UserQueryGroupForQueryGroupListLayoutFragmentDoc,
-  '\n  fragment UserQueryGroupForQueryGroupList on UserQueryGroup {\n    id\n    ...UserQueryGroupForQueryGroupListItem\n  }\n':
-    types.UserQueryGroupForQueryGroupListFragmentDoc,
-  '\n  fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {\n    id\n    title\n  }\n':
-    types.UserQueryGroupForQueryGroupListItemFragmentDoc,
-  '\n  query GetQueryGroupListLayout {\n    queryGroups: userQueryGroups {\n      ...UserQueryGroupForQueryGroupListLayout\n    }\n  }\n':
-    types.GetQueryGroupListLayoutDocument,
-}
+    "\n  fragment DataSourceForDataSourceListLayout on DataSource {\n    ...DataSourceForDataSourceList\n  }\n": types.DataSourceForDataSourceListLayoutFragmentDoc,
+    "\n  fragment DataSourceForDataSourceList on DataSource {\n    id\n    ...DataSourceForDataSourceListItem\n  }\n": types.DataSourceForDataSourceListFragmentDoc,
+    "\n  fragment DataSourceForDataSourceListItem on DataSource {\n    id\n    name\n  }\n": types.DataSourceForDataSourceListItemFragmentDoc,
+    "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      success\n    }\n  }\n": types.TestSqlite3ConnectionDocument,
+    "\n  query GetDataSourceListLayout {\n    dataSources {\n      ...DataSourceForDataSourceListLayout\n    }\n  }\n": types.GetDataSourceListLayoutDocument,
+    "\n  fragment BdashQueryForQueryDetailPage on BdashQuery {\n    status\n    ...BdashQueryForEditor\n  }\n": types.BdashQueryForQueryDetailPageFragmentDoc,
+    "\n  fragment BdashQueryForEditor on BdashQuery {\n    id\n    title\n    body\n  }\n": types.BdashQueryForEditorFragmentDoc,
+    "\n  query GetQueryDetailPage($id: ID!) {\n    query: bdashQuery(id: $id) {\n      ...BdashQueryForQueryDetailPage\n    }\n  }\n": types.GetQueryDetailPageDocument,
+    "\n  fragment BdashQueryForQueryListItem on BdashQuery {\n    id\n    title\n  }\n": types.BdashQueryForQueryListItemFragmentDoc,
+    "\n  fragment QueryGroupForQueryGroupListLayout on QueryGroup {\n    ...QueryGroupForQueryGroupList\n  }\n": types.QueryGroupForQueryGroupListLayoutFragmentDoc,
+    "\n  fragment QueryGroupForQueryGroupList on QueryGroup {\n    id\n    ...QueryGroupForQueryGroupListItem\n  }\n": types.QueryGroupForQueryGroupListFragmentDoc,
+    "\n  fragment QueryGroupForQueryGroupListItem on QueryGroup {\n    id\n    name\n  }\n": types.QueryGroupForQueryGroupListItemFragmentDoc,
+    "\n  query GetQueryGroupListLayout {\n    queryGroups {\n      ...QueryGroupForQueryGroupListLayout\n    }\n  }\n": types.GetQueryGroupListLayoutDocument,
+};
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment DataSourceForDataSourceListLayout on DataSource {\n    ...DataSourceForDataSourceList\n  }\n',
-): typeof import('./graphql').DataSourceForDataSourceListLayoutFragmentDoc
+export function graphql(source: "\n  fragment DataSourceForDataSourceListLayout on DataSource {\n    ...DataSourceForDataSourceList\n  }\n"): typeof import('./graphql').DataSourceForDataSourceListLayoutFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment DataSourceForDataSourceList on DataSource {\n    id\n    ...DataSourceForDataSourceListItem\n  }\n',
-): typeof import('./graphql').DataSourceForDataSourceListFragmentDoc
+export function graphql(source: "\n  fragment DataSourceForDataSourceList on DataSource {\n    id\n    ...DataSourceForDataSourceListItem\n  }\n"): typeof import('./graphql').DataSourceForDataSourceListFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment DataSourceForDataSourceListItem on DataSource {\n    id\n    name\n  }\n',
-): typeof import('./graphql').DataSourceForDataSourceListItemFragmentDoc
+export function graphql(source: "\n  fragment DataSourceForDataSourceListItem on DataSource {\n    id\n    name\n  }\n"): typeof import('./graphql').DataSourceForDataSourceListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  mutation TestSqlite3Connection($input: TestSqlite3ConnectionInput!) {\n    testSqlite3Connection(input: $input) {\n      success\n    }\n  }\n',
-): typeof import('./graphql').TestSqlite3ConnectionDocument
+export function graphql(source: "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      success\n    }\n  }\n"): typeof import('./graphql').TestSqlite3ConnectionDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  query GetDataSourceListLayout {\n    dataSources {\n      ...DataSourceForDataSourceListLayout\n    }\n  }\n',
-): typeof import('./graphql').GetDataSourceListLayoutDocument
+export function graphql(source: "\n  query GetDataSourceListLayout {\n    dataSources {\n      ...DataSourceForDataSourceListLayout\n    }\n  }\n"): typeof import('./graphql').GetDataSourceListLayoutDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryForQueryDetailPage on UserQuery {\n    status\n    ...UserQueryForEditor\n  }\n',
-): typeof import('./graphql').UserQueryForQueryDetailPageFragmentDoc
+export function graphql(source: "\n  fragment BdashQueryForQueryDetailPage on BdashQuery {\n    status\n    ...BdashQueryForEditor\n  }\n"): typeof import('./graphql').BdashQueryForQueryDetailPageFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryForEditor on UserQuery {\n    id\n    title\n    body\n  }\n',
-): typeof import('./graphql').UserQueryForEditorFragmentDoc
+export function graphql(source: "\n  fragment BdashQueryForEditor on BdashQuery {\n    id\n    title\n    body\n  }\n"): typeof import('./graphql').BdashQueryForEditorFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  mutation UpdateUserQueryTitle($input: UpdateUserQueryTitleInput!) {\n    updateUserQueryTitle(input: $input) {\n      userQuery {\n        title\n      }\n    }\n  }\n',
-): typeof import('./graphql').UpdateUserQueryTitleDocument
+export function graphql(source: "\n  query GetQueryDetailPage($id: ID!) {\n    query: bdashQuery(id: $id) {\n      ...BdashQueryForQueryDetailPage\n    }\n  }\n"): typeof import('./graphql').GetQueryDetailPageDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  query GetQueryDetailPage($id: ID!) {\n    query: userQuery(id: $id) {\n      ...UserQueryForQueryDetailPage\n    }\n  }\n',
-): typeof import('./graphql').GetQueryDetailPageDocument
+export function graphql(source: "\n  fragment BdashQueryForQueryListItem on BdashQuery {\n    id\n    title\n  }\n"): typeof import('./graphql').BdashQueryForQueryListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryForQueryListItem on UserQuery {\n    id\n    title\n  }\n',
-): typeof import('./graphql').UserQueryForQueryListItemFragmentDoc
+export function graphql(source: "\n  fragment QueryGroupForQueryGroupListLayout on QueryGroup {\n    ...QueryGroupForQueryGroupList\n  }\n"): typeof import('./graphql').QueryGroupForQueryGroupListLayoutFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {\n    ...UserQueryGroupForQueryGroupList\n  }\n',
-): typeof import('./graphql').UserQueryGroupForQueryGroupListLayoutFragmentDoc
+export function graphql(source: "\n  fragment QueryGroupForQueryGroupList on QueryGroup {\n    id\n    ...QueryGroupForQueryGroupListItem\n  }\n"): typeof import('./graphql').QueryGroupForQueryGroupListFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryGroupForQueryGroupList on UserQueryGroup {\n    id\n    ...UserQueryGroupForQueryGroupListItem\n  }\n',
-): typeof import('./graphql').UserQueryGroupForQueryGroupListFragmentDoc
+export function graphql(source: "\n  fragment QueryGroupForQueryGroupListItem on QueryGroup {\n    id\n    name\n  }\n"): typeof import('./graphql').QueryGroupForQueryGroupListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n  fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {\n    id\n    title\n  }\n',
-): typeof import('./graphql').UserQueryGroupForQueryGroupListItemFragmentDoc
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  query GetQueryGroupListLayout {\n    queryGroups: userQueryGroups {\n      ...UserQueryGroupForQueryGroupListLayout\n    }\n  }\n',
-): typeof import('./graphql').GetQueryGroupListLayoutDocument
+export function graphql(source: "\n  query GetQueryGroupListLayout {\n    queryGroups {\n      ...QueryGroupForQueryGroupListLayout\n    }\n  }\n"): typeof import('./graphql').GetQueryGroupListLayoutDocument;
+
 
 export function graphql(source: string) {
-  return (documents as any)[source] ?? {}
+  return (documents as any)[source] ?? {};
 }

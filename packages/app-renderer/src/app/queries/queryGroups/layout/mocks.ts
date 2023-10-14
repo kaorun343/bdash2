@@ -7,7 +7,7 @@ export const queryGroupListMockHandlers = [
       ctx.data({
         queryGroups: db.userQueryGroups.getAll().map((data) => ({
           id: data.id,
-          title: data.title,
+          name: data.name,
         })),
       }),
     )

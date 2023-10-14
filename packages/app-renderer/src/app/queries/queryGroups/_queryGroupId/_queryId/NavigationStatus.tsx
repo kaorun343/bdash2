@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { FaCheck, FaTimes } from 'react-icons/fa'
-import { UserQueryStatus } from '~/gql/graphql'
+import { QueryStatus } from '~/gql/graphql'
 
 type Props = {
-  status: UserQueryStatus | null | undefined
+  status: QueryStatus | null | undefined
 }
 
 export const NavigationStatus: FC<Props> = ({ status }) => {
@@ -24,12 +24,12 @@ export const NavigationStatus: FC<Props> = ({ status }) => {
           <span>Failed</span>
         </div>
       )
-    case 'WORKING':
-      return (
-        <div className="flex gap-1 items-center text-gray-500">
-          <span>Working...</span>
-        </div>
-      )
+    // case 'WORKING':
+    //   return (
+    //     <div className="flex gap-1 items-center text-gray-500">
+    //       <span>Working...</span>
+    //     </div>
+    //   )
     default:
       return null
   }

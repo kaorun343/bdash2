@@ -4,8 +4,8 @@ import { requestToGraphQL } from '~/requestToGraphQL'
 
 const GetQueryGroupListLayout = graphql(`
   query GetQueryGroupListLayout {
-    queryGroups: userQueryGroups {
-      ...UserQueryGroupForQueryGroupListLayout
+    queryGroups {
+      ...QueryGroupForQueryGroupListLayout
     }
   }
 `)

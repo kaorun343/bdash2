@@ -3,20 +3,20 @@ import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
 
-const UserQueryForQueryListItem = graphql(`
-  fragment UserQueryForQueryListItem on UserQuery {
+const BdashQueryForQueryListItem = graphql(`
+  fragment BdashQueryForQueryListItem on BdashQuery {
     id
     title
   }
 `)
 
 type Props = {
-  query: FragmentType<typeof UserQueryForQueryListItem>
+  query: FragmentType<typeof BdashQueryForQueryListItem>
   groupId: string
 }
 
 export const QueryListItem: FC<Props> = (props) => {
-  const query = getFragmentData(UserQueryForQueryListItem, props.query)
+  const query = getFragmentData(BdashQueryForQueryListItem, props.query)
   const { groupId } = props
 
   return (

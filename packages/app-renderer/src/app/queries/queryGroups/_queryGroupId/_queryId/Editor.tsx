@@ -5,31 +5,21 @@ import { FC, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
 
-const UserQueryForEditor = graphql(`
-  fragment UserQueryForEditor on UserQuery {
+const BdashQueryForEditor = graphql(`
+  fragment BdashQueryForEditor on BdashQuery {
     id
     title
     body
   }
 `)
 
-const UpdateUserQueryTitle = graphql(`
-  mutation UpdateUserQueryTitle($input: UpdateUserQueryTitleInput!) {
-    updateUserQueryTitle(input: $input) {
-      userQuery {
-        title
-      }
-    }
-  }
-`)
-
 type Props = {
-  query: FragmentType<typeof UserQueryForEditor>
+  query: FragmentType<typeof BdashQueryForEditor>
   groupId: string
 }
 
 export const Editor: FC<Props> = (props) => {
-  const query = getFragmentData(UserQueryForEditor, props.query)
+  const query = getFragmentData(BdashQueryForEditor, props.query)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const { register, getValues, setValue, watch } = useForm({ defaultValues: query })

@@ -1,236 +1,185 @@
-import { GraphQLContext, GraphQLRequest, ResponseResolver, graphql } from 'msw'
-export type Maybe<T> = T | null
-export type InputMaybe<T> = Maybe<T>
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never }
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw'
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string }
-  String: { input: string; output: string }
-  Boolean: { input: boolean; output: boolean }
-  Int: { input: number; output: number }
-  Float: { input: number; output: number }
-  DateTime: { input: any; output: any }
-}
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
+};
 
-export type CreateUserQueryInput = {
-  title: Scalars['String']['input']
-}
+export type BdashQuery = {
+  __typename?: 'BdashQuery';
+  body: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  status?: Maybe<QueryStatus>;
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
 
-export type CreateUserQueryPayload = {
-  __typename?: 'CreateUserQueryPayload'
-  userQuery: UserQuery
-}
+export type ConnectionTest = {
+  __typename?: 'ConnectionTest';
+  message?: Maybe<Scalars['String']['output']>;
+  success: Scalars['Boolean']['output'];
+};
 
-export type DataSource = Node & {
-  __typename?: 'DataSource'
-  id: Scalars['ID']['output']
-  name: Scalars['String']['output']
-}
+export type CreateDataSourceSqLite3Input = {
+  name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
+};
 
-export type DataSourceTable = {
-  __typename?: 'DataSourceTable'
-  name: Scalars['String']['output']
-}
+export type DataSource = {
+  __typename?: 'DataSource';
+  config: DataSourceConfig;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type DataSourceConfig = DataSourceConfigSqLite3;
+
+export type DataSourceConfigSqLite3 = {
+  __typename?: 'DataSourceConfigSQLite3';
+  path: Scalars['String']['output'];
+};
+
+export type DeleteDataSourceInput = {
+  id: Scalars['ID']['input'];
+};
 
 export type Mutation = {
-  __typename?: 'Mutation'
-  createUserQuery: CreateUserQueryPayload
-  noop: NoopPayload
-  testSqlite3Connection: TestSqlite3ConnectionResponse
-  updateUserQueryTitle: UpdateUserQueryTitlePayload
-}
+  __typename?: 'Mutation';
+  createDataSourceSQLite3: DataSource;
+  deleteDataSource: Scalars['Int']['output'];
+  updateDataSourceSQLite3: DataSource;
+};
 
-export type MutationCreateUserQueryArgs = {
-  input: CreateUserQueryInput
-}
 
-export type MutationNoopArgs = {
-  input: NoopInput
-}
+export type MutationCreateDataSourceSqLite3Args = {
+  input: CreateDataSourceSqLite3Input;
+};
 
-export type MutationTestSqlite3ConnectionArgs = {
-  input: TestSqlite3ConnectionInput
-}
 
-export type MutationUpdateUserQueryTitleArgs = {
-  input: UpdateUserQueryTitleInput
-}
+export type MutationDeleteDataSourceArgs = {
+  input: DeleteDataSourceInput;
+};
 
-export type Node = {
-  id: Scalars['ID']['output']
-}
 
-export type NoopInput = {
-  clientMutationId?: InputMaybe<Scalars['String']['input']>
-}
-
-export type NoopPayload = {
-  __typename?: 'NoopPayload'
-  clientMutationId?: Maybe<Scalars['String']['output']>
-}
+export type MutationUpdateDataSourceSqLite3Args = {
+  input: UpdateDataSourceSqLite3Input;
+};
 
 export type Query = {
-  __typename?: 'Query'
-  dataSourceTablesByDataSourceId: Array<DataSourceTable>
-  dataSources: Array<DataSource>
-  node?: Maybe<Node>
-  userQueries: Array<UserQuery>
-  userQueriesByGroup: Array<UserQuery>
-  userQuery: UserQuery
-  userQueryGroups: Array<UserQueryGroup>
-}
+  __typename?: 'Query';
+  bdashQuery: BdashQuery;
+  connectionTestSQLite3: ConnectionTest;
+  dataSources: Array<DataSource>;
+  queriesByQueryGroupId: Array<BdashQuery>;
+  queryGroups: Array<QueryGroup>;
+};
 
-export type QueryDataSourceTablesByDataSourceIdArgs = {
-  dataSourceId: Scalars['ID']['input']
-}
 
-export type QueryNodeArgs = {
-  id: Scalars['ID']['input']
-}
+export type QueryBdashQueryArgs = {
+  id: Scalars['ID']['input'];
+};
 
-export type QueryUserQueriesByGroupArgs = {
-  groupId: Scalars['ID']['input']
-}
 
-export type QueryUserQueryArgs = {
-  id: Scalars['ID']['input']
-}
+export type QueryConnectionTestSqLite3Args = {
+  path: Scalars['String']['input'];
+};
 
-export type TestSqlite3ConnectionInput = {
-  path: Scalars['String']['input']
-}
 
-export type TestSqlite3ConnectionResponse = {
-  __typename?: 'TestSqlite3ConnectionResponse'
-  message?: Maybe<Scalars['String']['output']>
-  success: Scalars['Boolean']['output']
-}
+export type QueryQueriesByQueryGroupIdArgs = {
+  queryGroupId: Scalars['ID']['input'];
+};
 
-export type UpdateUserQueryTitleInput = {
-  id: Scalars['ID']['input']
-  title: Scalars['String']['input']
-}
+export type QueryGroup = {
+  __typename?: 'QueryGroup';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
 
-export type UpdateUserQueryTitlePayload = {
-  __typename?: 'UpdateUserQueryTitlePayload'
-  userQuery: UserQuery
-}
-
-export type UserQuery = Node & {
-  __typename?: 'UserQuery'
-  body: Scalars['String']['output']
-  createdAt: Scalars['DateTime']['output']
-  id: Scalars['ID']['output']
-  status?: Maybe<UserQueryStatus>
-  title: Scalars['String']['output']
-  updatedAt: Scalars['DateTime']['output']
-}
-
-export type UserQueryGroup = Node & {
-  __typename?: 'UserQueryGroup'
-  id: Scalars['ID']['output']
-  title: Scalars['String']['output']
-}
-
-export enum UserQueryStatus {
+export enum QueryStatus {
   Failure = 'FAILURE',
-  Success = 'SUCCESS',
-  Working = 'WORKING',
+  Success = 'SUCCESS'
 }
 
-export type DataSourceForDataSourceListLayoutFragment = { __typename?: 'DataSource'; id: string; name: string }
+export type UpdateDataSourceSqLite3Input = {
+  id: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
+};
 
-export type DataSourceForDataSourceListFragment = { __typename?: 'DataSource'; id: string; name: string }
+export type DataSourceForDataSourceListLayoutFragment = { __typename?: 'DataSource', id: string, name: string };
 
-export type DataSourceForDataSourceListItemFragment = { __typename?: 'DataSource'; id: string; name: string }
+export type DataSourceForDataSourceListFragment = { __typename?: 'DataSource', id: string, name: string };
 
-export type TestSqlite3ConnectionMutationVariables = Exact<{
-  input: TestSqlite3ConnectionInput
-}>
+export type DataSourceForDataSourceListItemFragment = { __typename?: 'DataSource', id: string, name: string };
 
-export type TestSqlite3ConnectionMutation = {
-  __typename?: 'Mutation'
-  testSqlite3Connection: { __typename?: 'TestSqlite3ConnectionResponse'; success: boolean }
-}
+export type TestSqlite3ConnectionQueryVariables = Exact<{
+  path: Scalars['String']['input'];
+}>;
 
-export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetDataSourceListLayoutQuery = {
-  __typename?: 'Query'
-  dataSources: Array<{ __typename?: 'DataSource'; id: string; name: string }>
-}
+export type TestSqlite3ConnectionQuery = { __typename?: 'Query', connectionTestSQLite3: { __typename?: 'ConnectionTest', success: boolean } };
 
-export type UserQueryForQueryDetailPageFragment = {
-  __typename?: 'UserQuery'
-  status?: UserQueryStatus | null
-  id: string
-  title: string
-  body: string
-}
+export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type UserQueryForEditorFragment = { __typename?: 'UserQuery'; id: string; title: string; body: string }
 
-export type UpdateUserQueryTitleMutationVariables = Exact<{
-  input: UpdateUserQueryTitleInput
-}>
+export type GetDataSourceListLayoutQuery = { __typename?: 'Query', dataSources: Array<{ __typename?: 'DataSource', id: string, name: string }> };
 
-export type UpdateUserQueryTitleMutation = {
-  __typename?: 'Mutation'
-  updateUserQueryTitle: {
-    __typename?: 'UpdateUserQueryTitlePayload'
-    userQuery: { __typename?: 'UserQuery'; title: string }
-  }
-}
+export type BdashQueryForQueryDetailPageFragment = { __typename?: 'BdashQuery', status?: QueryStatus | null, id: string, title: string, body: string };
+
+export type BdashQueryForEditorFragment = { __typename?: 'BdashQuery', id: string, title: string, body: string };
 
 export type GetQueryDetailPageQueryVariables = Exact<{
-  id: Scalars['ID']['input']
-}>
+  id: Scalars['ID']['input'];
+}>;
 
-export type GetQueryDetailPageQuery = {
-  __typename?: 'Query'
-  query: { __typename?: 'UserQuery'; status?: UserQueryStatus | null; id: string; title: string; body: string }
-}
 
-export type UserQueryForQueryListItemFragment = { __typename?: 'UserQuery'; id: string; title: string }
+export type GetQueryDetailPageQuery = { __typename?: 'Query', query: { __typename?: 'BdashQuery', status?: QueryStatus | null, id: string, title: string, body: string } };
 
-export type UserQueryGroupForQueryGroupListLayoutFragment = { __typename?: 'UserQueryGroup'; id: string; title: string }
+export type BdashQueryForQueryListItemFragment = { __typename?: 'BdashQuery', id: string, title: string };
 
-export type UserQueryGroupForQueryGroupListFragment = { __typename?: 'UserQueryGroup'; id: string; title: string }
+export type QueryGroupForQueryGroupListLayoutFragment = { __typename?: 'QueryGroup', id: string, name: string };
 
-export type UserQueryGroupForQueryGroupListItemFragment = { __typename?: 'UserQueryGroup'; id: string; title: string }
+export type QueryGroupForQueryGroupListFragment = { __typename?: 'QueryGroup', id: string, name: string };
 
-export type GetQueryGroupListLayoutQueryVariables = Exact<{ [key: string]: never }>
+export type QueryGroupForQueryGroupListItemFragment = { __typename?: 'QueryGroup', id: string, name: string };
 
-export type GetQueryGroupListLayoutQuery = {
-  __typename?: 'Query'
-  queryGroups: Array<{ __typename?: 'UserQueryGroup'; id: string; title: string }>
-}
+export type GetQueryGroupListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetQueryGroupListLayoutQuery = { __typename?: 'Query', queryGroups: Array<{ __typename?: 'QueryGroup', id: string, name: string }> };
+
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
  * @see https://mswjs.io/docs/basics/response-resolver
  * @example
- * mockTestSqlite3ConnectionMutation((req, res, ctx) => {
- *   const { input } = req.variables;
+ * mockTestSqlite3ConnectionQuery((req, res, ctx) => {
+ *   const { path } = req.variables;
  *   return res(
- *     ctx.data({ testSqlite3Connection })
+ *     ctx.data({ connectionTestSQLite3 })
  *   )
  * })
  */
-export const mockTestSqlite3ConnectionMutation = (
-  resolver: ResponseResolver<
-    GraphQLRequest<TestSqlite3ConnectionMutationVariables>,
-    GraphQLContext<TestSqlite3ConnectionMutation>,
-    any
-  >,
-) =>
-  graphql.mutation<TestSqlite3ConnectionMutation, TestSqlite3ConnectionMutationVariables>(
+export const mockTestSqlite3ConnectionQuery = (resolver: ResponseResolver<GraphQLRequest<TestSqlite3ConnectionQueryVariables>, GraphQLContext<TestSqlite3ConnectionQuery>, any>) =>
+  graphql.query<TestSqlite3ConnectionQuery, TestSqlite3ConnectionQueryVariables>(
     'TestSqlite3Connection',
-    resolver,
+    resolver
   )
 
 /**
@@ -243,39 +192,10 @@ export const mockTestSqlite3ConnectionMutation = (
  *   )
  * })
  */
-export const mockGetDataSourceListLayoutQuery = (
-  resolver: ResponseResolver<
-    GraphQLRequest<GetDataSourceListLayoutQueryVariables>,
-    GraphQLContext<GetDataSourceListLayoutQuery>,
-    any
-  >,
-) =>
+export const mockGetDataSourceListLayoutQuery = (resolver: ResponseResolver<GraphQLRequest<GetDataSourceListLayoutQueryVariables>, GraphQLContext<GetDataSourceListLayoutQuery>, any>) =>
   graphql.query<GetDataSourceListLayoutQuery, GetDataSourceListLayoutQueryVariables>(
     'GetDataSourceListLayout',
-    resolver,
-  )
-
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
- * mockUpdateUserQueryTitleMutation((req, res, ctx) => {
- *   const { input } = req.variables;
- *   return res(
- *     ctx.data({ updateUserQueryTitle })
- *   )
- * })
- */
-export const mockUpdateUserQueryTitleMutation = (
-  resolver: ResponseResolver<
-    GraphQLRequest<UpdateUserQueryTitleMutationVariables>,
-    GraphQLContext<UpdateUserQueryTitleMutation>,
-    any
-  >,
-) =>
-  graphql.mutation<UpdateUserQueryTitleMutation, UpdateUserQueryTitleMutationVariables>(
-    'UpdateUserQueryTitle',
-    resolver,
+    resolver
   )
 
 /**
@@ -285,17 +205,15 @@ export const mockUpdateUserQueryTitleMutation = (
  * mockGetQueryDetailPageQuery((req, res, ctx) => {
  *   const { id } = req.variables;
  *   return res(
- *     ctx.data({ userQuery })
+ *     ctx.data({ bdashQuery })
  *   )
  * })
  */
-export const mockGetQueryDetailPageQuery = (
-  resolver: ResponseResolver<
-    GraphQLRequest<GetQueryDetailPageQueryVariables>,
-    GraphQLContext<GetQueryDetailPageQuery>,
-    any
-  >,
-) => graphql.query<GetQueryDetailPageQuery, GetQueryDetailPageQueryVariables>('GetQueryDetailPage', resolver)
+export const mockGetQueryDetailPageQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueryDetailPageQueryVariables>, GraphQLContext<GetQueryDetailPageQuery>, any>) =>
+  graphql.query<GetQueryDetailPageQuery, GetQueryDetailPageQueryVariables>(
+    'GetQueryDetailPage',
+    resolver
+  )
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
@@ -303,18 +221,12 @@ export const mockGetQueryDetailPageQuery = (
  * @example
  * mockGetQueryGroupListLayoutQuery((req, res, ctx) => {
  *   return res(
- *     ctx.data({ userQueryGroups })
+ *     ctx.data({ queryGroups })
  *   )
  * })
  */
-export const mockGetQueryGroupListLayoutQuery = (
-  resolver: ResponseResolver<
-    GraphQLRequest<GetQueryGroupListLayoutQueryVariables>,
-    GraphQLContext<GetQueryGroupListLayoutQuery>,
-    any
-  >,
-) =>
+export const mockGetQueryGroupListLayoutQuery = (resolver: ResponseResolver<GraphQLRequest<GetQueryGroupListLayoutQueryVariables>, GraphQLContext<GetQueryGroupListLayoutQuery>, any>) =>
   graphql.query<GetQueryGroupListLayoutQuery, GetQueryGroupListLayoutQueryVariables>(
     'GetQueryGroupListLayout',
-    resolver,
+    resolver
   )

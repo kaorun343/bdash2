@@ -5,8 +5,8 @@ import { requestToGraphQL } from '~/requestToGraphQL'
 export const TEST_SQLITE3_CONNECTION_INTENT = 'testSqlite3Connection'
 
 const TestSqlite3Connection = graphql(`
-  mutation TestSqlite3Connection($input: TestSqlite3ConnectionInput!) {
-    testSqlite3Connection(input: $input) {
+  query TestSqlite3Connection($path: String!) {
+    connectionTestSQLite3(path: $path) {
       success
     }
   }
@@ -19,13 +19,9 @@ export const action: ActionFunction = async ({ request }) => {
   switch (intent) {
     case TEST_SQLITE3_CONNECTION_INTENT:
       const path = formData.get('path') as string
-      const result = await requestToGraphQL(TestSqlite3Connection, {
-        input: {
-          path,
-        },
-      })
+      const result = await requestToGraphQL(TestSqlite3Connection, { path })
 
-      return result.testSqlite3Connection.success
+      return result.connectionTestSQLite3.success
     default:
       console.info(JSON.parse(formData.get('serialized') as string))
 

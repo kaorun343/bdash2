@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { UserQueryStatus } from '~/gql/graphql'
+import { QueryStatus } from '~/gql/graphql'
 import { NavigationButton } from './NavigationButton'
 import { NavigationStatus } from './NavigationStatus'
 
 type Props = {
-  status: UserQueryStatus | null | undefined
+  status: QueryStatus | null | undefined
 }
 
 export const Navigation: FC<Props> = ({ status }) => {

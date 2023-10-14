@@ -1,13 +1,13 @@
-import { mockGetDataSourceListLayoutQuery, mockTestSqlite3ConnectionMutation } from '~/gql/msw'
+import { mockGetDataSourceListLayoutQuery, mockTestSqlite3ConnectionQuery } from '~/gql/msw'
 import { db } from '~/mocks/db'
 
 export const dataSourceListLayoutMockHandlers = [
-  mockTestSqlite3ConnectionMutation(async (req, res, ctx) => {
+  mockTestSqlite3ConnectionQuery(async (req, res, ctx) => {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     return res(
       ctx.data({
-        testSqlite3Connection: {
+        connectionTestSQLite3: {
           success: true,
         },
       }),

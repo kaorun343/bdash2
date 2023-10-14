@@ -15,11 +15,11 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query'
-  queries: Array<UserQuery>
+  queries: Array<BdashQuery>
 }
 
-export type UserQuery = {
-  __typename?: 'UserQuery'
+export type BdashQuery = {
+  __typename?: 'BdashQuery'
   body: Scalars['String']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']

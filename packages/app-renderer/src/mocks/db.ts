@@ -7,7 +7,7 @@ export const db = factory({
   },
   userQueryGroups: {
     id: primaryKey(String),
-    title: String,
+    name: String,
   },
   userQueries: {
     id: primaryKey(String),
@@ -24,7 +24,7 @@ db.dataSources.create({
 
 db.userQueryGroups.create({
   id: `${Date.now()}`,
-  title: `Group 1`,
+  name: `Group 1`,
 })
 
 db.userQueries.create({

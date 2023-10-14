@@ -4,15 +4,15 @@ import { getFragmentData, graphql } from '~/gql'
 import { GetQueryGroupListLayoutQuery } from '~/gql/graphql'
 import { QueryGroupList } from './QueryGroupList'
 
-const UserQueryGroupForQueryGroupListLayout = graphql(`
-  fragment UserQueryGroupForQueryGroupListLayout on UserQueryGroup {
-    ...UserQueryGroupForQueryGroupList
+const QueryGroupForQueryGroupListLayout = graphql(`
+  fragment QueryGroupForQueryGroupListLayout on QueryGroup {
+    ...QueryGroupForQueryGroupList
   }
 `)
 
 export const Component: FC = () => {
   const data = useLoaderData() as GetQueryGroupListLayoutQuery
-  const queryGroups = getFragmentData(UserQueryGroupForQueryGroupListLayout, data.queryGroups)
+  const queryGroups = getFragmentData(QueryGroupForQueryGroupListLayout, data.queryGroups)
 
   return (
     <div className="flex w-full">

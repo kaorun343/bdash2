@@ -4,8 +4,8 @@ import { requestToGraphQL } from '~/requestToGraphQL'
 
 const GetQueryDetailPage = graphql(`
   query GetQueryDetailPage($id: ID!) {
-    query: userQuery(id: $id) {
-      ...UserQueryForQueryDetailPage
+    query: bdashQuery(id: $id) {
+      ...BdashQueryForQueryDetailPage
     }
   }
 `)

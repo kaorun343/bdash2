@@ -3,19 +3,19 @@ import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
 
-const UserQueryGroupForQueryGroupListItem = graphql(`
-  fragment UserQueryGroupForQueryGroupListItem on UserQueryGroup {
+const QueryGroupForQueryGroupListItem = graphql(`
+  fragment QueryGroupForQueryGroupListItem on QueryGroup {
     id
-    title
+    name
   }
 `)
 
 type Props = {
-  queryGroup: FragmentType<typeof UserQueryGroupForQueryGroupListItem>
+  queryGroup: FragmentType<typeof QueryGroupForQueryGroupListItem>
 }
 
 export const QueryGroupListItem: FC<Props> = (props) => {
-  const queryGroup = getFragmentData(UserQueryGroupForQueryGroupListItem, props.queryGroup)
+  const queryGroup = getFragmentData(QueryGroupForQueryGroupListItem, props.queryGroup)
 
   return (
     <li className="border-b border-gray-300">
@@ -23,7 +23,7 @@ export const QueryGroupListItem: FC<Props> = (props) => {
         to={`/queries/${queryGroup.id}`}
         className={({ isActive }) => clsx('block px-4 py-3', isActive && 'bg-blue-500 text-white')}
       >
-        {queryGroup.title}
+        {queryGroup.name}
       </NavLink>
     </li>
   )

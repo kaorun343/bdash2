@@ -5,10 +5,10 @@ import { GetQueryDetailPageQuery } from '~/gql/graphql'
 import { Editor } from './Editor'
 import { Navigation } from './Navigation'
 
-const UserQueryForQueryDetailPage = graphql(`
-  fragment UserQueryForQueryDetailPage on UserQuery {
+const BdashQueryForQueryDetailPage = graphql(`
+  fragment BdashQueryForQueryDetailPage on BdashQuery {
     status
-    ...UserQueryForEditor
+    ...BdashQueryForEditor
   }
 `)
 
@@ -16,7 +16,7 @@ export const Component: FC = () => {
   const data = useLoaderData() as GetQueryDetailPageQuery
   const params = useParams()
   const groupId = params.queryGroupId as string
-  const query = getFragmentData(UserQueryForQueryDetailPage, data.query)
+  const query = getFragmentData(BdashQueryForQueryDetailPage, data.query)
 
   return (
     <div className="flex-1">

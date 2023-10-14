@@ -2,19 +2,19 @@ import { FC } from 'react'
 import { FragmentType, getFragmentData, graphql } from '~/gql'
 import { QueryGroupListItem } from './QueryGroupListItem'
 
-const UserQueryGroupForQueryGroupList = graphql(`
-  fragment UserQueryGroupForQueryGroupList on UserQueryGroup {
+const QueryGroupForQueryGroupList = graphql(`
+  fragment QueryGroupForQueryGroupList on QueryGroup {
     id
-    ...UserQueryGroupForQueryGroupListItem
+    ...QueryGroupForQueryGroupListItem
   }
 `)
 
 type Props = {
-  queryGroups: readonly FragmentType<typeof UserQueryGroupForQueryGroupList>[]
+  queryGroups: readonly FragmentType<typeof QueryGroupForQueryGroupList>[]
 }
 
 export const QueryGroupList: FC<Props> = (props) => {
-  const queryGroups = getFragmentData(UserQueryGroupForQueryGroupList, props.queryGroups)
+  const queryGroups = getFragmentData(QueryGroupForQueryGroupList, props.queryGroups)
 
   return (
     <ul>

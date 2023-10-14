@@ -3,6 +3,7 @@
   "private": true,
   "main": "dist/app-renderer.mjs",
   "scripts": {
+    "codegen": "graphql-codegen",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
@@ -23,6 +24,7 @@
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
+    "@bdash2/app-main": "workspace:^",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@graphql-codegen/typescript-msw": "^2.0.0",
