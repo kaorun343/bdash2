@@ -722,6 +722,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@bdash2/app-main@workspace:packages/app-main"
   dependencies:
+    "@bdash2/prettier-config": "workspace:^"
     "@graphql-codegen/cli": ^5.0.0
     "@graphql-codegen/schema-ast": ^4.0.0
     "@pothos/core": ^3.38.0
@@ -732,7 +733,6 @@ __metadata:
     graphql-tag: ^2.12.6
     kysely: ^0.26.3
     prettier: ^3.0.3
-    prettier-plugin-organize-imports: ^3.2.3
     sql.js: ^1.8.0
     typescript: ^5.2.2
     vite: ^4.4.11
@@ -745,6 +745,7 @@ __metadata:
   resolution: "@bdash2/app-renderer@workspace:packages/app-renderer"
   dependencies:
     "@bdash2/app-main": "workspace:^"
+    "@bdash2/prettier-config": "workspace:^"
     "@codemirror/lang-sql": ^6.3.1
     "@graphql-codegen/cli": ^5.0.0
     "@graphql-codegen/client-preset": ^4.1.0
@@ -764,7 +765,6 @@ __metadata:
     msw: ^1.3.2
     postcss: ^8.4.31
     prettier: ^3.0.3
-    prettier-plugin-organize-imports: ^3.2.3
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.37.0
@@ -782,11 +782,20 @@ __metadata:
   dependencies:
     "@bdash2/app-main": "workspace:^"
     "@bdash2/app-renderer": "workspace:^"
+    "@bdash2/prettier-config": "workspace:^"
     "@rspack/cli": ^0.3.6
     electron: ^27.0.0
     prettier: ^3.0.3
-    prettier-plugin-organize-imports: ^3.2.3
     rspack: ^0.1.1
+  languageName: unknown
+  linkType: soft
+
+"@bdash2/prettier-config@workspace:^, @bdash2/prettier-config@workspace:packages/prettier-config":
+  version: 0.0.0-use.local
+  resolution: "@bdash2/prettier-config@workspace:packages/prettier-config"
+  dependencies:
+    prettier: ^3.0.3
+    prettier-plugin-organize-imports: ^3.2.3
   languageName: unknown
   linkType: soft
 

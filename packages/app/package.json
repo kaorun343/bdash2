@@ -9,10 +9,11 @@
   "devDependencies": {
     "@bdash2/app-main": "workspace:^",
     "@bdash2/app-renderer": "workspace:^",
+    "@bdash2/prettier-config": "workspace:^",
     "@rspack/cli": "^0.3.6",
     "electron": "^27.0.0",
     "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
     "rspack": "^0.1.1"
-  }
+  },
+  "prettier": "@bdash2/prettier-config"
 }
