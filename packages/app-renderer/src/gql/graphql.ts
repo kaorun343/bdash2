@@ -139,7 +139,12 @@ export type TestSqlite3ConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TestSqlite3ConnectionQuery = { __typename?: 'Query', connectionTestSQLite3: { __typename?: 'ConnectionTest', success: boolean } };
+export type TestSqlite3ConnectionQuery = { __typename?: 'Query', connectionTestSQLite3: (
+    { __typename?: 'ConnectionTest' }
+    & { ' $fragmentRefs'?: { 'ConnectionTestForDialogFormButtonListFragment': ConnectionTestForDialogFormButtonListFragment } }
+  ) };
+
+export type ConnectionTestForDialogFormButtonListFragment = { __typename?: 'ConnectionTest', success: boolean, message?: string | null } & { ' $fragmentName'?: 'ConnectionTestForDialogFormButtonListFragment' };
 
 export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -229,6 +234,12 @@ fragment DataSourceForDataSourceListItem on DataSource {
   id
   name
 }`, {"fragmentName":"DataSourceForDataSourceListLayout"}) as unknown as TypedDocumentString<DataSourceForDataSourceListLayoutFragment, unknown>;
+export const ConnectionTestForDialogFormButtonListFragmentDoc = new TypedDocumentString(`
+    fragment ConnectionTestForDialogFormButtonList on ConnectionTest {
+  success
+  message
+}
+    `, {"fragmentName":"ConnectionTestForDialogFormButtonList"}) as unknown as TypedDocumentString<ConnectionTestForDialogFormButtonListFragment, unknown>;
 export const BdashQueryForEditorFragmentDoc = new TypedDocumentString(`
     fragment BdashQueryForEditor on BdashQuery {
   id
@@ -282,10 +293,13 @@ fragment QueryGroupForQueryGroupListItem on QueryGroup {
 export const TestSqlite3ConnectionDocument = new TypedDocumentString(`
     query TestSqlite3Connection($path: String!) {
   connectionTestSQLite3(path: $path) {
-    success
+    ...ConnectionTestForDialogFormButtonList
   }
 }
-    `) as unknown as TypedDocumentString<TestSqlite3ConnectionQuery, TestSqlite3ConnectionQueryVariables>;
+    fragment ConnectionTestForDialogFormButtonList on ConnectionTest {
+  success
+  message
+}`) as unknown as TypedDocumentString<TestSqlite3ConnectionQuery, TestSqlite3ConnectionQueryVariables>;
 export const GetDataSourceListLayoutDocument = new TypedDocumentString(`
     query GetDataSourceListLayout {
   dataSources {

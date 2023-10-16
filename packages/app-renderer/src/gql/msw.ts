@@ -133,7 +133,9 @@ export type TestSqlite3ConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TestSqlite3ConnectionQuery = { __typename?: 'Query', connectionTestSQLite3: { __typename?: 'ConnectionTest', success: boolean } };
+export type TestSqlite3ConnectionQuery = { __typename?: 'Query', connectionTestSQLite3: { __typename?: 'ConnectionTest', success: boolean, message?: string | null } };
+
+export type ConnectionTestForDialogFormButtonListFragment = { __typename?: 'ConnectionTest', success: boolean, message?: string | null };
 
 export type GetDataSourceListLayoutQueryVariables = Exact<{ [key: string]: never; }>;
 

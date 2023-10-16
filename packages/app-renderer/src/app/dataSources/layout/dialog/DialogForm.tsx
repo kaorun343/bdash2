@@ -1,8 +1,7 @@
 import { FC, useId } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSubmit } from 'react-router-dom'
-import { DialogFormButton } from './DialogFormButton'
-import { DialogFormConnectionTest } from './DialogFormConnectionTest'
+import { DialogFormButtonList } from './DialogFormButtonList'
 import { DialogFormDatabaseSpecificFields } from './DialogFormDatabaseSpecificFields'
 import { DialogFormErrorMessage } from './DialogFormErrorMessage'
 import { DialogFormFieldValues } from './DialogFormFieldValues'
@@ -72,19 +71,7 @@ export const DialogForm: FC<Props> = ({ onCancel }) => {
         )}
       </div>
       <DialogFormDatabaseSpecificFields control={control} register={register} />
-      <section className="flex justify-between text-sm pt-8">
-        <div className="flex gap-2 items-center">
-          <DialogFormConnectionTest control={control} />
-        </div>
-        <div className="flex gap-2">
-          <DialogFormButton type="button" onClick={onCancel}>
-            Cancel
-          </DialogFormButton>
-          <DialogFormButton type="submit" className="text-white bg-blue-700 hover:bg-blue-800">
-            Submit
-          </DialogFormButton>
-        </div>
-      </section>
+      <DialogFormButtonList control={control} onCancel={onCancel} />
     </form>
   )
 }

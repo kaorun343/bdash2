@@ -17,7 +17,8 @@ const documents = {
     "\n  fragment DataSourceForDataSourceListLayout on DataSource {\n    ...DataSourceForDataSourceList\n  }\n": types.DataSourceForDataSourceListLayoutFragmentDoc,
     "\n  fragment DataSourceForDataSourceList on DataSource {\n    id\n    ...DataSourceForDataSourceListItem\n  }\n": types.DataSourceForDataSourceListFragmentDoc,
     "\n  fragment DataSourceForDataSourceListItem on DataSource {\n    id\n    name\n  }\n": types.DataSourceForDataSourceListItemFragmentDoc,
-    "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      success\n    }\n  }\n": types.TestSqlite3ConnectionDocument,
+    "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      ...ConnectionTestForDialogFormButtonList\n    }\n  }\n": types.TestSqlite3ConnectionDocument,
+    "\n  fragment ConnectionTestForDialogFormButtonList on ConnectionTest {\n    success\n    message\n  }\n": types.ConnectionTestForDialogFormButtonListFragmentDoc,
     "\n  query GetDataSourceListLayout {\n    dataSources {\n      ...DataSourceForDataSourceListLayout\n    }\n  }\n": types.GetDataSourceListLayoutDocument,
     "\n  fragment BdashQueryForQueryDetailPage on BdashQuery {\n    status\n    ...BdashQueryForEditor\n  }\n": types.BdashQueryForQueryDetailPageFragmentDoc,
     "\n  fragment BdashQueryForEditor on BdashQuery {\n    id\n    title\n    body\n  }\n": types.BdashQueryForEditorFragmentDoc,
@@ -44,7 +45,11 @@ export function graphql(source: "\n  fragment DataSourceForDataSourceListItem on
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      success\n    }\n  }\n"): typeof import('./graphql').TestSqlite3ConnectionDocument;
+export function graphql(source: "\n  query TestSqlite3Connection($path: String!) {\n    connectionTestSQLite3(path: $path) {\n      ...ConnectionTestForDialogFormButtonList\n    }\n  }\n"): typeof import('./graphql').TestSqlite3ConnectionDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ConnectionTestForDialogFormButtonList on ConnectionTest {\n    success\n    message\n  }\n"): typeof import('./graphql').ConnectionTestForDialogFormButtonListFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
