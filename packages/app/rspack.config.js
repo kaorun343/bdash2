@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @type {import('@rspack/cli').Configuration[]} */
 module.exports = [
   {
@@ -16,6 +18,13 @@ module.exports = [
         ],
       },
     },
+  },
+  {
+    entry: './src/preload.ts',
+    output: {
+      filename: 'preload.js',
+    },
+    target: 'electron-preload',
   },
   {
     entry: ['./src/renderer.ts'],
